@@ -1,0 +1,281 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+@import "Bootstrap"
+
+$accent-color: rgb(63,151,245)
+$translucent-accent-color: rgba(63,151,245,.95)
+$light-accent-color: rgba(63,151,245,.1)
+$darker-accent-color: rgba(63,151,245,.3)
+$light-gray: #FAFAFA
+$gray: #A1A1A1
+$navbar-height: 60px
+$hover-transition-time: .25s
+
+div 
+  font-family: 'SanFranciscoDisplay-Thin','Segoe UI Light' !important
+
+html,body,.container
+  height: 100%
+
+a#title
+  text-decoration: none
+  color: inherit
+
+.container
+  padding-top: 80px
+
+.clickable
+  cursor: pointer
+
+.hide
+  display: none
+
+.noborder
+  margin: 0
+  padding: 0
+
+sup
+  top: -.75em
+  font-size: 50%
+
+.btn-outline-primary 
+  border-width: 1px
+  border-radius: 2px
+  color: $accent-color
+  border-color: $accent-color
+  &:hover
+    background-color: $accent-color
+
+#notices
+  position: fixed
+  display: table
+  width: 100%
+  height: $navbar-height
+  z-index: -1
+  .flash_notice
+    text-align: center
+    display: table-cell
+    vertical-align: middle
+
+nav
+  height: $navbar-height
+  position: fixed
+  width: 100%
+  img 
+    height: $navbar-height
+
+.navbar-toggler
+  float: right
+  margin-right: 20px
+  padding-top: 14px
+  border: none
+
+.navbar-default .navbar-toggler .icon-bar
+  background-color: $accent-color
+
+.navbar-toggler
+  .navbar-toggler-icon
+    cursor: pointer
+
+#user-header
+  margin-bottom: 2rem
+
+.header-icon
+  text-align: center
+  img
+    width: 80%
+    border-radius: 90px
+    -o-transition: $hover-transition-time  
+    -ms-transition: $hover-transition-time  
+    -moz-transition: $hover-transition-time  
+    -webkit-transition: $hover-transition-time  
+    transition: $hover-transition-time  
+    &:hover
+      background: $light-accent-color
+
+.large-currency
+  font-size: 3em
+  font-weight: 100
+
+.contact-image
+  width: 25%
+
+.text-muted
+  color: $accent-color !important
+  opacity: .8
+
+.field, .field_with_errors
+    input:not(.checkbox)
+      border: none
+      border-bottom: 1px solid lightgray
+      height: 2em
+      padding: 4px 8px
+      border-radius: 2px
+      width: 240px
+
+.field_with_errors
+  input
+    // border-color: red
+  input::-webkit-input-placeholder 
+    color: $red !important
+
+.checkbox
+  padding-top: 10px
+  font-size: .9em
+  color: $gray
+
+.panel-heading
+  padding: 10px
+  margin-bottom: 0
+  &:hover
+    color: $accent-color
+
+.panel-heading:not(.collapsed)
+  text-decoration: underline
+  text-decoration-line: .5px
+  background-color: $light-gray
+
+.half-width
+  width: 50%
+
+table  
+  width: 100%
+  
+.table
+  display: table
+
+.table-row
+  padding: 4px
+  display: table-row
+
+.table-header-row
+  font-weight: bold
+  .table-row-item
+    border-bottom: none
+
+.table-row-item
+  border-bottom: 1px solid $light-gray
+  padding: 8px
+  &.meter-item
+    .name
+      width: 40%
+    .reference
+      width: 60%
+    .allocation
+      width: 15%
+      text-align: center
+    .link
+      width: 15%
+      text-align: center
+  &.space-item
+    .name
+      width: 30%
+    .description
+      width: 40%
+    .reference
+      width: 70%
+    .link
+      width: 10%
+  .checkbox
+    padding-top: 0px
+  label
+    margin-bottom: 0
+
+.table-row-grouping
+  padding-bottom: 30px
+
+.table-cell
+  display: inline-table
+
+#spaces-list
+  border-right: 1px solid $light-accent-color
+
+#meter-list
+  min-height: 240px
+  max-height: 360px
+  border: 1px solid $light-accent-color
+  border-radius: 4px
+  overflow: scroll
+
+#new_billable_meter
+  padding: 0 40px
+
+.clickable-row
+  cursor: pointer
+  &:hover
+    background-color: $light-accent-color
+
+.selected
+  background-color: $darker-accent-color !important
+
+#login-form
+  margin-left: auto
+  margin-right: auto
+  padding: 3% 10%
+  background: white
+  border-radius: 2px
+
+#login-button
+  padding: 4px 50px
+  margin-top: 10px
+
+.lightbox
+  z-index: 1030
+  position: fixed
+  top: 0
+  width: 100%
+  background: rgba(255, 255, 255, .98)
+  .close 
+    position: absolute
+    margin: 10px 0 0 44px
+    font-size: 3.4em
+    font-weight: lighter
+    color: $accent-color
+
+.full-screen-menu
+  @extend .lightbox
+  @extend .h-100
+  background-color: $translucent-accent-color
+  .menu
+    margin-top: $navbar-height
+    padding-top: 1rem
+    padding-right: 20%
+    display: inline-block
+    float: right
+    font-size: 1.6rem
+    text-align: right
+    list-style-type: none
+    text-decoration: none
+    .menu-item
+      padding: 1rem 
+      a     
+        text-decoration: none
+        color: white
+    .menu-item-small
+      @extend .menu-item
+      font-size: 1rem 
+  .menu-logo
+    margin-top: $navbar-height
+    padding-top: 1rem
+    padding-left: 10%
+    img
+      width: 12vw
+      min-width: 140px     
+
+.devise-option
+  padding-top: 8px
+  font-size: .9em
+  color: $gray
+  font-style: italic
+  font-weight: 100

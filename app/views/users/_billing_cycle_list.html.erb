@@ -1,0 +1,22 @@
+
+</br>
+<% i=0 %>
+<div class="table row">
+    <% @user.billing_cycles.each do |date,invoices| %>
+      <div class="table-row">
+          <h4 data-toggle="collapse" data-target=".accordion-<%= i %>" class="text-center panel-heading clickable collapsed"><%= date %></h4>
+      </div>
+      
+      <div class="accordion-<%= i %> collapse table-row-grouping">
+        <% invoices.each do |invoice| %>
+        <div class="table-row-item">
+          <div width="70%" class="col-6 table-cell"><%= invoice.tenant.name %></div>
+          <div width="15%" class="col-3 table-cell text-center"><sup>$</sup><%= invoice.amount %></div>
+          <div width="15%" class="col-3 table-cell text-center"><%= invoice.status %></div>
+        </div>
+        <% end %>
+      </div>
+    <hr />
+    <% i+=1 %>
+    <% end %>
+</div>

@@ -1,0 +1,16 @@
+<h1 class="text-center">Configure a Meter</h1>
+<hr/>
+</br>
+<%= render 'form', billable_meter: @billable_meter %>
+
+<%= link_to 'Back', billable_meters_path %>
+
+<script type="text/javascript">
+
+  jQuery(document).ready(function($) {    
+    $(".clickable-row").click(function() {
+      $(".clickable-row").removeClass("selected")
+      $(this).addClass("selected")
+    });
+  });
+</script>

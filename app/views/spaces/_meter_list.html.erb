@@ -1,0 +1,22 @@
+<div class="table">
+  <% @meters.each do |meter| %>
+    <div class="table-row">
+      <div class="table-row-item meter-item">
+        <div class="table-cell name">
+          <div class="checkbox">
+            <label>
+              <div><input type="checkbox" 
+                <%  if (meter.space_id==@space.id) %>
+                      checked
+                <%  end %>
+                > <%= meter.name %></input></div>
+            </label>
+          </div>
+        </div>
+        <div class="table-cell reference">
+          <%= meter.reference %>
+        </div>      
+      </div>
+    </div>
+  <% end %>
+</div>

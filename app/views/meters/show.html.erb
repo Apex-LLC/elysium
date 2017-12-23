@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @meter.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @meter.description %>
+</p>
+
+<p>
+  <strong>Reference:</strong>
+  <%= @meter.reference %>
+</p>
+
+<p>
+  <strong>Last collection:</strong>
+  <%= @meter.last_collection %>
+</p>
+
+<%= link_to 'Edit', edit_meter_path(@meter) %> |
+<%= link_to 'Back', meters_path %>

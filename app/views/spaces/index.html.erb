@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="row">
+  <div id="spaces-list" class="col-6 table half-width">    
+    <h1>Spaces</h1>
+    <% @spaces.each do |space| %>
+      <div class="table-row">
+        <div class='table-row-item space-item clickable-row' data-href='<%= get_meters_space_path(:id=>space.id) %>'>
+          <div class="table-cell name"><%= space.name %></div>
+          <div class="table-cell description"><%= space.description %></div>
+          <div class="table-cell link"><%= link_to 'Show', space %></div>
+          <div class="table-cell link"><%= link_to 'Edit', edit_space_path(space) %></div>
+          <div class="table-cell link"><%= link_to 'Destroy', space, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-6 half-width">
+    <h1>Meters</h1>
+    <div id="meter_list"></div>
+  </div>
+</div>
+
+
+<br>
+
+<%= link_to 'New Space', new_space_path, :remote => true %>
+
+<script type="text/javascript">
+
+  jQuery(window).load(function () {
+    $('.space-item').first().click()
+  });
+
+  jQuery(document).ready(function($) {    
+    $(".clickable-row").click(function() {
+      $(".clickable-row").removeClass("selected")
+      $(this).addClass("selected")
+      if ($(this).attr('data-href'))
+        $.ajax({
+          dataType: 'script',
+          url: $(this).data('href')
+        })
+      end
+    });
+  });
+</script>

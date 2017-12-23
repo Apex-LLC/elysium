@@ -6,9 +6,20 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <% if flash[:notice] %>
+      <script language='javascript'>
+        $(document).ready(function() {
+          <%= fading_flash_notice %>
+        });
+      </script>
+    <% end %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body>    
+    <%= render "navigation/nav" %>
+    <%= render "navigation/menu" %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,34 @@
+<div class="behind" style="z-index:-1">
+  <h1>Tenants</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @tenants.each do |tenant| %>
+        <tr class='clickable-row' data-href='<%= tenant_path(tenant) %>'>
+          <td><%= tenant.name %></td>
+          <td><%= tenant.amount_due %></td>
+          <td><%= link_to 'Edit', edit_tenant_path(tenant) %></td>
+          <td><%= link_to 'Destroy', tenant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+      <tr>        
+        <td colspan="4"><%= link_to '+ Add New', new_tenant_path, :remote => true %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>

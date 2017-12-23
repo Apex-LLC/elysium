@@ -1,0 +1,81 @@
+<div class="row h-100 lightbox">
+  <button type="button" class="close" aria-label="Close" onclick="closeLightbox();">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="col-12 text-center my-auto">
+
+    <h2>Create a New Tenant</h2>
+    <%= image_tag "logo.jpg", class: "contact-image rounded-circle" %>
+    </br>
+
+    <%= form_for(tenant,:html=>{:id=>"your_form_id",:multipart => true,:remote=>true}) do |f| %>
+      <div id="login-form">
+        <div class="field">
+          <%= f.text_field :name, placeholder: "name" %>
+        </div>
+        </br>
+        <div class="field">
+          <%= f.email_field :email, placeholder: "email" %>
+        </div>
+        </br>
+        <div class="field">
+          <%= f.phone_field :phone, id: "phoneNumber", placeholder: "(XXX) XXX-XXXX", onkeypress:"return numberPressed(event);" %>
+        </div>
+        </br>
+        <div class="actions">
+          <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Create" %>
+        </div>
+      </div>
+      
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+  // A function to format text to look like a phone number
+function phoneFormat(input){
+        // Strip all characters from the input except digits
+        input = input.replace(/\D/g,'');
+        
+        // Trim the remaining input to ten characters, to preserve phone number format
+        input = input.substring(0,10);
+
+        // Based upon the length of the string, we add formatting as necessary
+        var size = input.length;
+        if(size == 0){
+          input = input;
+        }else if (size==3){
+          input='('+input+')';
+        }else if(size < 4){
+          input = '('+input;
+        }else if(size < 7){
+          input = '('+input.substring(0,3)+') '+input.substring(3,6);
+        }else{
+          input = '('+input.substring(0,3)+') '+input.substring(3,6)+'-'+input.substring(6,10);
+        }
+        return input ; 
+}
+  document.getElementById('phoneNumber').addEventListener('keyup',function(evt){
+        var phoneNumber = document.getElementById('phoneNumber');
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        phoneNumber.value = phoneFormat(phoneNumber.value);
+  });
+
+  // We need to manually format the phone number on page load
+  document.getElementById('phoneNumber').value = phoneFormat(document.getElementById('phoneNumber').value);
+
+  // A function to determine if the pressed key is an integer
+  function numberPressed(evt){
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if(charCode > 31 && (charCode < 48 || charCode > 57) && (charCode < 36 || charCode > 40)){
+            return false;
+    }
+    return true;
+  }
+</script>

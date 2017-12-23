@@ -1,0 +1,26 @@
+
+<%= render 'user_header' %>
+
+<div class="row">
+  <div class="col-md-6 text-center">
+    <span class="text-muted text-uppercase">amount due</span>
+    <h3 class="large-currency">
+      <sup>$</sup><%= @user.amount_due %>
+    </h3>
+  </div>
+  <div class="col-md-6 text-center">
+    <span class="text-muted text-uppercase">amount received</span>
+    <h3 class="large-currency">
+      <sup>$</sup><%= @user.amount_received %>
+    </h3>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="col-10 col-md-8 offset-md-2">
+    <%= render 'billing_cycle_list', user: @user %>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

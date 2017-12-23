@@ -1,0 +1,19 @@
+<div class="hide full-screen-menu" onclick="toggleMenu();">
+    <div class="menu-logo float-left">
+      <a href="<%= root_path %>"><%= image_tag 'logo-white.png' %></a>
+    </div>
+    <ul class="menu">      
+        <% if user_signed_in? %>
+          <li class="menu-item"><%= link_to('Home', root_path) %></li>
+          <li class="menu-item"><%= link_to('Tenants', tenants_path) %></li>
+          <li class="menu-item"><%= link_to('Invoices', invoices_path) %></li>
+          <li class="menu-item"><%= link_to('Account', "#") %></li>
+          <li class="menu-item"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
+        <% else %>
+          <li class="menu-item"><%= link_to('Login', new_user_session_path)  %></li>
+        <% end %>
+        <li class="menu-item-small"><%= link_to('About', "#")  %></li>
+        <li class="menu-item-small"><%= link_to('Support', "#")  %></li>
+        <li class="menu-item-small"><%= link_to('Contact', "#")  %></li>
+    </ul>
+</div>

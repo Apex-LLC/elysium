@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Meter:</strong>
+  <%= @billable_meter.meter %>
+</p>
+
+<p>
+  <strong>Percent allocation:</strong>
+  <%= @billable_meter.percent_allocation %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @billable_meter.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @billable_meter.end_time %>
+</p>
+
+<%= link_to 'Edit', edit_billable_meter_path(@billable_meter) %> |
+<%= link_to 'Back', billable_meters_path %>
