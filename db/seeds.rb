@@ -11,10 +11,10 @@ u=User.create(email:"Joe@ApexLLC.com", password:"password")
 
 site=Site.new(name:"Office Building 1",address: "2407 SE Division st. Portland, OR 97202", website: "OfficeBuilding.com")
 u.site = site
-space1=Space.new(name:"Unit 312",description:"Office Area 1")
-space2=Space.new(name:"Unit 215",description:"Office Area 2")
-space3=Space.new(name:"Unit 121",description:"Office Area 3")
-site.spaces << [space1,space2,space3]
+# space1=Space.new(name:"Unit 312",description:"Office Area 1")
+# space2=Space.new(name:"Unit 215",description:"Office Area 2")
+# space3=Space.new(name:"Unit 121",description:"Office Area 3")
+# site.spaces << [space1,space2,space3]
 
 for i in 1..12
   site.meters<<Meter.new(name:"RTU Meter #{i}", description:"East wing RTU", reference:"NAE-01:N2 Trunk 1.RHU-#{i}.RTU-kwh")
@@ -26,18 +26,18 @@ for m in site.meters
   end
 end
 
-space1.meters<<site.meters[0..2]
-space2.meters<<site.meters[3..5]
-space3.meters<<site.meters[6..8]
+# space1.meters<<site.meters[0..2]
+# space2.meters<<site.meters[3..5]
+# space3.meters<<site.meters[6..8]
 
 t1=Tenant.create(name:"Simple Bank Montreal",phone:"262-930-7445",email:"Montreal@SimpleBank.com")
 t2=Tenant.create(name:"Strauss Family Creamery",phone:"262-930-7445",email:"yvette@strauscreamery.com")
 t3=Tenant.create(name:"Universety of Wisconsin-Parkside",phone:"262-930-7445",email:"admin@uwp.edu")
 u.tenants << [t1,t2,t3]
 
-space1.tenant = t1
-space2.tenant = t2
-space3.tenant = t3
+# space1.tenant = t1
+# space2.tenant = t2
+# space3.tenant = t3
 
 for t in [t1,t2,t3]
   for i in 1..11

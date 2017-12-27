@@ -5,9 +5,8 @@
     <thead>
       <tr>
         <th>Name</th>
-        <th>Amount Due</th>
-        <th>Delete</th>
-        <th colspan="3"></th>
+        <th class="text-center">Amount Due</th>
+        <th class="text-center">Delete</th>
       </tr>
     </thead>
 
@@ -15,9 +14,9 @@
       <% @tenants.each do |tenant| %>
         <tr class='clickable-row' data-href='<%= tenant_path(tenant) %>'>
           <td><%= tenant.name %></td>
-          <td><%= tenant.amount_due %></td>
+          <td class="text-center"><sup>$</sup><%= tenant.amount_due %></td>
           <!-- <td><%= link_to 'Edit', edit_tenant_path(tenant) %></td> -->
-          <td><%= link_to '✕', tenant, method: :delete, data: { confirm: 'Are you sure you would like to delete ' + tenant.name + '?' } %></td>
+          <td class="text-center"><%= link_to '✕', tenant, method: :delete, data: { confirm: 'Are you sure you would like to delete ' + tenant.name + '?' } %></td>
         </tr>
       <% end %>
       <tr>        
