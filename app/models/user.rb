@@ -26,11 +26,16 @@ class User < ApplicationRecord
     return totalReceived
   end
 
-  def billing_cycles
+  def invoices
     invoices=Array.new
     self.tenants.each do |t|
       (invoices << t.invoices).flatten!
     end
-    return invoices.group_by{|i| i.readable_date }.map
+    return invoices.sort_by(&:end_date).reverse
+  end
+
+  def billing_cycles
+    ordered_invoices = self.invoices
+    return ordered_invoices.group_by{|i| i.readable_date }.map
   end
 end

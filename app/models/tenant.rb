@@ -3,7 +3,6 @@ class Tenant < ApplicationRecord
   has_many :billable_meters
   has_many :payments
   belongs_to :user
-  belongs_to :space
   validates :name, :email, :user_id, presence: true
 
   def amount_due

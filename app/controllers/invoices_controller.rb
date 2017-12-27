@@ -4,7 +4,11 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    if (user_signed_in?)
+      @invoices = current_user.invoices
+    else
+      redirect_to sign_in_path
+    end
   end
 
   # GET /invoices/1
