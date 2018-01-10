@@ -1,6 +1,7 @@
 class BillableMetersController < ApplicationController
   before_action :set_billable_meter, only: [:show, :edit, :update, :destroy]
 
+
   # GET /billable_meters
   # GET /billable_meters.json
   def index
@@ -15,9 +16,11 @@ class BillableMetersController < ApplicationController
   # GET /billable_meters/new
   def new
     @billable_meter = BillableMeter.new
-    @tenant = params[:tenant]
-    respond_to do |format|
-      format.js
+    @tenant = get_tenant_from_params
+    if (@tenant)
+      respond_to do |format|
+        format.js
+      end
     end
   end
 
@@ -35,6 +38,7 @@ class BillableMetersController < ApplicationController
         format.html { redirect_to @billable_meter.tenant, notice: 'Your meter was associated with ' + @billable_meter.tenant.name + '.' }
         format.json { render :show, status: :created, location: @billable_meter }
       else
+        @tenant=@billable_meter.tenant
         format.js { render :new, notice: @billable_meter.errors }
         format.html { render :new }
         format.json { render json: @billable_meter.errors, status: :unprocessable_entity }
@@ -75,5 +79,9 @@ class BillableMetersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def billable_meter_params
       params.require(:billable_meter).permit(:meter_id, :description, :percent_allocation, :start_time, :end_time, :tenant_id)
+    end
+
+    def get_tenant_from_params
+      return Tenant.find(params[:tenant])
     end
 end

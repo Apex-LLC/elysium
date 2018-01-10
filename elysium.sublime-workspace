@@ -4,6 +4,118 @@
 		"selected_items":
 		[
 			[
+				"bill",
+				"billable_meter"
+			],
+			[
+				"per",
+				"parameters"
+			],
+			[
+				"text",
+				"text-center"
+			],
+			[
+				"order",
+				"ordered_invoices"
+			],
+			[
+				"table-row",
+				"table-row-grouping"
+			],
+			[
+				"table",
+				"table-cell"
+			],
+			[
+				"tent",
+				"tenantInfoWidth"
+			],
+			[
+				"select",
+				"selectedMeter"
+			],
+			[
+				"billa",
+				"billable_meter_params"
+			],
+			[
+				"hover",
+				"hover-transition-time"
+			],
+			[
+				"light",
+				"light-accent-color"
+			],
+			[
+				"ligh",
+				"light-accent-color"
+			],
+			[
+				"backgr",
+				"background-color"
+			],
+			[
+				"ex",
+				"extend"
+			],
+			[
+				"no-",
+				"no-unit-result"
+			],
+			[
+				"no",
+				"no-unit-1"
+			],
+			[
+				"nav",
+				"navbar-height"
+			],
+			[
+				"nab",
+				"navbar-height"
+			],
+			[
+				"passw",
+				"password_placeholder"
+			],
+			[
+				"mini",
+				"minimum_password_length"
+			],
+			[
+				"bor",
+				"border-color"
+			],
+			[
+				"text-de",
+				"text-decoration-line"
+			],
+			[
+				"text-d",
+				"text-decoration-color"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"import",
+				"important"
+			],
+			[
+				"forma",
+				"formatted_end_date"
+			],
+			[
+				"form",
+				"formatted_start_date"
+			],
+			[
 				"A",
 				"APP_SUPPORT_DIRECTORY"
 			],
@@ -20,24 +132,12 @@
 				"heading-font"
 			],
 			[
-				"bor",
-				"border-radius"
-			],
-			[
 				"fon",
 				"heading-font"
 			],
 			[
 				"se",
 				"secondary-accent-color"
-			],
-			[
-				"form",
-				"form-control"
-			],
-			[
-				"ba",
-				"background"
 			],
 			[
 				"head",
@@ -84,35 +184,37 @@
 	"buffers":
 	[
 		{
-			"file": "app/models/tenant.rb",
+			"file": "app/views/tenants/index.html.erb",
 			"settings":
 			{
-				"buffer_size": 58,
+				"buffer_size": 1091,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "db/schema.rb",
+			"file": "app/controllers/billable_meters_controller.rb",
 			"settings":
 			{
-				"buffer_size": 1342,
+				"buffer_size": 2579,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "db/migrate/20170907002634_add_tenant_to_invoices.rb",
+			"file": "app/views/billable_meters/_form.html.erb",
 			"settings":
 			{
-				"buffer_size": 126,
+				"buffer_size": 2992,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/models/invoice.rb",
+			"file": "app/assets/stylesheets/application.sass",
 			"settings":
 			{
-				"buffer_size": 60,
+				"buffer_size": 5404,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -158,7 +260,7 @@
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 129.0,
 		"history":
 		[
 		]
@@ -176,13 +278,113 @@
 	[
 		"/Users/joebauer/Developer/Elysium",
 		"/Users/joebauer/Developer/Elysium/app",
+		"/Users/joebauer/Developer/Elysium/app/assets",
+		"/Users/joebauer/Developer/Elysium/app/assets/javascripts",
+		"/Users/joebauer/Developer/Elysium/app/assets/javascripts/application",
+		"/Users/joebauer/Developer/Elysium/app/assets/stylesheets",
 		"/Users/joebauer/Developer/Elysium/app/controllers",
+		"/Users/joebauer/Developer/Elysium/app/jobs",
 		"/Users/joebauer/Developer/Elysium/app/models",
-		"/Users/joebauer/Developer/Elysium/db",
-		"/Users/joebauer/Developer/Elysium/db/migrate"
+		"/Users/joebauer/Developer/Elysium/app/views",
+		"/Users/joebauer/Developer/Elysium/app/views/tenants",
+		"/Users/joebauer/Developer/Elysium/app/views/users",
+		"/Users/joebauer/Developer/Elysium/db"
 	],
 	"file_history":
 	[
+		"/Users/joebauer/Developer/Elysium/app/controllers/tenants_controller.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/tenants/_form.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/assets/javascripts/application.js",
+		"/Users/joebauer/Developer/Elysium/app/models/billable_meter.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/billable_meters/new.js.erb",
+		"/Users/joebauer/Developer/Elysium/Gemfile",
+		"/Users/joebauer/Developer/Elysium/app/assets/stylesheets/billable_meters.scss",
+		"/Users/joebauer/Developer/Elysium/app/assets/javascripts/application/application.coffee",
+		"/Users/joebauer/Developer/Elysium/app/views/devise/registrations/new.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/tenants/index.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/users/_billing_cycle_list.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/users/show.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/models/user.rb",
+		"/Users/joebauer/Developer/Elysium/config/database.yml",
+		"/Users/joebauer/Developer/Elysium/db/schema.rb",
+		"/Users/joebauer/Developer/Elysium/app/controllers/invoices_controller.rb",
+		"/Users/joebauer/Developer/Elysium/app/models/space.rb",
+		"/Users/joebauer/Developer/Elysium/app/models/tenant.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/tenants/show.html.erb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171024144600_add_user_reference_to_tenants.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/--20171129190658_add_user_ref_to_spaces.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171130165649_create_spaces.rb",
+		"/Users/joebauer/Developer/Elysium/db/seeds.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/billable_meters/new.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/billable_meters/_form.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/billable_meters/index.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/users/_user_header.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/controllers/billable_meters_controller.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/navigation/_menu.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/assets/stylesheets/application.sass",
+		"/Users/joebauer/Developer/Elysium/app/views/invoices/index.html.erb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171222201014_remove_billable_meters_reference_from_meters.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/billable_meters/new.js.erb.js.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/meters/index.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/helpers/application_helper.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/invoices/show.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/spaces/get_meters.js.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/spaces/_meter_list.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/spaces/_form.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/controllers/spaces_controller.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/spaces/new.js.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/spaces/index.html.erb",
+		"/Users/joebauer/Developer/Elysium/config/routes.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/tenants/new.js.erb",
+		"/Users/joebauer/Developer/Elysium/app/models/meter.rb",
+		"/Volumes/BOOTCAMP/Users/Joe/Development/ACES/ACES/Writers/NAE Export/ExportWriter.cs",
+		"/Users/joebauer/Developer/Elysium/app/models/site.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171201223440_add_site_ref_to_meters.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/navigation/_nav.html.erb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171130165454_drop_spaces.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171129192241_drop_sites.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171129191754_change_user_idtouserid.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171129191420_add_user_ref_to_site.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/layouts/application.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/controllers/application_controller.rb",
+		"/Volumes/BOOTCAMP/Users/Joe/Desktop/notworking-start.html",
+		"/Users/joebauer/Developer/Elysium/app/controllers/users_controller.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/devise/sessions/new.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/devise/shared/_links.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/views/users/_form.html.erb",
+		"/Users/joebauer/Developer/Elysium/config/environments/development.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171121193133_add_devise_to_users.rb",
+		"/Users/joebauer/Developer/Elysium/app/views/tenants/new.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/assets/javascripts/tenants.coffee",
+		"/Users/joebauer/Developer/Elysium/app/views/users/new.html.erb",
+		"/Users/joebauer/Developer/Elysium/app/assets/stylesheets/tenants.scss",
+		"/Users/joebauer/Developer/Elysium/notes",
+		"/Users/joebauer/Developer/Elysium/app/views/users/index.html.erb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171022000800_remove_amount_due_from_tenant.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171024145125_remove_tenants_id_from_user.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171024144121_drop_users.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171024143535_create_user.rb",
+		"/Users/joebauer/Developer/Push_To_Cloud/db/schema.rb",
+		"/Users/joebauer/Developer/Elysium/app/models/invoice.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171021235231_add_amount_to_invoice.rb",
+		"/Users/joebauer/Developer/Elysium/app/assets/stylesheets/application.scss",
+		"/Users/joebauer/Developer/Elysium/app/models/record.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171020205515_drop_contacts.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171020200204_add_amount_due_to_tenant.rb",
+		"/Users/joebauer/Developer/Elysium/db/development.sqlite3",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20171020202904_add_tenant.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20170928170751_create_payments.rb",
+		"/Users/joebauer/Downloads/SCT Editor/SCT Editor/Database/DataManager.cs",
+		"/Users/joebauer/Offline Docs/myetherwallet keystore",
+		"/Users/joebauer/Offline Docs/myetherwallet key",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20170914001510_remove_name_from_tenant.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20170913230532_remove_meter_reference_from_billable_meter.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20170913225822_create_billable_meters.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20170913223136_change_column_names_to_lower.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20170913223548_create_meters.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20170913225637_add_last_collection_to_meter.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20170913223012_change_invoice_number_name.rb",
+		"/Users/joebauer/Developer/Elysium/db/migrate/20170913221242_add_tenant_ref_to_invoice.rb",
 		"/Users/joebauer/Developer/Elysium/db/migrate/20170907000142_add_tenant_to_records.rb",
 		"/Users/joebauer/Developer/Push_To_Cloud/app/views/meters/index.html.erb",
 		"/Users/joebauer/Developer/Push_To_Cloud/app/views/meters/_meter.json.jbuilder",
@@ -208,7 +410,6 @@
 		"/Users/joebauer/Developer/Push_To_Cloud/app/views/records/index.html.erb",
 		"/Users/joebauer/Developer/Push_To_Cloud/test/fixtures/records.yml",
 		"/Users/joebauer/Developer/Push_To_Cloud/test/fixtures/meters.yml",
-		"/Users/joebauer/Developer/Push_To_Cloud/db/schema.rb",
 		"/Users/joebauer/Developer/Push_To_Cloud/db/migrate/20170420214925_create_records.rb",
 		"/Users/joebauer/Developer/Push_To_Cloud/db/migrate/20170420222832_add_meter_to_record.rb",
 		"/Users/joebauer/Developer/Presetter/app/views/layouts/_features.html.erb",
@@ -218,49 +419,11 @@
 		"/Users/joebauer/Developer/Push_To_Cloud/db/migrate/20170419210232_create_meters.rb",
 		"/Users/joebauer/Developer/Presetter/app/views/layouts/_contact_form.html.erb",
 		"/Users/joebauer/Developer/Presetter/app/views/layouts/_testimonials.html.erb",
-		"/Users/joebauer/Developer/Presetter/app/views/static_pages/home.html.erb",
-		"/Users/joebauer/Developer/Presetter/config/routes.rb",
-		"/Users/joebauer/Developer/Presetter/app/models/contact_form.rb",
-		"/Users/joebauer/Developer/Presetter/app/controllers/static_pages_controller.rb",
-		"/Users/joebauer/Developer/Presetter/app/views/shared/_error_messages.html.erb",
-		"/Users/joebauer/Developer/Presetter/app/controllers/contact_form_controller.rb",
-		"/Users/joebauer/Developer/Presetter/config/environments/development.rb",
-		"/Users/joebauer/Developer/Presetter/Gemfile",
-		"/Users/joebauer/Developer/Presetter/app/assets/stylesheets/application.css.sass",
-		"/Users/joebauer/Downloads/NCM to NAE Site Suggestions.txt",
-		"/Users/joebauer/Developer/Presetter/app/assets/stylesheets/down_arrow.css.sass",
-		"/Users/joebauer/Developer/Presetter/app/assets/javascripts/application.js",
-		"/Users/joebauer/Developer/Presetter/app/views/layouts/application.html.erb",
-		"/Users/joebauer/Developer/Presetter/app/views/layouts/_navigation.html.erb",
-		"/Users/joebauer/Developer/Presetter/app/views/layouts/_landing.html.erb",
-		"/Users/joebauer/Developer/Presetter/app/views/layouts/_testamonials.html.erb",
-		"/Users/joebauer/Developer/Presetter/app/assets/stylesheets/down_arrow.scss",
-		"/Users/joebauer/Developer/Presetter/app/views/static_pages/clients.html.erb",
-		"/Users/joebauer/Developer/Presetter/test/controllers/static_pages_controller_test.rb",
-		"/Users/joebauer/Library/Application Support/Adobe/Lightroom/Develop Presets/Phil Chester Presets/PC-02.lrtemplate",
-		"/Users/joebauer/Library/Mobile Documents/com~apple~CloudDocs/Developer/Resources/Presets/PC-02-1.lrtemplate",
-		"/Users/joebauer/Library/Mobile Documents/com~apple~CloudDocs/Developer/Resources/Presets/PC-03.xmp",
-		"/Users/joebauer/Library/Mobile Documents/com~apple~CloudDocs/Developer/Resources/Presets/PC-02.lrtemplate",
-		"/Users/joebauer/Design/Barre3/barre3_logo.svg",
-		"/Users/joebauer/Library/Mobile Documents/com~apple~CloudDocs/Developer/Resources/copyPresets.sh",
-		"/Applications/Adobe InDesign CC 2017/Resources/AMT/ID/AMT/application.xml",
-		"/private/var/log/install.log",
-		"/Users/joebauer/Library/Mobile Documents/com~apple~CloudDocs/Developer/Resources/copyPresets-withACR.sh",
-		"/Users/joebauer/Library/Mobile Documents/com~apple~CloudDocs/Developer/Resources/copyTemplates.sh",
-		"/Users/joebauer/Developer/Phil Presets/build/copyTemplates.sh",
-		"/Users/joebauer/Desktop/copyTemplates.sh",
-		"/Users/joebauer/Developer/Phil Presets/Resources/PC-03.lrtemplate",
-		"/Users/joebauer/Developer/Phil Presets/Resources/Introduction_Dialog.txt",
-		"/Users/joebauer/Developer/Phil Presets/Resources/Success_Dialog.txt",
-		"/Users/joebauer/Desktop/philProfile.xml",
-		"/Users/joebauer/Downloads/PHILS WITH PHIL CAMERA PROFILE.lrtemplate",
-		"/Users/joebauer/Desktop/philProfile 2.xml",
-		"/Users/joebauer/Desktop/portra160plus.xml",
-		"/Users/joebauer/Downloads/PHILS WITH VSCO CAMERA PROFILE.lrtemplate"
+		"/Users/joebauer/Developer/Presetter/app/views/static_pages/home.html.erb"
 	],
 	"find":
 	{
-		"height": 23.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -275,6 +438,32 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"end",
+			"bootstrap.coffee.js",
+			"popover",
+			"select",
+			"current_user",
+			".5s",
+			"logo",
+			"<div",
+			"div",
+			"td",
+			"<li",
+			"li",
+			"render",
+			"xml",
+			"span",
+			"p",
+			"col",
+			"table-cell",
+			"span",
+			"td",
+			"<div class=\"accordion-<%= i %> collapse\">",
+			"</div>",
+			"h3",
+			"h2",
+			"li",
+			"td",
 			"byebug",
 			"\\[",
 			"[",
@@ -333,24 +522,26 @@
 			[
 				{
 					"buffer": 0,
-					"file": "app/models/tenant.rb",
+					"file": "app/views/tenants/index.html.erb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 58,
+						"buffer_size": 1091,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								53,
-								53
+								560,
+								560
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -361,19 +552,19 @@
 				},
 				{
 					"buffer": 1,
-					"file": "db/schema.rb",
+					"file": "app/controllers/billable_meters_controller.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1342,
+						"buffer_size": 2579,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1342,
-								1342
+								404,
+								404
 							]
 						],
 						"settings":
@@ -383,7 +574,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 230.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -391,24 +582,26 @@
 				},
 				{
 					"buffer": 2,
-					"file": "db/migrate/20170907002634_add_tenant_to_invoices.rb",
-					"semi_transient": true,
+					"file": "app/views/billable_meters/_form.html.erb",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 126,
+						"buffer_size": 2992,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								664,
+								664
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -419,24 +612,26 @@
 				},
 				{
 					"buffer": 3,
-					"file": "app/models/invoice.rb",
+					"file": "app/assets/stylesheets/application.sass",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 60,
+						"buffer_size": 5404,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								55,
-								55
+								710,
+								710
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax"
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -479,6 +674,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 98.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
@@ -487,7 +686,7 @@
 	"project": "elysium.sublime-project",
 	"replace":
 	{
-		"height": 42.0
+		"height": 72.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -521,11 +720,11 @@
 	"settings":
 	{
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 241.0,
+	"side_bar_width": 372.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
