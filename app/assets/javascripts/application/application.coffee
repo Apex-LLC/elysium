@@ -12,4 +12,4 @@ window.toggleMenu = ->
   return
 
 $(window).load ->
-  $('.container:has(div.my-auto)').css 'padding-top', '0'
+  $('.container:has(div.lightbox)').css 'padding-top', '0'

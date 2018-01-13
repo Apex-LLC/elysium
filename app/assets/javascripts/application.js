@@ -15,5 +15,7 @@
 //= require turbolinks
 //= require popper
 //= require bootstrap
+//= require Chart.bundle
+//= require chartkick
 //= require_tree .
 //= require_tree ./application

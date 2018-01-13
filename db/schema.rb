@@ -10,24 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171222233148) do
+ActiveRecord::Schema.define(version: 20180110221834) do
 
-  create_table "billable_meters", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "billable_meters", id: :serial, force: :cascade do |t|
     t.integer "percent_allocation"
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "tenant_id"
-    t.integer "space_id"
-    t.integer "meter_id"
+    t.bigint "space_id"
+    t.bigint "meter_id"
     t.string "description"
     t.index ["meter_id"], name: "index_billable_meters_on_meter_id"
     t.index ["space_id"], name: "index_billable_meters_on_space_id"
     t.index ["tenant_id"], name: "index_billable_meters_on_tenant_id"
   end
 
-  create_table "invoices", force: :cascade do |t|
+  create_table "billable_meters_invoices", id: false, force: :cascade do |t|
+    t.integer "invoice_id"
+    t.integer "billable_meter_id"
+  end
+
+  create_table "invoices", id: :serial, force: :cascade do |t|
     t.integer "number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -40,20 +48,18 @@ ActiveRecord::Schema.define(version: 20171222233148) do
     t.index ["tenant_id"], name: "index_invoices_on_tenant_id"
   end
 
-  create_table "meters", force: :cascade do |t|
+  create_table "meters", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "reference"
     t.datetime "last_collection"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "space_id"
-    t.integer "site_id"
+    t.bigint "site_id"
     t.index ["site_id"], name: "index_meters_on_site_id"
-    t.index ["space_id"], name: "index_meters_on_space_id"
   end
 
-  create_table "payments", force: :cascade do |t|
+  create_table "payments", id: :serial, force: :cascade do |t|
     t.datetime "date"
     t.decimal "amount", precision: 8, scale: 2
     t.integer "tenant_id"
@@ -62,7 +68,7 @@ ActiveRecord::Schema.define(version: 20171222233148) do
     t.index ["tenant_id"], name: "index_payments_on_tenant_id"
   end
 
-  create_table "records", force: :cascade do |t|
+  create_table "records", id: :serial, force: :cascade do |t|
     t.datetime "datetime"
     t.float "value"
     t.datetime "created_at", null: false
@@ -75,7 +81,7 @@ ActiveRecord::Schema.define(version: 20171222233148) do
     t.string "name"
     t.string "address"
     t.string "website"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sites_on_user_id"
@@ -84,20 +90,20 @@ ActiveRecord::Schema.define(version: 20171222233148) do
   create_table "spaces", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "site_id"
+    t.bigint "site_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_spaces_on_site_id"
   end
 
-  create_table "tenants", force: :cascade do |t|
+  create_table "tenants", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
     t.string "phone"
     t.string "email"
-    t.integer "user_id"
-    t.integer "space_id"
+    t.bigint "user_id"
+    t.bigint "space_id"
     t.index ["space_id"], name: "index_tenants_on_space_id"
     t.index ["user_id"], name: "index_tenants_on_user_id"
   end
@@ -119,4 +125,15 @@ ActiveRecord::Schema.define(version: 20171222233148) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "billable_meters", "meters"
+  add_foreign_key "billable_meters", "spaces"
+  add_foreign_key "billable_meters", "tenants"
+  add_foreign_key "invoices", "tenants"
+  add_foreign_key "meters", "sites"
+  add_foreign_key "payments", "tenants"
+  add_foreign_key "records", "meters"
+  add_foreign_key "sites", "users"
+  add_foreign_key "spaces", "sites"
+  add_foreign_key "tenants", "spaces"
+  add_foreign_key "tenants", "users"
 end

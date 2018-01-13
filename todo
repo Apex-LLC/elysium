@@ -1,0 +1,5 @@
+todo:
+X - invoice needs a list of billable_meters
+X - meter needs a list of associated records
+- billable meter needs a rate - amount due can be calculated from that
+- profile photos (http://www.peoplecancode.com/tutorials/users-avatars-uploading-images-using-paperclip)

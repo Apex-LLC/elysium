@@ -57,6 +57,11 @@ sup
   &:hover
     background-color: $accent-color
 
+.btn-large
+  width: 300px
+  padding: 10px
+  margin: 30px 0
+
 #notices
   position: fixed
   display: table
@@ -107,6 +112,9 @@ nav
 .large-currency
   font-size: 3em
   font-weight: 100
+
+.full-width-image
+  width: 100%
 
 .contact-image
   width: 25%
@@ -164,6 +172,22 @@ table
   .table-row-item
     border-bottom: none
 
+.table-totals
+  font-size: 1.1em
+  font-weight: bold
+  color: $accent-color
+  padding: 8px
+  .name
+    width: 40%
+  .reference
+    width: 60%
+  .allocation
+    width: 15%
+    text-align: center
+  .total
+    width: 24%
+    text-align: right
+
 .table-row-item
   border-bottom: 1px solid $light-gray
   padding: 8px
@@ -178,6 +202,9 @@ table
     .link
       width: 15%
       text-align: center
+    .amount
+      width: 24%
+      text-align: right
   &.space-item
     .name
       width: 30%
@@ -204,6 +231,9 @@ table
 
 #spaces-list
   border-right: 1px solid $light-accent-color
+
+#invoice-meter-list
+  margin: 30px 0
 
 #meter-list
   min-height: 240px

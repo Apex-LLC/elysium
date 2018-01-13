@@ -1,9 +1,82 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Number:</strong>
-  <%= @invoice.number %>
-</p>
+<div class="row">
+  <div class="col-2">
+    <%= image_tag "logo.jpg", class: "full-width-image rounded-circle" %>
+  </div>
+  <div class="col-5 my-auto">
+    <h1><%= @invoice.tenant.name %></h1>
+    <h4><%= @invoice.readable_date %></h4>
+  </div>
+  <div class="col-5 my-auto text-right">
+    <h2>Invoice</h2>
+    <h4><%= @invoice.number %></h4>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_invoice_path(@invoice) %> |
-<%= link_to 'Back', invoices_path %>
+</br>
+
+
+<%= 
+line_chart @invoice.billable_meters.map {|meter|
+  {  
+    name:meter.description,
+    data:Hash[meter.get_records(@invoice.start_date,@invoice.end_date).map{|r| [r.datetime,r.value.round(2)]}]
+   }
+  }, xtitle: "", ytitle: "kWh"
+%>
+
+</br>
+<hr>
+
+<div class="row">
+  <div class="col-12" id="invoice-meter-list">
+    <div class="table-header-row">
+      <div class='table-row-item meter-item'>
+        <div class="table-cell reference">Meter</div>
+        <div class="table-cell allocation">Usage</div>
+        <div class="table-cell amount">Amount Due</div>
+      </div>
+    </div>
+    <div class="table h-100">
+      <% 
+        invoice_usage = number_with_precision(@invoice.usage, precision: 2, delimiter:',')
+        total_due = number_with_delimiter(number_to_currency(@invoice.amount), delimiter:',')
+        @invoice.billable_meters.each do |meter| 
+          if (meter.description?) 
+            meter_reference = meter.description 
+          else 
+            meter_reference = meter.meter.reference 
+          end  
+          meter_usage = number_with_precision(meter.get_usage(@invoice.start_date,@invoice.end_date), precision:2, delimiter:',')
+          meter_amount_due = number_to_currency(meter.get_amount_due(@invoice.start_date,@invoice.end_date))
+          %>
+          <div class="table-row">
+            <div class='table-row-item meter-item'>
+              <div class="table-cell reference">
+                <%= meter_reference %>                  
+              </div>
+              <div class="table-cell allocation"><%= meter_usage %> kWh</div>
+              <div class="table-cell amount"><%= meter_amount_due %></div>
+            </div>
+          </div>
+        <% end %>
+        <div class="table-row">
+          <div class='table-totals'>
+            <div class="table-cell reference">Totals</div>
+            <div class="table-cell allocation"><%= invoice_usage %> kWh</div>
+            <div class="table-cell total"><%= total_due %></div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+</br>
+
+<div class="text-center">
+  <button class="btn-outline-primary btn-large">Pay Now</button>
+</div>
+
+</br>
+</br>
+    

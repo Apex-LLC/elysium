@@ -29,6 +29,8 @@ class InvoicesController < ApplicationController
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
+    associated_meters = @invoice.tenant.billable_meters
+    @invoice.billable_meters << associated_meters
 
     respond_to do |format|
       if @invoice.save
@@ -73,6 +75,6 @@ class InvoicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
-      params.require(:invoice).permit(:Number)
+      params.require(:invoice).permit(:number)
     end
 end
