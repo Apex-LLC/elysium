@@ -6,6 +6,14 @@ class User < ApplicationRecord
   has_many :tenants
   has_one :site
 
+  def amount_billed
+    amount_billed=0.0
+    invoices.select{|i| i.end_date.month == DateTime.now.prev_month.month}.each do |invoice|
+      amount_billed += invoice.amount
+    end
+    return amount_billed
+  end
+
   def amount_due
     totalDue=0.0
     for tenant in self.tenants
@@ -16,11 +24,9 @@ class User < ApplicationRecord
 
   def amount_received
     totalReceived=0.0
-    for tenant in self.tenants
-      for invoice in tenant.invoices
-        if (invoice.status=="Paid" && invoice.send_date.month == DateTime.now.month)
-          totalReceived=invoice.amount
-        end
+    invoices.each do |invoice|
+      if (invoice.status=="Paid" && invoice.send_date.month == DateTime.now.month)
+        totalReceived=invoice.amount
       end
     end
     return totalReceived

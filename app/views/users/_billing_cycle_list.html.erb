@@ -9,9 +9,9 @@
       
       <div class="accordion-<%= i %> collapse table-row-grouping">
         <% invoices.each do |invoice| %>
-        <div class="table-row-item">
+        <div class="table-row-item clickable-row" data-href='<%= invoice_path(invoice) %>'>
           <div width="70%" class="col-6 table-cell"><%= invoice.tenant.name %></div>
-          <div width="15%" class="col-3 table-cell text-center"><sup>$</sup><%= invoice.amount %></div>
+          <div width="15%" class="col-3 table-cell text-center"><%= number_with_delimiter(number_to_currency(invoice.amount),delimiter:',') %></div>
           <div width="15%" class="col-3 table-cell text-center"><%= invoice.status %></div>
         </div>
         <% end %>
@@ -20,3 +20,11 @@
     <% i+=1 %>
     <% end %>
 </div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>

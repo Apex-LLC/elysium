@@ -7,7 +7,7 @@ class InvoicesController < ApplicationController
     if (user_signed_in?)
       @invoices = current_user.invoices
     else
-      redirect_to sign_in_path
+      redirect_to new_user_session_path
     end
   end
 

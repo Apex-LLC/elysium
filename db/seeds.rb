@@ -7,48 +7,67 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts 'start seeding database'
 
-u=User.create(email:"Joe@ApexLLC.com", password:"password")
+todays_date = DateTime.new(2018,1,14)
+puts 'using today\'s date: ' + todays_date.to_s
 
+puts 'creating user accounts'
+u=User.create(email:"Joe@ApexLLC.com", password:"password")
+puts 'done'
+
+puts 'creating sites'
 site=Site.new(name:"Office Building 1",address: "2407 SE Division st. Portland, OR 97202", website: "OfficeBuilding.com")
 u.site = site
+puts 'done'
 
+puts 'creating meters'
 for i in 1..12
   site.meters<<Meter.new(name:"RTU Meter #{i}", description:"East wing RTU", reference:"NAE-01:N2 Trunk 1.RHU-#{i}.RTU-kwh")
 end
+puts 'done'
 
 puts 'creating records'
 for m in site.meters
-  multiplier=rand(50..80)
-  for i in 1..100
-    m.records<<Record.new(datetime:DateTime.new(2017,12,1) + i,value:multiplier*(rand(0.8..1.2)))
+  multiplier=rand(30..80)
+  for i in 1..400
+    m.records<<Record.new(datetime:todays_date - i,value:multiplier*(rand(0.8..1.2)))
   end
 end
 puts 'done'
 
+puts 'creating tenants'
 t1=Tenant.create(name:"Simple Bank Montreal",phone:"262-930-7445",email:"Montreal@SimpleBank.com")
 t2=Tenant.create(name:"Strauss Family Creamery",phone:"262-930-7445",email:"yvette@strauscreamery.com")
-t3=Tenant.create(name:"Universety of Wisconsin-Parkside",phone:"262-930-7445",email:"admin@uwp.edu")
+t3=Tenant.create(name:"University of Wisconsin-Parkside",phone:"262-930-7445",email:"admin@uwp.edu")
 u.tenants << [t1,t2,t3]
+puts 'done'
 
 
 for t in [t1,t2,t3]
-  b1=BillableMeter.create(description: "East Office RTU #1", meter_id: 1)
-  b2=BillableMeter.create(description: "East Office RTU #2", meter_id: 2)
-  b3=BillableMeter.create(description: "East Office RTU #3", meter_id: 3)
+  puts 'configuring meters and invoices for ' + t.name
+  meter_id_1=rand(1..12)
+  meter_id_2=rand(1..12)
+  meter_id_3=rand(1..12)
+  b1=BillableMeter.create(description: "East Office RTU #" + meter_id_1.to_s, meter_id: meter_id_1)
+  b2=BillableMeter.create(description: "East Office RTU #" + meter_id_2.to_s, meter_id: meter_id_2)
+  b3=BillableMeter.create(description: "East Office RTU #" + meter_id_3.to_s, meter_id: meter_id_3)
   t.billable_meters << [b1,b2,b3]
-  for i in 1..11
+  for i in 1..12
+    puts 'building invoice ' + i.to_s + ' of 12'
     startDate=DateTime.new(2017,i,1)
     endDate=startDate.next_month.prev_day
     sendDate=endDate+6
-    i=Invoice.create(number:i+12100,start_date:startDate,end_date:endDate,send_date:sendDate,status:"Paid")
+
+    status = "Paid"
+    if (i == 12 && t != t3)
+      status = "Unpaid"
+    end
+
+    i=Invoice.create(number:i+12100,start_date:startDate,end_date:endDate,send_date:sendDate,status: status)
     i.billable_meters << t.billable_meters
     i.set_amount_due
     t.invoices << i
   end
-    i=Invoice.create(number:12112,start_date:DateTime.new(2017,12,1),end_date:DateTime.new(2017,12,31),send_date:DateTime.new(2018,1,5),amount:2003.22,status:"Unpaid")
-    i.billable_meters << t.billable_meters
-    i.set_amount_due
-    t.invoices << i
+  puts 'done'
 end
 
 puts 'done seeding database'

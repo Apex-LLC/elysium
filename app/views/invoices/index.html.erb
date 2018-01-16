@@ -16,13 +16,12 @@
 
       <tbody>
         <% @invoices.each do |invoice| %>
-          <tr class="clickable-row table-row-item">
+          <tr class="clickable-row table-row-item" data-href='<%= invoice_path(invoice) %>'>
             <td><%= invoice.number %></td>
             <td><%= invoice.tenant.name %></td>
             <td><%= invoice.readable_date %></td>        
             <td><%= invoice.amount %></td>
             <td><%= invoice.status %></td>
-            <td><%= link_to 'Show', invoice %></td>
             <!-- <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
             <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
           </tr>
@@ -34,3 +33,11 @@
 
 
 <br>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+  });
+</script>

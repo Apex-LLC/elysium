@@ -1,5 +1,15 @@
 todo:
 X - invoice needs a list of billable_meters
 X - meter needs a list of associated records
+
+################ FOR BETA DEMO ###################
+X - add amount collected + amount billed
+X - update main page totals for demo
+- Get unique logos for each tenant
+X - get rid of unusable options in meter config
+X - add fees line in invoice
+##################################################
+
 - billable meter needs a rate - amount due can be calculated from that
 - profile photos (http://www.peoplecancode.com/tutorials/users-avatars-uploading-images-using-paperclip)
+- when creating a billable meter, don't show meters that already have been used already

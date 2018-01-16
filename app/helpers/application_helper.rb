@@ -20,4 +20,8 @@ module ApplicationHelper
     end
   end
 
+  def get_tax_fee_rate
+    return 0.10
+  end
+
 end

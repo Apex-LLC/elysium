@@ -31,7 +31,7 @@ class TenantsController < ApplicationController
     @tenant = current_user.tenants.build(tenant_params)
     respond_to do |format|
       if @tenant.save
-        format.html { redirect_to tenants_path, notice: 'Tenant was successfully created.' }
+        format.html { redirect_to @tenant, notice: @tenant.name + ' was successfully created.' }
         format.json { render :show, status: :created, location: @tenant }
       else
         format.js { render :new, notice: @tenant.errors }

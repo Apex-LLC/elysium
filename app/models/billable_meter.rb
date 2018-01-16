@@ -24,6 +24,12 @@ class BillableMeter < ApplicationRecord
     return total_usage*0.084
   end
 
+  def graphable_data_hash(start_date, end_date)
+    records = get_records(start_date, end_date)
+    record_map = records.map{|r| [r.datetime,r.value.round(2)]}
+    return Hash[record_map]
+  end
+
   private
     def set_percent_allocation      
       self.percent_allocation = 100 if self.percent_allocation.blank?
