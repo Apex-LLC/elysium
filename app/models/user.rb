@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  before_create :generate_authentication_token
   has_many :tenants
   has_one :site
 
@@ -53,4 +54,11 @@ class User < ApplicationRecord
     billable_meters = billable_meters.flatten
     return billable_meters
   end
+
+  def generate_authentication_token
+      loop do
+        self.authentication_token = SecureRandom.base64(64)
+        break unless User.find_by(authentication_token: authentication_token)
+      end
+    end
 end
