@@ -58,7 +58,7 @@ for t in [t1,t2,t3]
     sendDate=endDate+6
 
     status = "Paid"
-    if (i == 12 && t != t3)
+    if (i == 12)
       status = "Unpaid"
     end
 

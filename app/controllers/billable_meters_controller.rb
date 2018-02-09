@@ -1,11 +1,17 @@
 class BillableMetersController < ApplicationController
   before_action :set_billable_meter, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
 
   # GET /billable_meters
   # GET /billable_meters.json
   def index
-    @billable_meters = BillableMeter.all
+    site_ids=Site.where(user_id: current_user.id).select(:id)
+    site_ids=[1,2,3]
+    @billable_meters = BillableMeter.joins(:meter).where(meters: { site_id:site_ids })
+    respond_to do |format|
+      format.json { render :json => @products }
+      format.html { render :index }
+    end
   end
 
   # GET /billable_meters/1

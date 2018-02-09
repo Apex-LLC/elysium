@@ -44,4 +44,13 @@ class User < ApplicationRecord
     ordered_invoices = self.invoices
     return ordered_invoices.group_by{|i| i.readable_date }.map
   end
+
+  def billable_meters
+    billable_meters=[]
+    for tenant in self.tenants
+      billable_meters << tenant.billable_meters.all
+    end
+    billable_meters = billable_meters.flatten
+    return billable_meters
+  end
 end

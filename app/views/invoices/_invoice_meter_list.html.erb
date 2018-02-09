@@ -22,7 +22,7 @@
       meter_amount_due = number_to_currency(meter.get_amount_due(@invoice.start_date,@invoice.end_date))
       %>
       <div class="table-row">
-        <div class='table-row-item meter-item'>
+        <div class='table-row-item meter-item clickable-row'>
           <div class="table-cell reference">
             <%= meter_reference %>                  
           </div>
