@@ -1,19 +1,56 @@
 class Api::V1::SessionsController < Api::V1::BaseController
+  before_action :load_resource
+  skip_before_action :authenticate_user!, only: [:create]
+
   def create
-    user = User.find_by(email: create_params[:email])
-    if user && user.valid_password?(create_params[:password])
-      current_user = user
+    if @user
       render(
-        json: Api::V1::SessionSerializer.new(user, root: false).to_json,
-        status: 201
+        json: @user,
+        serializer: Api::V1::SessionSerializer,
+        status: 201,
+        include: [:user],
+        scope: @user
       )
     else
-      return api_error(status: 401)
+      return api_error(status: 401, errors: 'Wrong password or username')
     end
   end
 
-  private
-  def create_params
-    params.require(:user).permit(:email, :password)
+  def show
+    authorize(@user)
+
+    render(
+      jsonapi: @user, serializer: Api::V1::SessionSerializer,
+      status: 200, include: [:user], fields: {
+        user: UserPolicy::Regular.new(@user).fields
+      }
+    )
   end
+
+  private
+    def create_params
+      normalized_params.permit(:email, :password)
+    end
+
+    def load_resource
+      case params[:action].to_sym
+      when :create
+        @user = User.find_for_authentication(
+          email: create_params[:email]
+        )
+        if (@user.valid_password?(create_params[:password]))
+          return @user
+        else
+          return nil 
+        end
+      when :show
+        @user = User.find(params[:id])
+      end
+    end
+
+    def normalized_params
+      ActionController::Parameters.new(
+         ActiveModelSerializers::Deserialization.jsonapi_parse(params)
+      )
+    end
 end

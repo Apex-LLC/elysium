@@ -23,6 +23,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'active_model_serializers'
+
 gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'popper_js', '~> 1.12.9'
 gem 'haml'

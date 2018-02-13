@@ -3,7 +3,8 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  before_create :generate_authentication_token
+  before_validation :ensure_token
+
   has_many :tenants
   has_one :site
 
@@ -55,10 +56,15 @@ class User < ApplicationRecord
     return billable_meters
   end
 
-  def generate_authentication_token
-      loop do
-        self.authentication_token = SecureRandom.base64(64)
-        break unless User.find_by(authentication_token: authentication_token)
-      end
+  def ensure_token
+    self.token = generate_hex(:token) unless token.present?
+  end
+
+  def generate_hex(column)
+    loop do
+      hex = SecureRandom.hex
+      break hex unless self.class.where(column => hex).any?
     end
+  end
+  
 end

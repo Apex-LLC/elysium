@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: "users#show"
+
   resources :sites
   devise_for :users
   resources :users
@@ -16,15 +18,17 @@ Rails.application.routes.draw do
   resources :records
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root to: "users#show"
-
   #api
   namespace :api do
     namespace :v1 do
-      resources :users, only: [:show]
+      resources :sessions, only: [:create, :show]
+      resources :users, only: [:show] do
+        collection do 
+          get 'meters/:id', to: 'users#meters'
+        end
+      end
       resources :billable_meters, only: [:index]
       resources :records, only: [:create]
-      resources :sessions, only: [:create]
     end
   end  
 end
