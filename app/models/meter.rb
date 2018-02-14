@@ -21,6 +21,9 @@ class Meter < ApplicationRecord
       record = Record.new row.to_hash
       self.records << record
       record.save
-    end      
+    end
+    self.records = self.records.uniq  
+    true    
   end 
+
 end

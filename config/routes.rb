@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       end
       resources :meters, only: [:index]
       post 'meters', to: 'meters#import'
+      post 'records', to: 'records#import'
       resources :billable_meters, only: [:index]
       resources :records, only: [:create]
     end
