@@ -22,12 +22,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :sessions, only: [:create, :show]
-      resources :users, only: [:show] do
-        collection do 
-          get 'meters/:id', to: 'users#meters'
-        end
-      end
-      resources :meters, only: [:index]
+      resources :users, only: [:show] 
+      get 'meters', to: 'users#meters'
       post 'meters', to: 'meters#import'
       post 'records', to: 'records#import'
       resources :billable_meters, only: [:index]

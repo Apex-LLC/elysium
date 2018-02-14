@@ -8,9 +8,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   def meters
-    user = User.find(params[:id])
-
-    render json: user, serializer: Api::V1::UserMetersSerializer
+    render json: @current_user, serializer: Api::V1::UserMetersSerializer
   end
 
 end 

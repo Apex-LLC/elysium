@@ -6,7 +6,12 @@ class Api::V1::UserMetersSerializer < Api::V1::BaseSerializer
     tenants = object.tenants
     tenants.each do |t|
       t.billable_meters.each do |b|
-        billable_meters << b.meter.reference
+        billable_meters << 
+          {
+            "reference": b.meter.reference, 
+            "last_collection": b.meter.last_collection
+          }
+        
       end
     end
     return billable_meters
