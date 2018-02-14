@@ -27,6 +27,8 @@ Rails.application.routes.draw do
           get 'meters/:id', to: 'users#meters'
         end
       end
+      resources :meters, only: [:index]
+      post 'meters', to: 'meters#import'
       resources :billable_meters, only: [:index]
       resources :records, only: [:create]
     end

@@ -3,6 +3,7 @@ class Api::V1::SessionsController < Api::V1::BaseController
   skip_before_action :authenticate_user!, only: [:create]
 
   def create
+    byebug
     if @user
       render(
         json: @user,
@@ -35,13 +36,11 @@ class Api::V1::SessionsController < Api::V1::BaseController
     def load_resource
       case params[:action].to_sym
       when :create
-        @user = User.find_for_authentication(
+        new_session_user = User.find_by(
           email: create_params[:email]
         )
-        if (@user.valid_password?(create_params[:password]))
-          return @user
-        else
-          return nil 
+        if new_session_user&.valid_password?(create_params[:password])
+          @user=new_session_user
         end
       when :show
         @user = User.find(params[:id])
