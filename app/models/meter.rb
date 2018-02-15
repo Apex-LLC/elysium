@@ -21,8 +21,8 @@ class Meter < ApplicationRecord
       record = Record.new row.to_hash
       self.records << record
       record.save
-    end
-    self.records = self.records.uniq  
+    end 
+    self.last_collection = DateTime.now
     true    
   end 
 
