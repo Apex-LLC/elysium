@@ -8,7 +8,7 @@ class Meter < ApplicationRecord
     CSV.foreach(file.path, headers:true) do |row|
       meter = Meter.new row.to_hash
       meter.site_id=1
-      byebug
+
       if (meter.valid?)
         meter.save
       end

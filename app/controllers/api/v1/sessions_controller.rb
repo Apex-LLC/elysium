@@ -3,7 +3,6 @@ class Api::V1::SessionsController < Api::V1::BaseController
   skip_before_action :authenticate_user!, only: [:create]
 
   def create
-    byebug
     if @user
       render(
         json: @user,
