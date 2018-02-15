@@ -14,7 +14,7 @@ class Api::V1::UserMetersSerializer < Api::V1::BaseSerializer
         
       end
     end
-    return billable_meters
+    return billable_meters.uniq
   end
 
   def created_at

@@ -20,10 +20,10 @@ class Meter < ApplicationRecord
     CSV.foreach(file.path, headers:true) do |row|
       record = Record.new row.to_hash
       self.records << record
-      record.save
-    end 
+    end
     self.last_collection = DateTime.now
     self.save
+    byebug
     true    
   end 
 

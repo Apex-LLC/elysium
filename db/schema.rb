@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180210003502) do
+ActiveRecord::Schema.define(version: 20180215205830) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20180210003502) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "meter_id"
+    t.index ["datetime", "meter_id"], name: "index_records_on_datetime_and_meter_id", unique: true
     t.index ["meter_id"], name: "index_records_on_meter_id"
   end
 
