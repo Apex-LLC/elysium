@@ -23,7 +23,6 @@ class Meter < ApplicationRecord
     end
     self.last_collection = DateTime.now
     self.save
-    byebug
     true    
   end 
 
