@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215205830) do
+ActiveRecord::Schema.define(version: 20180228223131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,13 +49,13 @@ ActiveRecord::Schema.define(version: 20180215205830) do
   end
 
   create_table "meters", id: :serial, force: :cascade do |t|
-    t.string "name"
-    t.string "description"
     t.string "reference"
     t.datetime "last_collection"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "site_id"
+    t.string "datatype"
+    t.string "unit"
     t.index ["site_id"], name: "index_meters_on_site_id"
   end
 
