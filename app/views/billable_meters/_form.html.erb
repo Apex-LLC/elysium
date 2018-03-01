@@ -41,7 +41,9 @@
             </div>
           </div>
 
-          <input type="text" id="myInput" onkeyup="filterList()" placeholder="Search for names..">
+          <div class="field">
+            <input type="text" id="meter-filter" onkeyup="filterList()" placeholder="Filter points..">
+          </div>
         </div>
 
           <div class="col-xs-12 col-md-6">
@@ -92,7 +94,7 @@
   function filterList() {
     // Declare variables
     var input, filter, ul, li, a, i;
-    input = document.getElementById('myInput');
+    input = document.getElementById('meter-filter');
     filter = input.value.toUpperCase();
     ul = document.getElementById("meter-list");
     li = ul.getElementsByClassName('table-row');
