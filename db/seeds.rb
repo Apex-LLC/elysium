@@ -19,6 +19,8 @@ site=Site.new(name:"Office Building 1",address: "2407 SE Division st. Portland, 
 u.site = site
 puts 'done'
 
+u.rates << Rate.create(symbol:"kWh",rate:0.084)
+
 puts 'creating meters'
 for i in 1..12
   site.meters<<Meter.new(reference:"NAE-01:N2 Trunk 1.RHU-#{i}.RTU-kwh",datatype:1,unit:"kwh")
@@ -47,9 +49,9 @@ for t in [t1,t2,t3]
   meter_id_1=rand(1..12)
   meter_id_2=rand(1..12)
   meter_id_3=rand(1..12)
-  b1=BillableMeter.create(description: "East Office RTU #" + meter_id_1.to_s, meter_id: meter_id_1)
-  b2=BillableMeter.create(description: "East Office RTU #" + meter_id_2.to_s, meter_id: meter_id_2)
-  b3=BillableMeter.create(description: "East Office RTU #" + meter_id_3.to_s, meter_id: meter_id_3)
+  b1=BillableMeter.create(description: "East Office RTU #" + meter_id_1.to_s, meter_id: meter_id_1, rate_id: 1)
+  b2=BillableMeter.create(description: "East Office RTU #" + meter_id_2.to_s, meter_id: meter_id_2, rate_id: 1)
+  b3=BillableMeter.create(description: "East Office RTU #" + meter_id_3.to_s, meter_id: meter_id_3, rate_id: 1)
   t.billable_meters << [b1,b2,b3]
   for i in 1..12
     puts 'building invoice ' + i.to_s + ' of 12'
