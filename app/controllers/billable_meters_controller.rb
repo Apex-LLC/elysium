@@ -84,7 +84,7 @@ class BillableMetersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def billable_meter_params
-      params.require(:billable_meter).permit(:meter_id, :description, :percent_allocation, :start_time, :end_time, :tenant_id)
+      params.require(:billable_meter).permit(:meter_id, :description, :percent_allocation, :start_time, :end_time, :tenant_id, :rate_id)
     end
 
     def get_tenant_from_params

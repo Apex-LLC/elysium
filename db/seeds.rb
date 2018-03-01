@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 puts 'start seeding database'
 
-todays_date = DateTime.new(2018,1,14)
+todays_date = DateTime.now
 puts 'using today\'s date: ' + todays_date.to_s
 
 puts 'creating user accounts'

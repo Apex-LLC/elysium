@@ -53,12 +53,19 @@
             </div>
             </br>
             <div class="field">            
-              <%= f.label :percent_allocation %>
-              <%= f.number_field :percent_allocation, placeholder: "(100\% if blank)" %>
+              <!-- <%= f.label :percent_allocation %> -->
+              <%= f.number_field :percent_allocation, placeholder: "\% Allocation (100\% if blank)", size: 200 %>
+            </div>
+            </br>
+            
+            <div class="field">
+              <% defaultOption = options_for_select([['Rate',nil]]) %>
+              <% options = options_from_collection_for_select(current_user.rates, 'id', 'symbol') %>
+              <%= f.select :rate_id,  defaultOption << options %>
             </div>
             </br>
 
-            <div class="field">
+            <!-- <div class="field">
               <%= f.label :start_time %>
               <%= f.time_select :start_time %>
             </div>
@@ -66,7 +73,7 @@
             <div class="field">
               <%= f.label :end_time %>
               <%= f.time_select :end_time %>
-            </div>
+            </div> -->
 
             <%= f.hidden_field :meter_id, :id => "meter-id" %>
             <%= f.hidden_field :tenant_id, :value => @tenant.id %>

@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :tenants
   has_one :site
+  has_many :rates
 
   def amount_billed
     amount_billed=0.0
