@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180301083345) do
+ActiveRecord::Schema.define(version: 20180301164448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,9 @@ ActiveRecord::Schema.define(version: 20180301083345) do
     t.bigint "space_id"
     t.bigint "meter_id"
     t.string "description"
+    t.bigint "rate_id", null: false
     t.index ["meter_id"], name: "index_billable_meters_on_meter_id"
+    t.index ["rate_id"], name: "index_billable_meters_on_rate_id"
     t.index ["space_id"], name: "index_billable_meters_on_space_id"
     t.index ["tenant_id"], name: "index_billable_meters_on_tenant_id"
   end
@@ -67,6 +69,16 @@ ActiveRecord::Schema.define(version: 20180301083345) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tenant_id"], name: "index_payments_on_tenant_id"
+  end
+
+  create_table "rates", force: :cascade do |t|
+    t.string "symbol"
+    t.float "rate"
+    t.string "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rates_on_user_id"
   end
 
   create_table "records", id: :serial, force: :cascade do |t|
@@ -129,11 +141,13 @@ ActiveRecord::Schema.define(version: 20180301083345) do
   end
 
   add_foreign_key "billable_meters", "meters"
+  add_foreign_key "billable_meters", "rates"
   add_foreign_key "billable_meters", "spaces"
   add_foreign_key "billable_meters", "tenants"
   add_foreign_key "invoices", "tenants"
   add_foreign_key "meters", "sites"
   add_foreign_key "payments", "tenants"
+  add_foreign_key "rates", "users"
   add_foreign_key "records", "meters"
   add_foreign_key "sites", "users"
   add_foreign_key "spaces", "sites"

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rates
   root to: "users#show"
 
   resources :sites

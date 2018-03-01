@@ -2,6 +2,7 @@ class BillableMeter < ApplicationRecord
   belongs_to :meter
   belongs_to :tenant
   has_and_belongs_to_many :invoices
+  has_one :rate
   before_save :set_percent_allocation
 
   def get_records(start_date,end_date)
