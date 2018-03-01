@@ -34,8 +34,7 @@
             <% current_site.meters.each do |meter| %>
               <div class="table-row">
                 <div class='table-row-item space-item clickable-row' id="<%= meter.id %>" >
-                  <div class="table-cell description"><%= meter.reference %></div>
-                  <div class="table-cell name"><%= meter.unit %></div>
+                  <div class="table-cell full-width"><%= meter.reference %></div>
                 </div>
               </div>
             <% end %>
