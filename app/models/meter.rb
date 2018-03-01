@@ -1,13 +1,15 @@
 class Meter < ApplicationRecord
   has_many :records, dependent: :destroy
   belongs_to :site
+  validates_uniqueness_of :reference, :scope => [:site_id]
 
   require 'csv'
 
-  def self.import_meters(file)
+  def self.import_meters(file,site_id)
     CSV.foreach(file.path, headers:true) do |row|
       meter = Meter.new row.to_hash
-      meter.site_id=1
+
+      meter.site_id=site_id
 
       if (meter.valid?)
         meter.save

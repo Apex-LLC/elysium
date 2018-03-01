@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228223131) do
+ActiveRecord::Schema.define(version: 20180301083345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20180228223131) do
     t.bigint "site_id"
     t.string "datatype"
     t.string "unit"
+    t.index ["reference", "site_id"], name: "index_meters_on_reference_and_site_id", unique: true
     t.index ["site_id"], name: "index_meters_on_site_id"
   end
 

@@ -21,7 +21,7 @@ puts 'done'
 
 puts 'creating meters'
 for i in 1..12
-  site.meters<<Meter.new(name:"RTU Meter #{i}", description:"East wing RTU", reference:"NAE-01:N2 Trunk 1.RHU-#{i}.RTU-kwh")
+  site.meters<<Meter.new(reference:"NAE-01:N2 Trunk 1.RHU-#{i}.RTU-kwh",datatype:1,unit:"kwh")
 end
 puts 'done'
 
