@@ -40,6 +40,8 @@
             <% end %>
             </div>
           </div>
+
+          <input type="text" id="myInput" onkeyup="filterList()" placeholder="Search for names..">
         </div>
 
           <div class="col-xs-12 col-md-6">
@@ -86,4 +88,24 @@
       $('#meter-id').val(selectedMeter.attr('id'));
     });
   });
+
+  function filterList() {
+    // Declare variables
+    var input, filter, ul, li, a, i;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("meter-list");
+    li = ul.getElementsByClassName('table-row');
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (i = 0; i < li.length; i++) {
+      a = li[i].getElementsByClassName("table-row-item")[0];
+      if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          li[i].style.display = "";
+      } else {
+          li[i].style.display = "none";
+      }
+    }
+  }
+
 </script>
