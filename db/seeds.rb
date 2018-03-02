@@ -23,13 +23,13 @@ u.rates << Rate.create(symbol:"kWh",rate:0.084)
 
 puts 'creating meters'
 for i in 1..12
-  site.meters<<Meter.new(reference:"NAE-01:N2 Trunk 1.RHU-#{i}.RTU-kwh",datatype:1,unit:"kwh")
+  site.meters<<Meter.new(reference:"NAE-01:N2 Trunk 1.AHU-#{i}.DX#{i}-kwh",datatype:1,unit:"kwh")
 end
 puts 'done'
 
 puts 'creating records'
 for m in site.meters
-  multiplier=rand(30..80)
+  multiplier=rand(80..130)
   for i in 1..400
     m.records<<Record.new(datetime:todays_date - i,value:multiplier*(rand(0.8..1.2)))
   end
@@ -49,9 +49,9 @@ for t in [t1,t2,t3]
   meter_id_1=rand(1..12)
   meter_id_2=rand(1..12)
   meter_id_3=rand(1..12)
-  b1=BillableMeter.create(description: "East Office RTU #" + meter_id_1.to_s, meter_id: meter_id_1, rate_id: 1)
-  b2=BillableMeter.create(description: "East Office RTU #" + meter_id_2.to_s, meter_id: meter_id_2, rate_id: 1)
-  b3=BillableMeter.create(description: "East Office RTU #" + meter_id_3.to_s, meter_id: meter_id_3, rate_id: 1)
+  b1=BillableMeter.create(description: "East Office kWh #" + meter_id_1.to_s, meter_id: meter_id_1, rate_id: 1)
+  b2=BillableMeter.create(description: "East Office kWh #" + meter_id_2.to_s, meter_id: meter_id_2, rate_id: 1)
+  b3=BillableMeter.create(description: "East Office kWh #" + meter_id_3.to_s, meter_id: meter_id_3, rate_id: 1)
   t.billable_meters << [b1,b2,b3]
   startDate=DateTime.now.at_beginning_of_month
 
@@ -63,10 +63,9 @@ for t in [t1,t2,t3]
 
     status = "Paid"
 
-    if (i == 1)
+    if (i == 1 && t!=t2)
         status = "Unpaid"
     end
-
 
     i=Invoice.create(number:i+12100,start_date:startDate,end_date:endDate,send_date:sendDate,status: status)
     i.billable_meters << t.billable_meters
