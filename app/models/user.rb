@@ -29,7 +29,7 @@ class User < ApplicationRecord
     totalReceived=0.0
     invoices.each do |invoice|
       if (invoice.status=="Paid" && invoice.send_date.month == DateTime.now.month)
-        totalReceived=invoice.amount
+        totalReceived+=invoice.amount
       end
     end
     return totalReceived

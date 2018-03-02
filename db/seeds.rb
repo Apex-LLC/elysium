@@ -53,22 +53,27 @@ for t in [t1,t2,t3]
   b2=BillableMeter.create(description: "East Office RTU #" + meter_id_2.to_s, meter_id: meter_id_2, rate_id: 1)
   b3=BillableMeter.create(description: "East Office RTU #" + meter_id_3.to_s, meter_id: meter_id_3, rate_id: 1)
   t.billable_meters << [b1,b2,b3]
+  startDate=DateTime.now.at_beginning_of_month
+
   for i in 1..12
     puts 'building invoice ' + i.to_s + ' of 12'
-    startDate=DateTime.new(2017,i,1)
+    startDate=startDate.prev_month
     endDate=startDate.next_month.prev_day
     sendDate=endDate+6
 
     status = "Paid"
-    if (i == 12)
-      status = "Unpaid"
+
+    if (i == 1)
+        status = "Unpaid"
     end
+
 
     i=Invoice.create(number:i+12100,start_date:startDate,end_date:endDate,send_date:sendDate,status: status)
     i.billable_meters << t.billable_meters
     i.set_amount_due
     t.invoices << i
   end
+
   puts 'done'
 end
 
