@@ -1,70 +1,74 @@
-<div class="row">
-  <% 
-    if (user_signed_in?)
-      tenantInfoWidth = "col-md-4 offset-md-1"
-      associatedMeterWidth = "col-md-5"
-    else
-      tenantInfoWidth = "col-12"
-      associatedMeterWidth=""
-    end
-  %>
-  <div class="<%= tenantInfoWidth %> text-center">
-    <%= image_tag "logo.png", class: "contact-image rounded-circle" %>
-    <h2>
-      <%= @tenant.name %>
-    </h2>
-    </br>
-    <% if (user_signed_in?) %>      
-      <h5>
-        <%= @tenant.email %>
-      </h5>
-      <h5>
-        <%= @tenant.phone %>
-      </h5>
-      </br>
-    <% end %>
-    <span class="text-muted text-uppercase">amount due</span>
-    <h3 class="large-currency">
-      <sup>$</sup><%= @tenant.amount_due %>
-    </h3>
-    <% if (@tenant.amount_due > 0) %><button class="btn-outline-primary">Pay Now</button><% end %>
-  </div>
-
-  <% if (user_signed_in?) %>
-    <%= render 'billable_meter_list', tenant: @tenant, associatedMeterWidth: associatedMeterWidth %>
-  <% end %>
-</div>
-
-</br>
-</br>
 
 <div class="row">
-  <div class="col-10 col-md-10 offset-md-1">
-    <% if (user_signed_in?) %>
-      <h2>Invoices</h2>
-    <% end %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th width="70%">Invoice</th>
-          <th width="15%" class="text-center">Amount</th>
-          <th width="15%" class="text-center">Status</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @tenant.invoices.order(end_date: :desc).each do |invoice| %>
-          <tr class="clickable-row"  data-href='<%= invoice_path(invoice) %>'>
-            <td width="70%"><%= invoice.readable_date %></td>
-            <td width="15%" class="text-center"><sup>$</sup><%= invoice.amount %></td>
-            <td width="15%" class="text-center"><%= invoice.status %></td>
-          </tr>
+  <div class="offset-1 col-10">
+    <div class="row">
+      <% 
+        if (user_signed_in?)
+          tenantInfoWidth = "col-md-4 offset-md-1"
+          associatedMeterWidth = "col-md-5"
+        else
+          tenantInfoWidth = "col-12"
+          associatedMeterWidth=""
+        end
+      %>
+      <div class="<%= tenantInfoWidth %> text-center">
+        <%= image_tag "logo.png", class: "contact-image rounded-circle" %>
+        <h2>
+          <%= @tenant.name %>
+        </h2>
+        </br>
+        <% if (user_signed_in?) %>      
+          <h5>
+            <%= @tenant.email %>
+          </h5>
+          <h5>
+            <%= @tenant.phone %>
+          </h5>
+          </br>
         <% end %>
-      </tbody>
-    </table>
+        <span class="text-muted text-uppercase">amount due</span>
+        <h3 class="large-currency">
+          <sup>$</sup><%= @tenant.amount_due %>
+        </h3>
+        <% if (@tenant.amount_due > 0) %><button class="btn-outline-primary">Pay Now</button><% end %>
+      </div>
+
+      <% if (user_signed_in?) %>
+        <%= render 'billable_meter_list', tenant: @tenant, associatedMeterWidth: associatedMeterWidth %>
+      <% end %>
+    </div>
+
+    </br>
+    </br>
+
+    <div class="row">
+      <div class="col-10 col-md-10 offset-md-1">
+        <% if (user_signed_in?) %>
+          <h2>Invoices</h2>
+        <% end %>
+        <table class="table">
+          <thead>
+            <tr>
+              <th width="70%">Invoice</th>
+              <th width="15%" class="text-center">Amount</th>
+              <th width="15%" class="text-center">Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @tenant.invoices.order(end_date: :desc).each do |invoice| %>
+              <tr class="clickable-row"  data-href='<%= invoice_path(invoice) %>'>
+                <td width="70%"><%= invoice.readable_date %></td>
+                <td width="15%" class="text-center"><sup>$</sup><%= invoice.amount %></td>
+                <td width="15%" class="text-center"><%= invoice.status %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
-  
 
 <script type="text/javascript">
   jQuery(document).ready(function($) {

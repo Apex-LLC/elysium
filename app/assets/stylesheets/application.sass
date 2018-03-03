@@ -17,7 +17,7 @@ $accent-color: rgb(63,151,245)
 $translucent-accent-color: rgba(63,151,245,.97)
 $light-accent-color: rgba(63,151,245,.1)
 $darker-accent-color: rgba(63,151,245,.3)
-$light-gray: #FAFAFA
+$light-gray: #FBFBFB
 $gray: #A1A1A1
 $navbar-height: 60px
 $hover-transition-time: .25s
@@ -31,15 +31,18 @@ html,body,.container
 a#title
   text-decoration: none
   color: $accent-color
-  letter-spacing: 4px
+  letter-spacing: 5px
   font-size: 1.1em
-  font-family: 'SanFranciscoDisplay-SemiBold','Segoe UI Semibold' !important
+  font-family: 'SanFranciscoDisplay-Bold','Segoe UI Semibold' !important
 
 img
   padding: 10px
 
-.container
-  padding-top: 80px
+.container, .container-fluid
+  padding-top: 100px
+  height: 100%
+  > .h-100
+    margin-top: -50px
 
 .clickable
   cursor: pointer
@@ -50,6 +53,9 @@ img
 .noborder
   margin: 0
   padding: 0
+
+.light-gray
+  background: $light-gray
 
 sup
   top: -.75em
@@ -99,8 +105,9 @@ nav
   .navbar-toggler-icon
     cursor: pointer
 
-#user-header
-  margin-bottom: 2rem
+#billing-cycles
+  background: #FEFEFE
+  border-radius: 4px
 
 .header-icon
   text-align: center

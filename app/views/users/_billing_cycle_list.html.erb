@@ -1,12 +1,11 @@
 
 </br>
 <% i=0 %>
-<div class="table row">
-    <% @user.billing_cycles.each do |date,invoices| %>
+<div class="table">
+    <% @user.billing_cycles.drop(1).each do |date,invoices| %>
       <div class="table-row">
           <h4 data-toggle="collapse" data-target=".accordion-<%= i %>" class="text-center panel-heading clickable collapsed"><%= date %></h4>
-      </div>
-      
+      </div>      
       <div class="accordion-<%= i %> collapse table-row-grouping">
         <% invoices.each do |invoice| %>
         <div class="table-row-item clickable-row" data-href='<%= invoice_path(invoice) %>'>

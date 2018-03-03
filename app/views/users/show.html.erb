@@ -1,29 +1,64 @@
 
-<%= render 'user_header' %>
+<h2 class="text-center">This month at a glance...</h2>
+</br>
 
 <div class="row">
-  <div class="col-md-4 text-center">
-    <span class="text-muted text-uppercase">amount billed</span>
-    <h3 class="large-currency">
-      <sup>$</sup><%= @user.amount_billed %>
-    </h3>
-  </div>
-  <div class="col-md-4 text-center">
-    <span class="text-muted text-uppercase">amount received</span>
-    <h3 class="large-currency">
-      <sup>$</sup><%= @user.amount_received %>
-    </h3>
-  </div>
-  <div class="col-md-4 text-center">
-    <span class="text-muted text-uppercase">amount due</span>
-    <h3 class="large-currency">
-      <sup>$</sup><%= @user.amount_due %>
-    </h3>
+  <div class="offset-md-2 col-8">
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <span class="text-muted text-uppercase">amount billed</span>
+        <h3 class="large-currency">
+          <sup>$</sup><%= @user.amount_billed %>
+        </h3>
+      </div>
+      <div class="col-md-4 text-center">
+        <span class="text-muted text-uppercase">amount received</span>
+        <h3 class="large-currency">
+          <sup>$</sup><%= @user.amount_received %>
+        </h3>
+      </div>
+      <div class="col-md-4 text-center">
+        <span class="text-muted text-uppercase">amount due</span>
+        <h3 class="large-currency">
+          <sup>$</sup><%= @user.amount_due %>
+        </h3>
+      </div>
+    </div>
+    <hr />
   </div>
 </div>
-<hr />
+
+
 <div class="row">
-  <div class="col-10 col-md-8 offset-md-2">
-    <%= render 'billing_cycle_list', user: @user %>
+  <div class="col-md-6 offset-md-3">
+    <% date,invoices = @user.billing_cycles.first %>
+    <div class="table">
+      <div class="table-row">  
+        <div class="table-row-grouping">
+        <% invoices.each do |invoice| %>        
+            <div class="table-row-item clickable-row" data-href='<%= invoice_path(invoice) %>'>
+              <div width="70%" class="col-6 table-cell"><%= invoice.tenant.name %></div>
+              <div width="15%" class="col-3 table-cell text-center"><%= number_with_delimiter(number_to_currency(invoice.amount),delimiter:',') %></div>
+              <div width="15%" class="col-3 table-cell text-center"><%= invoice.status %></div>
+            </div>
+        <% end %>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
+</br>
+</br>
+
+<div class="light-gray">
+  </br>
+  <h3 class="text-center">Past Months</h3>
+  </br>
+  <div class="row">
+    <div id="billing-cycles" class="col-10 col-md-8 offset-md-2">
+      <%= render 'billing_cycle_list', user: @user %>
+    </div>
+  </div>
+
 </div>

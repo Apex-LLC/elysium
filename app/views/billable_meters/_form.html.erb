@@ -1,92 +1,81 @@
-<div class="container-fluid">
-  <div class="row h-100 lightbox">
-    <button type="button" class="close" aria-label="Close" onclick="closeLightbox();">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <div class="col-12 text-center my-auto">
+<div class="row h-100 lightbox">
+  <button type="button" class="close" aria-label="Close" onclick="closeLightbox();">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <div class="col-12 text-center my-auto">
+    
+    <h1 class="text-center">Configure a Meter</h1>
+    <h3 class="text-muted text-uppercase">for <%= @tenant.name %></h3>
+    <hr style="padding: 0 40px;"/>
+    </br>
+
+    <%= form_for(billable_meter, html: {class: "h-100",remote:true}) do |f| %>
       
-      <h1 class="text-center">Configure a Meter</h1>
-      <h3 class="text-muted text-uppercase">for <%= @tenant.name %></h3>
-      <hr style="padding: 0 40px;"/>
-      </br>
+      <div class="row h-100">
 
-      <%= form_for(billable_meter, html: {class: "h-100",remote:true}) do |f| %>
-        
-        <div class="row h-100">
+        <% if billable_meter.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(billable_meter.errors.count, "error") %> prohibited this billable_meter from being saved:</h2>
 
-          <% if billable_meter.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(billable_meter.errors.count, "error") %> prohibited this billable_meter from being saved:</h2>
-
-            <ul>
-            <% billable_meter.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-          <div  class="col-xs-12 col-md-6">
-          <h3>Data Source</h3>
-          <div id="meter-list">
-
-            <div class="table">    
-            <% current_site.meters.each do |meter| %>
-              <div class="table-row">
-                <div class='table-row-item space-item clickable-row' id="<%= meter.id %>" >
-                  <div class="table-cell full-width"><%= meter.reference %></div>
-                </div>
-              </div>
-            <% end %>
-            </div>
-          </div>
-
-          <div class="field">
-            <input type="text" id="meter-filter" onkeyup="filterList()" placeholder="Filter points..">
-          </div>
-        </div>
-
-          <div class="col-xs-12 col-md-6">
-            <h3>Options</h3>
-            <div class="field">
-              <%= f.text_field :description, placeholder: "description (optional)", size: 200 %>
-            </div>
-            </br>
-            <div class="field">            
-              <!-- <%= f.label :percent_allocation %> -->
-              <%= f.number_field :percent_allocation, placeholder: "\% Allocation (100\% if blank)", size: 200 %>
-            </div>
-            </br>
-            
-            <div class="field">
-              <% defaultOption = options_for_select([['Rate',nil]]) %>
-              <% options = options_from_collection_for_select(current_user.rates, 'id', 'symbol') %>
-              <%= f.select :rate_id,  defaultOption << options %>
-            </div>
-            </br>
-
-            <!-- <div class="field">
-              <%= f.label :start_time %>
-              <%= f.time_select :start_time %>
-            </div>
-
-            <div class="field">
-              <%= f.label :end_time %>
-              <%= f.time_select :end_time %>
-            </div> -->
-
-            <%= f.hidden_field :meter_id, :id => "meter-id" %>
-            <%= f.hidden_field :tenant_id, :value => @tenant.id %>
-
-            <div class="actions">
-              <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Create" %>
-            </div>
-          </div>
+          <ul>
+          <% billable_meter.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
         </div>
       <% end %>
-    </div>
+
+        <div  class="col-xs-12 col-md-6">
+        <h3>Data Source</h3>
+        <div id="meter-list">
+
+          <div class="table">    
+          <% current_site.meters.each do |meter| %>
+            <div class="table-row">
+              <div class='table-row-item space-item clickable-row' id="<%= meter.id %>" >
+                <div class="table-cell full-width"><%= meter.reference %></div>
+              </div>
+            </div>
+          <% end %>
+          </div>
+        </div>
+
+        <div class="field">
+          <input type="text" id="meter-filter" onkeyup="filterList()" placeholder="Filter points..">
+        </div>
+      </div>
+
+        <div class="col-xs-12 col-md-6">
+          <h3>Options</h3>
+          <div class="field">
+            <%= f.text_field :description, placeholder: "description (optional)", size: 200 %>
+          </div>
+          </br>
+          <div class="field">            
+            <!-- <%= f.label :percent_allocation %> -->
+            <%= f.number_field :percent_allocation, placeholder: "\% Allocation (100\% if blank)", size: 200 %>
+          </div>
+          </br>
+          
+          <div class="field">
+            <% defaultOption = options_for_select([['Rate',nil]]) %>
+            <% options = options_from_collection_for_select(current_user.rates, 'id', 'symbol') %>
+            <%= f.select :rate_id,  defaultOption << options %>
+          </div>
+          </br>
+
+          <%= f.hidden_field :meter_id, :id => "meter-id" %>
+          <%= f.hidden_field :tenant_id, :value => @tenant.id %>
+
+          <div class="actions">
+            <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Create" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
+
 <script type="text/javascript">
 
   jQuery(document).ready(function($) {    
