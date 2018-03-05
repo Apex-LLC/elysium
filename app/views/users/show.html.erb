@@ -31,20 +31,22 @@
 
 <div class="row">
   <div class="col-md-6 offset-md-3">
+    <% if (@user.billing_cycles.any?) %>
     <% date,invoices = @user.billing_cycles.first %>
-    <div class="table">
-      <div class="table-row">  
-        <div class="table-row-grouping">
-        <% invoices.each do |invoice| %>        
-            <div class="table-row-item clickable-row" data-href='<%= invoice_path(invoice) %>'>
-              <div width="70%" class="col-6 table-cell"><%= invoice.tenant.name %></div>
-              <div width="15%" class="col-3 table-cell text-center"><%= number_with_delimiter(number_to_currency(invoice.amount),delimiter:',') %></div>
-              <div width="15%" class="col-3 table-cell text-center"><%= invoice.status %></div>
-            </div>
-        <% end %>
+      <div class="table">
+        <div class="table-row">  
+          <div class="table-row-grouping">
+          <% invoices.each do |invoice| %>        
+              <div class="table-row-item clickable-row" data-href='<%= invoice_path(invoice) %>'>
+                <div width="70%" class="col-6 table-cell"><%= invoice.tenant.name %></div>
+                <div width="15%" class="col-3 table-cell text-center"><%= number_with_delimiter(number_to_currency(invoice.amount),delimiter:',') %></div>
+                <div width="15%" class="col-3 table-cell text-center"><%= invoice.status %></div>
+              </div>
+          <% end %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
 
