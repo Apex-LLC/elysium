@@ -14,7 +14,11 @@ module ApplicationHelper
 
   def current_site
     if (user_signed_in?)
-      return Site.first
+      if (current_user.site == nil)
+        return Site.first
+      else
+        return current_user.site
+      end
     else
       redirect_to new_user_session_path
     end
