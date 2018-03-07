@@ -13,3 +13,10 @@ window.toggleMenu = ->
 
 $(window).load ->
   $('.container:has(div.lightbox)').css 'padding-top', '0'
+  $(document).on 'click', '.clickable-row', (event) ->
+    if $(this).data('href') != ''
+      window.location = $(this).data('href')
+    return
+
+
+

@@ -36,13 +36,7 @@
       <div class="table">
         <div class="table-row">  
           <div class="table-row-grouping">
-          <% invoices.each do |invoice| %>        
-              <div class="table-row-item clickable-row" data-href='<%= invoice_path(invoice) %>'>
-                <div width="70%" class="col-6 table-cell"><%= invoice.tenant.name %></div>
-                <div width="15%" class="col-3 table-cell text-center"><%= number_with_delimiter(number_to_currency(invoice.amount),delimiter:',') %></div>
-                <div width="15%" class="col-3 table-cell text-center"><%= invoice.status %></div>
-              </div>
-          <% end %>
+            <%= render 'invoices_list', invoices: invoices %>
           </div>
         </div>
       </div>
@@ -59,6 +53,7 @@
   </br>
   <div class="row">
     <div id="billing-cycles" class="col-10 col-md-8 offset-md-2">
+      </br>
       <%= render 'billing_cycle_list', user: @user %>
     </div>
   </div>
