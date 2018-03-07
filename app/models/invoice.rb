@@ -30,7 +30,7 @@ class Invoice < ApplicationRecord
     self.billable_meters.each do |meter|
       total_due+=meter.get_amount_due(self.start_date,self.end_date)
     end
-    self.amount=total_due
+    self.amount=total_due * get_tax_fee_rate
   end
 
 end
