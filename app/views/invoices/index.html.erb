@@ -9,7 +9,7 @@
           <th>Tenant</th>
           <th>Period</th>
           <th>Amount</th>
-          <th>Status</th>
+          <th class="text-center">Status</th>
           <th colspan="6"></th>
         </tr>
       </thead>
@@ -21,7 +21,7 @@
             <td><%= invoice.tenant.name %></td>
             <td><%= invoice.readable_date %></td>        
             <td><%= number_with_delimiter(number_to_currency(invoice.amount),delimiter:',') %></td>
-            <td><%= invoice.status %></td>
+            <td class="text-center"><%= invoice.status %></td>
             <!-- <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
             <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
           </tr>
@@ -31,13 +31,4 @@
   </div>
 </div>
 
-
 <br>
-
-<script type="text/javascript">
-  jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-  });
-</script>

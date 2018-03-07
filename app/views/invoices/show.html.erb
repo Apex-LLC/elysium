@@ -30,14 +30,14 @@
     </div>
 
     </br>
-
-    <div class="text-center">
-      <button class="btn-outline-primary btn-large">Pay Now</button>
-    </div>
+    
+    <% if (@invoice.status == "Unpaid") %>
+      <div class="text-center">
+        <button class="btn-outline-primary btn-large">Pay Now</button>
+      </div>
+    <% end %>
   </div>
 </div>
-
-
 
 </br>
 </br>

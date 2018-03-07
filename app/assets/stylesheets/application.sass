@@ -211,6 +211,7 @@ table
     .name
       width: 40%
     .reference
+      text-align: left
       width: 60%
     .allocation
       width: 15%
@@ -270,10 +271,14 @@ table
   border: 1px solid $light-accent-color
 
 .clickable-row
-  @extend .row
   cursor: pointer
   &:hover
     background-color: $light-accent-color
+
+div > .clickable-row
+  @extend .row
+  margin-left: 0
+  margin-right: 0
 
 .selected
   background-color: $darker-accent-color !important

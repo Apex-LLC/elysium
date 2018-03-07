@@ -14,7 +14,8 @@ class Invoice < ApplicationRecord
   def readable_date
     formatted_start_date=self.start_date.strftime("%B #{self.start_date.day.ordinalize}")
     formatted_end_date=self.end_date.strftime("%B #{self.end_date.day.ordinalize}")
-    return formatted_start_date + " - " + formatted_end_date
+    year = self.start_date.year.to_s
+    return formatted_start_date + " - " + formatted_end_date + ", " + year
   end
 
   def usage
