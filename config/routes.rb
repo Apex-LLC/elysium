@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :payments
+  resources :charges
   resources :spaces do 
     member do
       get 'get_meters'

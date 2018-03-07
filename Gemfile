@@ -28,6 +28,7 @@ gem 'bootstrap', '~> 4.0.0.beta2.1'
 gem 'popper_js', '~> 1.12.9'
 gem 'haml'
 gem 'hirb'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -40,6 +41,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'chartkick'
+gem 'stripe'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

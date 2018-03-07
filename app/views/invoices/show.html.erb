@@ -33,7 +33,12 @@
     
     <% if (@invoice.status == "Unpaid") %>
       <div class="text-center">
-        <button class="btn-outline-primary btn-large">Pay Now</button>
+        <!-- <button class="btn-outline-primary btn-large">Pay Now</button> -->
+        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-outline-primary btn-large"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Pay your Invoice"
+          data-amount="<%= @invoice.amount*100 %>"
+          data-locale="auto"></script>
       </div>
     <% end %>
   </div>
