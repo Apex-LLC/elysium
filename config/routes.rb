@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: "users#show"
 
   resources :sites
-  devise_for :users
+  devise_for :users, controllers: {registrations:'users/registrations'}
   resources :users
   resources :payments
   resources :charges
