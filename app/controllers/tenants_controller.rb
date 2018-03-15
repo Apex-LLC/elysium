@@ -1,6 +1,7 @@
 class TenantsController < ApplicationController
   before_action :set_tenant, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :admin_only, except: [:show, :edit, :update]
 
   # GET /tenants
   # GET /tenants.json
@@ -11,6 +12,13 @@ class TenantsController < ApplicationController
   # GET /tenants/1
   # GET /tenants/1.json
   def show
+    if (current_user.tenant?)
+      @tenant = Tenant.find_by(email: current_user.email)
+      if (@tenant == nil)
+        @tenant=Tenant.first
+        params[:notice]="No user could be found with that email."
+      end
+    end
   end
 
   # GET /tenants/new
@@ -76,4 +84,10 @@ class TenantsController < ApplicationController
     def tenant_params
       params.require(:tenant).permit(:name, :email, :phone)
     end
+
+    def admin_only
+    unless current_user.admin? || current_user.owner?
+      redirect_to root_path, :notice => "Access denied."
+    end
+  end
 end

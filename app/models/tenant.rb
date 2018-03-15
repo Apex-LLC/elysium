@@ -4,6 +4,7 @@ class Tenant < ApplicationRecord
   has_many :payments
   belongs_to :user
   validates :name, :email, :user_id, presence: true
+  validates :email, :uniqueness => { :case_sensitive => false }
 
   def amount_due
     unpaid_invoices=self.invoices.where.not(status:"Paid")

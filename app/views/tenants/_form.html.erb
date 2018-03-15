@@ -1,14 +1,10 @@
-<div class="row h-100 lightbox">
-  <button type="button" class="close" aria-label="Close" onclick="closeLightbox();">
-    <span aria-hidden="true">&times;</span>
-  </button>
-  <div class="col-12 text-center my-auto">
 
-    <h2>Create a New Tenant</h2>
     <%= image_tag "logo.png", class: "contact-image rounded-circle" %>
     </br>
 
     <%= form_for(tenant,:html=>{:id=>"your_form_id",:multipart => true,:remote=>true}) do |f| %>
+      <%= render 'errors/form_errors', object: @tenant %>
+
       <div id="login-form">
         <div class="field">
           <%= f.text_field :name, placeholder: "name" %>
@@ -23,18 +19,11 @@
         </div>
         </br>
         <div class="actions">
-          <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Create" %>
+          <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Save" %>
         </div>
       </div>
       
     <% end %>
-  </div>
-</div>
-
-
-
-
-
 
 
 <script type="text/javascript">

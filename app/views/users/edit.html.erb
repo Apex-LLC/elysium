@@ -1,6 +1,12 @@
 <h1>Editing User</h1>
 
-<%= render 'form', user: @user %>
+<div class="row">
+  <div class="offset-2 col-4">This is some settings!!</div>
+  <div class="col-4">
+    <%= render :template => 'devise/registrations/edit' %>    
+  </div>
+</div>
+
 
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>

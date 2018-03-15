@@ -3,7 +3,7 @@
   <div class="offset-1 col-10">
     <div class="row">
       <% 
-        if (user_signed_in?)
+        if (!current_user.tenant?)
           tenantInfoWidth = "col-md-4 offset-md-1"
           associatedMeterWidth = "col-md-5"
         else
@@ -13,19 +13,11 @@
       %>
       <div class="<%= tenantInfoWidth %> text-center">
         <%= image_tag "logo.png", class: "contact-image rounded-circle" %>
-        <h2>
-          <%= @tenant.name %>
-        </h2>
+        <h2><%= @tenant.name %></h2>
+        </br>    
+        <h5><%= @tenant.email %></h5>
+        <h5><%= @tenant.phone %></h5>
         </br>
-        <% if (user_signed_in?) %>      
-          <h5>
-            <%= @tenant.email %>
-          </h5>
-          <h5>
-            <%= @tenant.phone %>
-          </h5>
-          </br>
-        <% end %>
         <span class="text-muted text-uppercase">amount due</span>
         <h3 class="large-currency">
           <sup>$</sup><%= @tenant.amount_due %>
@@ -33,7 +25,7 @@
         <% if (@tenant.amount_due > 0) %><button class="btn-outline-primary">Pay Now</button><% end %>
       </div>
 
-      <% if (user_signed_in?) %>
+      <% if (!current_user.tenant?) %>
         <%= render 'billable_meter_list', tenant: @tenant, associatedMeterWidth: associatedMeterWidth %>
       <% end %>
     </div>
@@ -43,9 +35,7 @@
 
     <div class="row">
       <div class="col-10 col-md-10 offset-md-1">
-        <% if (user_signed_in?) %>
-          <h2>Invoices</h2>
-        <% end %>
+        <h2>Invoices</h2>
         <table class="table">
           <thead>
             <tr>

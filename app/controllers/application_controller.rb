@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
   protect_from_forgery unless: -> { request.format.json? }
-  
 
 private
 
@@ -9,4 +8,5 @@ private
   def after_sign_out_path_for(resource_or_scope)
     root_path
   end
+
 end

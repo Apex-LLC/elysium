@@ -5,6 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   before_validation :ensure_token
 
+  enum role: [:admin, :owner, :tenant]
+  after_initialize :set_default_role, :if => :new_record?
+
+
   has_many :tenants
   has_one :site
   has_many :rates
@@ -57,15 +61,20 @@ class User < ApplicationRecord
     return billable_meters
   end
 
-  def ensure_token
-    self.token = generate_hex(:token) unless token.present?
-  end
 
-  def generate_hex(column)
-    loop do
-      hex = SecureRandom.hex
-      break hex unless self.class.where(column => hex).any?
+  private   
+    def ensure_token
+      self.token = generate_hex(:token) unless token.present?
     end
-  end
-  
+
+    def generate_hex(column)
+      loop do
+        hex = SecureRandom.hex
+        break hex unless self.class.where(column => hex).any?
+      end
+    end
+
+    def set_default_role
+      self.role ||= :tenant
+    end
 end
