@@ -1,23 +1,57 @@
-<table>
-  <thead>
-    <tr>
-      <th>Symbol</th>
-      <th>Rate</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if (rates != nil)
-      rates.each do |rate| %>
-        <tr>
-          <td><%= rate.symbol %></td>
-          <td><%= rate.rate %></td>
-          <td><%= rate.description %></td>
-          <td><%= link_to 'Edit', edit_rate_path(rate) %></td>
-          <td><%= link_to '✕', rate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+<div class="col-md-1"></div>
+  <div class="h-100">          
+    <h3>Rates</h3>
+      <div class="table-header-row">
+        <div class='table-row-item rate-item'>
+          <div class="table-cell symbol">Symbol</div>
+          <div class="table-cell rate">Rate</div>
+          <div class="table-cell description">Description</div>
+          <div class="table-cell symbol">Delete</div>          
+        </div>
+      </div>
+    <div id="rate-list">
+      <div class="table h-100">
+        <% 
+        if (rates != nil)
+          rates.each do |rate| %>
+            <div class="table-row">
+              <div class='table-row-item rate-item'>
+                <div class="table-cell symbol"><%= rate.symbol %></div>
+                <div class="table-cell rate"><%= rate.rate %></div>
+                <div class="table-cell description"><%= rate.description %></div>
+                <div class="table-cell link"><%= link_to '✕', rate, method: :delete, data: { confirm: "Are you sure you would like to remove this rate?" } %></div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <div class="table-row">
+          <div class='table-row-item rate-item'>
+            <% rate = Rate.new %>
+            <%= form_with(model: rate, local: true) do |form| %>
+
+              <div class="inline-field table-cell symbol">
+                <%= form.label :symbol, class: "sr-only" %>
+                <%= form.text_field :symbol, id: :rate_symbol, placeholder: "Symbol" %>
+              </div>
+
+              <div class="inline-field table-cell rate">
+                <%= form.label :rate, class: "sr-only"  %>
+                <%= form.text_field :rate, id: :rate_rate, placeholder: "Rate" %>
+              </div>
+
+              <div class="inline-field table-cell description">
+                <%= form.label :description, class: "sr-only"  %>
+                <%= form.text_field :description, id: :rate_description, placeholder: "Description" %>
+              </div>
+
+              <%= form.hidden_field :user_id, :value => @user.id %>
+
+              <div class="actions inline-field table-cell symbol">
+                <%= form.submit class: "btn-primary", value: "Add" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -25,16 +25,11 @@ class RatesController < ApplicationController
   # POST /rates.json
   def create
     @rate = Rate.new(rate_params)
-
-    respond_to do |format|
-      if @rate.save
-        format.html { redirect_to @rate, notice: 'Rate was successfully created.' }
-        format.json { render :show, status: :created, location: @rate }
-      else
-        format.html { render :new }
-        format.json { render json: @rate.errors, status: :unprocessable_entity }
-      end
+    noticeText=""
+    if (@rate.save)
+      noticeText = @rate.symbol + " was successfully added."
     end
+    redirect_back(fallback_location: root_path,notice: noticeText)
   end
 
   # PATCH/PUT /rates/1
@@ -54,11 +49,9 @@ class RatesController < ApplicationController
   # DELETE /rates/1
   # DELETE /rates/1.json
   def destroy
+    noticeText = @rate.symbol + " was successfully removed."
     @rate.destroy
-    respond_to do |format|
-      format.html { redirect_to rates_url, notice: 'Rate was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_back(fallback_location: root_path,notice: noticeText)
   end
 
   private
