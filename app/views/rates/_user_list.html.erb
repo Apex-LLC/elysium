@@ -31,12 +31,12 @@
 
               <div class="inline-field table-cell symbol">
                 <%= form.label :symbol, class: "sr-only" %>
-                <%= form.text_field :symbol, id: :rate_symbol, placeholder: "Symbol" %>
+                <%= form.text_field :symbol, id: :rate_symbol, required: true, placeholder: "Symbol" %>
               </div>
 
               <div class="inline-field table-cell rate">
                 <%= form.label :rate, class: "sr-only"  %>
-                <%= form.text_field :rate, id: :rate_rate, placeholder: "Rate" %>
+                <%= form.text_field :rate, id: :rate_rate, onkeypress:"return isNumberKey(event)", placeholder: "Rate" %>
               </div>
 
               <div class="inline-field table-cell description">
@@ -55,3 +55,15 @@
       </div>
     </div>
   </div>
+
+  <script>
+    function isNumberKey(evt)
+       {
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+          if (charCode != 46 && charCode > 31 
+            && (charCode < 48 || charCode > 57))
+             return false;
+
+          return true;
+       }
+  </script>
