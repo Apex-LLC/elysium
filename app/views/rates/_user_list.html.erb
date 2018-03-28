@@ -17,7 +17,7 @@
             <div class="table-row">
               <div class='table-row-item rate-item'>
                 <div class="table-cell symbol"><%= rate.symbol %></div>
-                <div class="table-cell rate"><%= rate.rate %></div>
+                <div class="table-cell rate"><sup>$</sup><%= rate.rate %></div>
                 <div class="table-cell description"><%= rate.description %></div>
                 <div class="table-cell link"><%= link_to '✕', rate, method: :delete, data: { confirm: "Are you sure you would like to remove this rate?" } %></div>
               </div>

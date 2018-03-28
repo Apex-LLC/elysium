@@ -4,8 +4,10 @@ class ChargesController < ApplicationController
   end
 
   def create
+
     # Amount in cents
-    @amount = 500
+    @amount = params[:amount]
+    @invoice = Invoice.find(params[:invoice_id])
 
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
@@ -18,6 +20,15 @@ class ChargesController < ApplicationController
       :description => 'Rails Stripe customer',
       :currency    => 'usd'
     )
+
+    @invoice.set_paid
+
+    float_amount = @amount.to_f / 100.0
+    payment = 
+    Payment.new(date: DateTime.now, amount: float_amount, email: params[:stripeEmail], tenant: @invoice.tenant, invoice: @invoice)
+    payment.save
+    
+    redirect_back(fallback_location: root_path,notice: "Thank your for your payment!")
 
     rescue Stripe::CardError => e
       flash[:error] = e.message

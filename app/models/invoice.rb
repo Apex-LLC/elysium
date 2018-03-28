@@ -1,6 +1,12 @@
+
 class Invoice < ApplicationRecord
   belongs_to :tenant
   has_and_belongs_to_many :billable_meters
+  has_one :payment
+
+  before_save :set_totals
+  validates :billable_meters, :length => { :minimum => 1 }
+  validates_associated :billable_meters
 
   def graphable_data
     return self.billable_meters.map { |meter|
@@ -26,12 +32,19 @@ class Invoice < ApplicationRecord
     return usage
   end
 
-  def set_amount_due
-    total_due=0.0
-    self.billable_meters.each do |meter|
-      total_due+=meter.get_amount_due(self.start_date,self.end_date)
-    end
-    self.amount=total_due * get_tax_fee_rate
+  def set_paid
+    self.status = "Paid"
+    self.save
   end
+
+  private 
+    def set_totals
+      total_due=0.0
+      self.billable_meters.each do |meter|
+        total_due+=meter.get_amount_due(self.start_date,self.end_date)
+      end
+      self.amount=total_due
+      self.fees = self.amount * ApplicationController.helpers.get_tax_fee_rate
+    end
 
 end

@@ -8,11 +8,11 @@
 <div class="table h-100">
   <% 
     invoice_usage = number_with_precision(@invoice.usage, precision: 2, delimiter:',')
-    total_due = @invoice.amount * (1+get_tax_fee_rate)
+    total_due = @invoice.amount + @invoice.fees
     total_due = number_with_delimiter(number_to_currency(total_due), delimiter:',')
-    tax_and_fees_due = number_with_delimiter(number_to_currency(@invoice.amount * get_tax_fee_rate), delimiter:',')
+    tax_and_fees_due = number_with_delimiter(number_to_currency(@invoice.fees), delimiter:',')
 
-    @invoice.billable_meters.each do |meter| 
+    @invoice.billable_meters.each do |meter|
       if (meter.description?) 
         meter_reference = meter.description 
       else 

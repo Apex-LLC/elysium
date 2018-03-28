@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180315223109) do
+ActiveRecord::Schema.define(version: 20180328214019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,8 +45,9 @@ ActiveRecord::Schema.define(version: 20180315223109) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.datetime "send_date"
-    t.string "status"
+    t.string "status", default: "Unpaid", null: false
     t.decimal "amount", precision: 8, scale: 2
+    t.decimal "fees", precision: 8, scale: 2
     t.index ["tenant_id"], name: "index_invoices_on_tenant_id"
   end
 
@@ -68,6 +69,9 @@ ActiveRecord::Schema.define(version: 20180315223109) do
     t.integer "tenant_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "invoice_id"
+    t.string "email"
+    t.index ["invoice_id"], name: "index_payments_on_invoice_id"
     t.index ["tenant_id"], name: "index_payments_on_tenant_id"
   end
 
@@ -149,6 +153,7 @@ ActiveRecord::Schema.define(version: 20180315223109) do
   add_foreign_key "billable_meters", "tenants"
   add_foreign_key "invoices", "tenants"
   add_foreign_key "meters", "sites"
+  add_foreign_key "payments", "invoices"
   add_foreign_key "payments", "tenants"
   add_foreign_key "rates", "users"
   add_foreign_key "records", "meters"

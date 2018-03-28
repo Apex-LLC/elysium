@@ -11,10 +11,10 @@ todays_date = DateTime.now
 puts 'using today\'s date: ' + todays_date.to_s
 
 puts 'creating user accounts'
-u1=User.create(email:"Joe@ApexLLC.com", password:"password")
-u2=User.create(email:"Matt@ApexLLC.com", password:"password")
-u3=User.create(email:"Dave@ApexLLC.com", password:"password")
-u4=User.create(email:"Brendon@ApexLLC.com", password:"password")
+u1=User.create(email:"Joe@ApexLLC.com", password:"password", name: "Joe Bauer", phone: "2629307445", role: :admin)
+u2=User.create(email:"Matt@ApexLLC.com", password:"password", role: :owner)
+u3=User.create(email:"Dave@ApexLLC.com", password:"password", role: :owner)
+u4=User.create(email:"Brendon@ApexLLC.com", password:"password", role: :owner)
 puts 'done'
 
 for u in [u1,u2,u3,u4]
@@ -65,15 +65,14 @@ for u in [u1,u2,u3,u4]
       endDate=startDate.next_month.prev_day
       sendDate=endDate+6
 
-      status = "Paid"
-
-      if (i == 1 && t!=t2)
-          status = "Unpaid"
-      end
-
-      i=Invoice.create(number:i+12100,start_date:startDate,end_date:endDate,send_date:sendDate,status: status)
+      i=Invoice.new(number:i+12100,start_date:startDate,end_date:endDate,send_date:sendDate)
       i.billable_meters << t.billable_meters
-      i.set_amount_due
+      i.save
+
+      if (i != 1 || t==t2)
+          i.set_paid
+      end
+      
       t.invoices << i
     end
 
