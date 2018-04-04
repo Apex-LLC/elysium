@@ -1,5 +1,6 @@
 
     <%= image_tag "logo.png", class: "contact-image rounded-circle" %>
+
     </br>
 
     <%= form_for(tenant,:html=>{:id=>"your_form_id",:multipart => true,:remote=>true}) do |f| %>
@@ -18,6 +19,9 @@
           <%= f.phone_field :phone, id: "phoneNumber", placeholder: "(XXX) XXX-XXXX", onkeypress:"return numberPressed(event);" %>
         </div>
         </br>
+<!--         <div class="field">
+          <%= f.file_field :logo %>
+        </div> -->
         <div class="actions">
           <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Save" %>
         </div>

@@ -50,9 +50,9 @@ for u in [u1,u2,u3,u4]
 
   for t in [t1,t2,t3]
     puts 'configuring meters and invoices for ' + t.name
-    meter_id_1=rand(1..12)
-    meter_id_2=rand(1..12)
-    meter_id_3=rand(1..12)
+    meter_id_1=rand(1..4)
+    meter_id_2=rand(5..8)
+    meter_id_3=rand(9..12)
     b1=BillableMeter.create(description: "East Office kWh #" + meter_id_1.to_s, meter_id: meter_id_1, rate_id: 1)
     b2=BillableMeter.create(description: "East Office kWh #" + meter_id_2.to_s, meter_id: meter_id_2, rate_id: 1)
     b3=BillableMeter.create(description: "East Office kWh #" + meter_id_3.to_s, meter_id: meter_id_3, rate_id: 1)
@@ -64,16 +64,26 @@ for u in [u1,u2,u3,u4]
       startDate=startDate.prev_month
       endDate=startDate.next_month.prev_day
       sendDate=endDate+6
+      number = 0
 
-      i=Invoice.new(number:i+12100,start_date:startDate,end_date:endDate,send_date:sendDate)
+      if (u.invoices.count == 0)
+        number = 12100
+      else
+        number = u.invoices.max_by(&:number).number + 1
+      end
+
+      i=Invoice.new(number:number,start_date:startDate,end_date:endDate,send_date: sendDate)
       i.billable_meters << t.billable_meters
       i.save
 
-      if (i != 1 || t==t2)
-          i.set_paid
-      end
-      
       t.invoices << i
+
+      if (i != 1 || t==t2)
+        i.set_paid
+        payment = 
+        Payment.new(date: i.send_date, amount: i.total, email: i.tenant.email, tenant: i.tenant, invoice: i)
+        payment.save
+      end
     end
 
     puts 'done'

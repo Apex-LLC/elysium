@@ -32,6 +32,14 @@ class Invoice < ApplicationRecord
     return usage
   end
 
+  def total
+    if (self.amount == nil)
+      set_totals
+    end
+
+    return self.amount + self.fees
+  end
+
   def set_paid
     self.status = "Paid"
     self.save

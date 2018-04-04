@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328214019) do
+ActiveRecord::Schema.define(version: 20180328222053) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,10 @@ ActiveRecord::Schema.define(version: 20180328214019) do
     t.string "email"
     t.bigint "user_id"
     t.bigint "space_id"
+    t.string "logo_file_name"
+    t.string "logo_content_type"
+    t.integer "logo_file_size"
+    t.datetime "logo_updated_at"
     t.index ["space_id"], name: "index_tenants_on_space_id"
     t.index ["user_id"], name: "index_tenants_on_user_id"
   end

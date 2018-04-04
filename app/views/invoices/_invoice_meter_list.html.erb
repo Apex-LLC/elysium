@@ -8,8 +8,7 @@
 <div class="table h-100">
   <% 
     invoice_usage = number_with_precision(@invoice.usage, precision: 2, delimiter:',')
-    total_due = @invoice.amount + @invoice.fees
-    total_due = number_with_delimiter(number_to_currency(total_due), delimiter:',')
+    total_due = number_with_delimiter(number_to_currency(@invoice.total), delimiter:',')
     tax_and_fees_due = number_with_delimiter(number_to_currency(@invoice.fees), delimiter:',')
 
     @invoice.billable_meters.each do |meter|
@@ -22,7 +21,7 @@
       meter_amount_due = number_to_currency(meter.get_amount_due(@invoice.start_date,@invoice.end_date))
       %>
       <div class="table-row">
-        <div class='table-row-item meter-item clickable-row' data-href=''>
+        <div class='table-row-item meter-item' data-href=''>
           <div class="table-cell reference">
             <%= meter_reference %>                  
           </div>
@@ -32,7 +31,7 @@
       </div>
     <% end %>
     <div class="table-row">
-      <div class='table-row-item meter-item clickable-row' data-href=''>
+      <div class='table-row-item meter-item' data-href=''>
         <div class="table-cell reference">Taxes and Fees</div>
         <div class="table-cell allocation"> - </div>
         <div class="table-cell amount"><%= tax_and_fees_due %></div>

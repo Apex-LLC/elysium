@@ -1,5 +1,9 @@
 
 <h2 class="text-center">Last month at a glance...</h2>
+<% if (@user.billing_cycles.any?) %>
+    <% date,invoices = @user.billing_cycles.first %>
+<p class="text-center text-muted text-uppercase"><%= date %></p>
+<% end %>
 </br>
 
 <div class="row">
@@ -49,7 +53,7 @@
 
 <div class="light-gray">
   </br>
-  <h3 class="text-center">Past Months</h3>
+  <h3 class="text-center">Previous Months</h3>
   </br>
   <div class="row">
     <div id="billing-cycles" class="col-10 col-md-8 offset-md-2">

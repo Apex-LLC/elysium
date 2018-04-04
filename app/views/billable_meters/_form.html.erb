@@ -57,9 +57,9 @@
           </br>
           
           <div class="field">
-            <% defaultOption = options_for_select([['Rate',nil]]) %>
+            <% defaultOption = options_for_select([[]]) %>
             <% options = options_from_collection_for_select(current_user.rates, 'id', 'symbol') %>
-            <%= f.select :rate_id,  defaultOption << options %>
+            <%= f.select :rate_id, defaultOption << options, {}, id: "rate-select", include_blank: true %>
           </div>
           </br>
 
@@ -77,13 +77,23 @@
 
 <script type="text/javascript">
 
-  jQuery(document).ready(function($) {    
+  jQuery(document).ready(function($) { 
+
     $(".clickable-row").mousedown(function() {
       $(".clickable-row").removeClass("selected")
       selectedMeter = $(this)
       selectedMeter.addClass("selected")
       $('#meter-id').val(selectedMeter.attr('id'));
     });
+
+    $('select#rate-select').select2({
+      theme: "bootstrap",
+      minimumResultsForSearch: Infinity,
+      placeholder: "Rate",
+      dropdownParent: $('.lightbox'),
+      allowClear: false
+    });
+
   });
 
   function filterList() {

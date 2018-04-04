@@ -31,9 +31,8 @@
     </br>
     
     <% if (@invoice.status == "Unpaid") %>
-      <% total = ((@invoice.amount + @invoice.fees) *100).to_i %>
+      <% total = ((@invoice.total) * 100.0).to_i %>
       <div class="text-center">
-        <!-- <button class="btn-outline-primary btn-large">Pay Now</button> -->
         <%= form_tag charges_path do %>
           <article>
             <% if flash[:error].present? %>
@@ -60,6 +59,7 @@
         payer = payment.email
         date = payment.date
         amount = payment.amount  %>
+        </br>
         <div class="text-center">
           <h5><%= payer %> paid <%= number_to_currency(amount) %> on <%= date.strftime("%b %e, %Y") %></h5>
         </div>

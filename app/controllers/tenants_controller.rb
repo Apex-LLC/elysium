@@ -82,7 +82,7 @@ class TenantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tenant_params
-      params.require(:tenant).permit(:name, :email, :phone)
+      params.require(:tenant).permit(:name, :email, :phone, :logo)
     end
 
     def admin_only

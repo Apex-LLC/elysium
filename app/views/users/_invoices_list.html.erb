@@ -1,7 +1,7 @@
 <% invoices.each do |invoice| 
   number = invoice.number
   tenant_name = invoice.tenant.name
-  amount = number_with_delimiter(number_to_currency(invoice.amount),delimiter:',')
+  amount = number_with_delimiter(number_to_currency(invoice.total),delimiter:',')
   status = invoice.status
   %>
   <div class="table-row-item clickable-row" data-href='<%= invoice_path(invoice) %>'>

@@ -16,7 +16,7 @@ class User < ApplicationRecord
   def amount_billed
     amount_billed=0.0
     invoices.select{|i| i.end_date.month == DateTime.now.prev_month.month}.each do |invoice|
-      amount_billed += invoice.amount
+      amount_billed += invoice.total
     end
     return amount_billed
   end
@@ -33,7 +33,7 @@ class User < ApplicationRecord
     totalReceived=0.0
     invoices.each do |invoice|
       if (invoice.status=="Paid" && invoice.send_date.month == DateTime.now.month)
-        totalReceived+=invoice.amount
+        totalReceived+=invoice.total
       end
     end
     return totalReceived
