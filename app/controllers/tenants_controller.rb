@@ -6,7 +6,7 @@ class TenantsController < ApplicationController
   # GET /tenants
   # GET /tenants.json
   def index
-    @tenants = current_user.tenants
+    @tenants = current_account.tenants
   end
 
   # GET /tenants/1
@@ -36,7 +36,7 @@ class TenantsController < ApplicationController
   # POST /tenants
   # POST /tenants.json
   def create
-    @tenant = current_user.tenants.build(tenant_params)
+    @tenant = current_account.tenants.build(tenant_params)
     respond_to do |format|
       if @tenant.save
         format.html { redirect_to @tenant, notice: @tenant.name + ' was successfully created.' }

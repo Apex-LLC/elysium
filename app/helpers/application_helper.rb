@@ -12,12 +12,20 @@ module ApplicationHelper
     notice.html_safe
   end
 
+  def current_account
+    if (user_signed_in? && current_user.account != nil)      
+      return current_user.account
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
   def current_site
     if (user_signed_in?)
-      if (current_user.site == nil)
+      if (current_account.site == nil)
         return Site.first
       else
-        return current_user.site
+        return current_account.site
       end
     else
       redirect_to new_user_session_path

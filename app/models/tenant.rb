@@ -2,8 +2,8 @@ class Tenant < ApplicationRecord
   has_many :invoices
   has_many :billable_meters
   has_many :payments
-  belongs_to :user
-  validates :name, :email, :user_id, presence: true
+  belongs_to :account
+  validates :name, :email, :account_id, presence: true
   validates :email, :uniqueness => { :case_sensitive => false }
 
   has_attached_file :logo, styles: { medium: "300x300>"}, default_url: "logo.png"

@@ -58,7 +58,7 @@
           
           <div class="field">
             <% defaultOption = options_for_select([[]]) %>
-            <% options = options_from_collection_for_select(current_user.rates, 'id', 'symbol') %>
+            <% options = options_from_collection_for_select(current_account.rates, 'id', 'symbol') %>
             <%= f.select :rate_id, defaultOption << options, {}, id: "rate-select", include_blank: true %>
           </div>
           </br>

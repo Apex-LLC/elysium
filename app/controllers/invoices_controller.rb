@@ -1,14 +1,11 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
 
   # GET /invoices
   # GET /invoices.json
   def index
-    if (user_signed_in?)
-      @invoices = current_user.invoices
-    else
-      redirect_to new_user_session_path
-    end
+    @invoices = current_account.invoices
   end
 
   # GET /invoices/1

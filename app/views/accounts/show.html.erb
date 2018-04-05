@@ -1,0 +1,65 @@
+
+<h2 class="text-center">Last month at a glance...</h2>
+<% if (@account.billing_cycles.any?) %>
+    <% date,invoices = @account.billing_cycles.first %>
+<p class="text-center text-muted text-uppercase"><%= date %></p>
+<% end %>
+</br>
+
+<div class="row">
+  <div class="offset-md-2 col-8">
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <span class="text-muted text-uppercase">amount billed</span>
+        <h3 class="large-currency">
+          <sup>$</sup><%= '%.2f' % @account.amount_billed %>
+        </h3>
+      </div>
+      <div class="col-md-4 text-center">
+        <span class="text-muted text-uppercase">amount received</span>
+        <h3 class="large-currency">
+          <sup>$</sup><%= '%.2f' % @account.amount_received %>
+        </h3>
+      </div>
+      <div class="col-md-4 text-center">
+        <span class="text-muted text-uppercase">amount due</span>
+        <h3 class="large-currency">
+          <sup>$</sup><%= '%.2f' % @account.amount_due %>
+        </h3>
+      </div>
+    </div>
+    <hr />
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <% if (@account.billing_cycles.any?) %>
+    <% date,invoices = @account.billing_cycles.first %>
+      <div class="table">
+        <div class="table-row">  
+          <div class="table-row-grouping">
+            <%= render 'invoices_list', invoices: invoices %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+</br>
+</br>
+
+<div class="light-gray">
+  </br>
+  <h3 class="text-center">Previous Months</h3>
+  </br>
+  <div class="row">
+    <div id="billing-cycles" class="col-10 col-md-8 offset-md-2">
+      </br>
+      <%= render 'billing_cycle_list', account: @account %>
+    </div>
+  </div>
+
+</div>

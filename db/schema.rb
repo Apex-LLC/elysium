@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328222053) do
+ActiveRecord::Schema.define(version: 20180404183849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "billable_meters", id: :serial, force: :cascade do |t|
     t.integer "percent_allocation"
@@ -79,10 +85,10 @@ ActiveRecord::Schema.define(version: 20180328222053) do
     t.string "symbol"
     t.float "rate"
     t.string "description"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_rates_on_user_id"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_rates_on_account_id"
   end
 
   create_table "records", id: :serial, force: :cascade do |t|
@@ -99,10 +105,10 @@ ActiveRecord::Schema.define(version: 20180328222053) do
     t.string "name"
     t.string "address"
     t.string "website"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_sites_on_user_id"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_sites_on_account_id"
   end
 
   create_table "spaces", force: :cascade do |t|
@@ -120,14 +126,14 @@ ActiveRecord::Schema.define(version: 20180328222053) do
     t.string "name"
     t.string "phone"
     t.string "email"
-    t.bigint "user_id"
     t.bigint "space_id"
     t.string "logo_file_name"
     t.string "logo_content_type"
     t.integer "logo_file_size"
     t.datetime "logo_updated_at"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_tenants_on_account_id"
     t.index ["space_id"], name: "index_tenants_on_space_id"
-    t.index ["user_id"], name: "index_tenants_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -147,6 +153,8 @@ ActiveRecord::Schema.define(version: 20180328222053) do
     t.integer "role"
     t.string "name"
     t.string "phone"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -159,10 +167,11 @@ ActiveRecord::Schema.define(version: 20180328222053) do
   add_foreign_key "meters", "sites"
   add_foreign_key "payments", "invoices"
   add_foreign_key "payments", "tenants"
-  add_foreign_key "rates", "users"
+  add_foreign_key "rates", "accounts"
   add_foreign_key "records", "meters"
-  add_foreign_key "sites", "users"
+  add_foreign_key "sites", "accounts"
   add_foreign_key "spaces", "sites"
+  add_foreign_key "tenants", "accounts"
   add_foreign_key "tenants", "spaces"
-  add_foreign_key "tenants", "users"
+  add_foreign_key "users", "accounts"
 end

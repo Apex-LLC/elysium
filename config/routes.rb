@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :accounts
   resources :rates
-  root to: "users#show"
+  root to: "accounts#show"
 
   resources :sites
   devise_for :users, controllers: {registrations:'users/registrations'}

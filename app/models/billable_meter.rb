@@ -1,8 +1,10 @@
 class BillableMeter < ApplicationRecord
+  validates :meter_id, :rate_id, presence: true
+
   belongs_to :meter
   belongs_to :tenant
   has_and_belongs_to_many :invoices
-  has_one :rate
+  belongs_to :rate
   before_save :set_percent_allocation
 
   def get_records(start_date,end_date)
@@ -21,8 +23,8 @@ class BillableMeter < ApplicationRecord
   end
 
   def get_amount_due(start_date,end_date)
-    total_usage = get_usage(start_date,end_date)      
-    return total_usage*0.084
+    total_usage = get_usage(start_date,end_date)  
+    return total_usage*self.rate.rate
   end
 
   def graphable_data_hash(start_date, end_date)

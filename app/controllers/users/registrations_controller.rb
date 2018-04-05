@@ -22,6 +22,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
     resource_updated = update_resource(resource, account_update_params)
+    @account = current_account
     yield resource if block_given?
     if resource_updated
       if is_flashing_format?
@@ -33,7 +34,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       respond_with resource, location: after_update_path_for(resource)
     else
       clean_up_passwords resource
-      render 'users/edit' and return
+      render 'accounts/edit' and return
     end
   end
 
@@ -69,7 +70,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def after_update_path_for(resource)
-    edit_user_path(resource)
+    edit_account_path(resource)
   end
 
   # The path used after sign up for inactive accounts.
