@@ -13,7 +13,7 @@ class TenantsController < ApplicationController
   # GET /tenants/1.json
   def show
     if (current_user.tenant?)
-      @tenant = Tenant.find_by(email: current_user.email)
+      @tenant = current_user.tenant
       if (@tenant == nil)
         @tenant=Tenant.first
         params[:notice]="No user could be found with that email."

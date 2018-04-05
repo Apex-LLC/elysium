@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404183849) do
+ActiveRecord::Schema.define(version: 20180405002957) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,15 @@ ActiveRecord::Schema.define(version: 20180404183849) do
     t.index ["site_id"], name: "index_spaces_on_site_id"
   end
 
+  create_table "tenant_users", id: false, force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tenant_id"], name: "index_tenant_users_on_tenant_id"
+    t.index ["user_id"], name: "index_tenant_users_on_user_id"
+  end
+
   create_table "tenants", id: :serial, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -134,6 +143,11 @@ ActiveRecord::Schema.define(version: 20180404183849) do
     t.bigint "account_id"
     t.index ["account_id"], name: "index_tenants_on_account_id"
     t.index ["space_id"], name: "index_tenants_on_space_id"
+  end
+
+  create_table "tenants_users", id: false, force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tenant_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -171,6 +185,8 @@ ActiveRecord::Schema.define(version: 20180404183849) do
   add_foreign_key "records", "meters"
   add_foreign_key "sites", "accounts"
   add_foreign_key "spaces", "sites"
+  add_foreign_key "tenant_users", "tenants"
+  add_foreign_key "tenant_users", "users"
   add_foreign_key "tenants", "accounts"
   add_foreign_key "tenants", "spaces"
   add_foreign_key "users", "accounts"

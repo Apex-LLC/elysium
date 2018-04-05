@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     if !@user
       redirect_to new_user_session_path
     elsif current_user.tenant?
-      redirect_to tenant_path(current_user)
+      redirect_to tenant_path(current_user.tenant)
     end
   end
 

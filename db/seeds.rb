@@ -19,6 +19,7 @@ u1=a.users.create(email:"Joe@ApexLLC.com", password:"password", name: "Joe Bauer
 u2=a.users.create(email:"Matt@ApexLLC.com", password:"password", role: :owner)
 u3=a.users.create(email:"Dave@ApexLLC.com", password:"password", role: :owner)
 u4=a.users.create(email:"Brendon@ApexLLC.com", password:"password", role: :owner)
+tenant_user=a.users.create(email:"tenant@apexllc.com",password:"password", role: :tenant)
 puts 'done'
 
 
@@ -48,6 +49,8 @@ puts 'done'
   t1=Tenant.create(name:"Simple Bank Montreal",phone:"262-930-7445",email:"Montreal@SimpleBank.com")
   t2=Tenant.create(name:"Strauss Family Creamery",phone:"262-930-7445",email:"yvette@strauscreamery.com")
   t3=Tenant.create(name:"University of Wisconsin-Parkside",phone:"262-930-7445",email:"admin@uwp.edu")
+  tenant_user.tenant = t1
+  tenant_user.save
   a.tenants << [t1,t2,t3]
   puts 'done'
 

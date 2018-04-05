@@ -2,7 +2,11 @@ class Tenant < ApplicationRecord
   has_many :invoices
   has_many :billable_meters
   has_many :payments
+  has_many :tenant_users
+  has_many :users, through: :tenant_users
   belongs_to :account
+
+
   validates :name, :email, :account_id, presence: true
   validates :email, :uniqueness => { :case_sensitive => false }
 
