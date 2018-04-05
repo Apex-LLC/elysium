@@ -1,0 +1,2 @@
+module AdminCostsHelper
+end

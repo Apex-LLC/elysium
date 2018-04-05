@@ -1,9 +1,9 @@
 class Account < ApplicationRecord
-
   has_one :site
   has_many :users
   has_many :tenants
   has_many :rates
+  has_many :admin_costs
 
   def amount_billed
     amount_billed=0.0
@@ -52,5 +52,5 @@ class Account < ApplicationRecord
     billable_meters = billable_meters.flatten
     return billable_meters
   end
-  
+
 end

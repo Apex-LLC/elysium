@@ -37,7 +37,9 @@ class Invoice < ApplicationRecord
       set_totals
     end
 
-    return self.amount + self.fees
+    admin_costs = get_admin_costs
+
+    return self.amount + self.fees + admin_costs
   end
 
   def set_paid
@@ -53,6 +55,18 @@ class Invoice < ApplicationRecord
       end
       self.amount=total_due
       self.fees = self.amount * ApplicationController.helpers.get_tax_fee_rate
+    end
+
+    def get_admin_costs
+      admin_costs = 0.0
+      self.tenant.account.admin_costs.each do |cost|
+        if (cost.percent)
+          admin_costs += self.amount * (cost.percent/100.0)
+        else
+          admin_costs += cost.flat_fee
+        end
+      end
+      return admin_costs
     end
 
 end

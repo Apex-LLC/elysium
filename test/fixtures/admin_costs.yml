@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  label: MyString
+  description: MyString
+  percent: 1.5
+  flat_fee: 1.5
+  account: one
+
+two:
+  label: MyString
+  description: MyString
+  percent: 1.5
+  flat_fee: 1.5
+  account: two

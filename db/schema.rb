@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405002957) do
+ActiveRecord::Schema.define(version: 20180405182144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20180405002957) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "admin_costs", force: :cascade do |t|
+    t.string "label"
+    t.string "description"
+    t.float "percent"
+    t.float "flat_fee"
+    t.bigint "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_admin_costs_on_account_id"
   end
 
   create_table "billable_meters", id: :serial, force: :cascade do |t|
@@ -173,6 +184,7 @@ ActiveRecord::Schema.define(version: 20180405002957) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "admin_costs", "accounts"
   add_foreign_key "billable_meters", "meters"
   add_foreign_key "billable_meters", "rates"
   add_foreign_key "billable_meters", "spaces"

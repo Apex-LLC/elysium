@@ -1,0 +1,42 @@
+<%= form_with(model: admin_cost, local: true) do |form| %>
+  <% if admin_cost.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(admin_cost.errors.count, "error") %> prohibited this admin_cost from being saved:</h2>
+
+      <ul>
+      <% admin_cost.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :label %>
+    <%= form.text_field :label, id: :admin_cost_label %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :admin_cost_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :percent %>
+    <%= form.text_field :percent, id: :admin_cost_percent %>
+  </div>
+
+  <div class="field">
+    <%= form.label :flat_fee %>
+    <%= form.text_field :flat_fee, id: :admin_cost_flat_fee %>
+  </div>
+
+  <div class="field">
+    <%= form.label :account_id %>
+    <%= form.text_field :account_id, id: :admin_cost_account_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

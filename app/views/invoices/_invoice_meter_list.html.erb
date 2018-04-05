@@ -30,6 +30,27 @@
         </div>
       </div>
     <% end %>
+
+    <% current_account.admin_costs.each do |cost| 
+      rate = ""
+      total = "0.0"
+      if (cost.percent)
+        rate = cost.percent.to_s + "%"
+        total = number_to_currency(@invoice.amount * (cost.percent/100.0))
+      else
+        rate = " - "
+        total = number_to_currency(cost.flat_fee.to_s)
+      end
+      %>
+      <div class="table-row">
+        <div class='table-row-item meter-item' data-href=''>
+          <div class="table-cell reference"><%= cost.label %></div>
+          <div class="table-cell allocation"><%= rate %></div>
+          <div class="table-cell amount"><%= total %></div>
+        </div>
+      </div>
+    <% end %>
+
     <div class="table-row">
       <div class='table-row-item meter-item' data-href=''>
         <div class="table-cell reference">Taxes and Fees</div>

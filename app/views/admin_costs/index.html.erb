@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Admin Costs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Description</th>
+      <th>Percent</th>
+      <th>Flat fee</th>
+      <th>Account</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_costs.each do |admin_cost| %>
+      <tr>
+        <td><%= admin_cost.label %></td>
+        <td><%= admin_cost.description %></td>
+        <td><%= admin_cost.percent %></td>
+        <td><%= admin_cost.flat_fee %></td>
+        <td><%= admin_cost.account %></td>
+        <td><%= link_to 'Show', admin_cost %></td>
+        <td><%= link_to 'Edit', edit_admin_cost_path(admin_cost) %></td>
+        <td><%= link_to 'Destroy', admin_cost, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Admin Cost', new_admin_cost_path %>

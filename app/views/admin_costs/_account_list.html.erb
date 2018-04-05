@@ -1,0 +1,76 @@
+<div class="col-md-1"></div>
+  <div class="">          
+    <h3>Admin Costs</h3>
+      <div class="table-header-row">
+        <div class='table-row-item admin-cost-item'>
+          <div class="table-cell label">Label</div>
+          <div class="table-cell amount">Rate</div>
+          <div class="table-cell description">Description</div>
+          <div class="table-cell link">Delete</div>          
+        </div>
+      </div>
+    <div id="rate-list">
+      <div class="table h-100">
+        <% 
+        if (admin_costs != nil)
+          admin_costs.each do |cost| 
+            amount=nil
+            if (cost.percent?)
+              amount = cost.percent.to_s + "%"
+            else
+              amount = "$" + cost.flat_fee.to_s
+            end
+            %>
+            <div class="table-row">
+              <div class='table-row-item admin-cost-item'>
+                <div class="table-cell label"><%= cost.label %></div>
+                <div class="table-cell amount"><%= amount %></div>
+                <div class="table-cell description"><%= cost.description %></div>
+                <div class="table-cell link"><%= link_to '✕', cost, method: :delete, data: { confirm: "Are you sure you would like to remove this admin cost?" } %></div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <div class="table-row">
+          <div class='table-row-item admin-cost-item'>
+            <% cost = AdminCost.new %>
+            <%= form_with(model: cost, local: true) do |form| %>
+
+              <div class="inline-field table-cell label">
+                <%= form.label :label, class: "sr-only" %>
+                <%= form.text_field :label, id: :cost_label, required: true, placeholder: "Label" %>
+              </div>
+
+              <div class="inline-field table-cell amount">
+                <%= form.label :amount, class: "sr-only"  %>
+                <%= form.text_field :amount, id: :cost_percent, onkeypress:"return isNumberKey(event)", placeholder: "\% Fee" %>
+              </div>
+
+              <div class="inline-field table-cell description">
+                <%= form.label :description, class: "sr-only"  %>
+                <%= form.text_field :description, id: :cost_description, placeholder: "Description" %>
+              </div>
+
+              <%= form.hidden_field :account_id, :value => @account.id %>
+
+              <div class="actions inline-field table-cell link">
+                <%= form.submit class: "btn-primary", value: "Add" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function isNumberKey(evt)
+       {
+          // var charCode = (evt.which) ? evt.which : evt.keyCode;
+          // if (charCode != 46 && charCode > 31 
+          //   && (charCode < 48 || charCode > 57))
+          //    return false;
+
+          // return true;
+       }
+  </script>

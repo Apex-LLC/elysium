@@ -22,6 +22,8 @@ u4=a.users.create(email:"Brendon@ApexLLC.com", password:"password", role: :owner
 tenant_user=a.users.create(email:"tenant@apexllc.com",password:"password", role: :tenant)
 puts 'done'
 
+admin_fee1 = a.admin_costs.create(label:"Admin fee 1", percent:1.2,flat_fee:nil, description: "Management fee 1")
+admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0, description: "Management fee 2")
 
   puts 'creating sites'
   site=Site.new(name:"Office Building 1",address: "2407 SE Division st. Portland, OR 97202", website: "OfficeBuilding.com")

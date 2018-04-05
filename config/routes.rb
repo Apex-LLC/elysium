@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :admin_costs
   resources :accounts
   resources :rates
   root to: "accounts#show"
