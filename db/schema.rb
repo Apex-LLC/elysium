@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180405182144) do
+ActiveRecord::Schema.define(version: 20180405224542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20180405182144) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "billing_cycle_start_day"
+    t.integer "days_until_invoice_due"
   end
 
   create_table "admin_costs", force: :cascade do |t|
@@ -65,6 +67,7 @@ ActiveRecord::Schema.define(version: 20180405182144) do
     t.string "status", default: "Unpaid", null: false
     t.decimal "amount", precision: 8, scale: 2
     t.decimal "fees", precision: 8, scale: 2
+    t.datetime "due_date"
     t.index ["tenant_id"], name: "index_invoices_on_tenant_id"
   end
 

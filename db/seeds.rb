@@ -11,7 +11,7 @@ todays_date = DateTime.now
 puts 'using today\'s date: ' + todays_date.to_s
 
 puts 'creating account'
-a=Account.create(name:"Test Account")
+a=Account.create(name:"Test Account", billing_cycle_start_day: 15, days_until_invoice_due: 20)
 puts 'done'
 
 puts 'creating users'
@@ -66,7 +66,8 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
     b2=BillableMeter.create(description: "East Office kWh #" + meter_id_2.to_s, meter_id: meter_id_2, rate_id: 1)
     b3=BillableMeter.create(description: "East Office kWh #" + meter_id_3.to_s, meter_id: meter_id_3, rate_id: 1)
     t.billable_meters << [b1,b2,b3]
-    startDate=DateTime.now.at_beginning_of_month
+    
+    startDate=DateTime.new(DateTime.now.year,DateTime.now.month,15) 
 
     for i in 1..12
       puts 'building invoice ' + i.to_s + ' of 12'
@@ -81,7 +82,7 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
         number = a.invoices.max_by(&:number).number + 1
       end
 
-      i=Invoice.new(number:number,start_date:startDate,end_date:endDate,send_date: sendDate)
+      i=Invoice.new(number:number,start_date:startDate,end_date:endDate,send_date: sendDate, due_date: endDate + a.days_until_invoice_due)
       i.billable_meters << t.billable_meters
       i.save
 
