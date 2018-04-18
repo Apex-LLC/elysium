@@ -4,7 +4,7 @@
   amount = number_with_delimiter(number_to_currency(invoice.total),delimiter:',')
   status = invoice.status
   %>
-  <div class="table-row-item clickable-row" data-href='<%= invoice_path(invoice) %>'>
+  <div class="table-row-item clickable-row <%= (invoice.overdue ? 'overdue':'') %>" data-href='<%= invoice_path(invoice) %>'>
     <div class="col-1 table-cell"><%= number %></div>              
     <div class="col-7 table-cell"><%= tenant_name %></div>
     <div class="col-2 table-cell text-center"><%= amount %></div>

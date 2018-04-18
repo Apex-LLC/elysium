@@ -1,7 +1,7 @@
 class TenantsController < ApplicationController
   before_action :set_tenant, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  before_action :admin_only, except: [:show, :edit, :update]
+  before_action :authenticate_user!, except: [:sign_up]
+  before_action :admin_only, except: [:show, :edit, :update, :sign_up]
 
   # GET /tenants
   # GET /tenants.json
@@ -39,6 +39,7 @@ class TenantsController < ApplicationController
     @tenant = current_account.tenants.build(tenant_params)
     respond_to do |format|
       if @tenant.save
+        TenantMailer.new_tenant_notification(@tenant, current_user).deliver_now
         format.html { redirect_to @tenant, notice: @tenant.name + ' was successfully created.' }
         format.json { render :show, status: :created, location: @tenant }
       else
@@ -72,6 +73,14 @@ class TenantsController < ApplicationController
       format.html { redirect_to tenants_url, notice: name + ' was successfully removed.' }
       format.json { head :no_content }
     end
+  end
+
+  def sign_up
+    account_id = params[:acct_id]
+    tenant_id = params[:id]
+    account = Account.find(account_id)
+    tenant = Tenant.find(tenant_id)
+    @user = User.new(name: tenant.name, email: tenant.email, account: account)
   end
 
   private

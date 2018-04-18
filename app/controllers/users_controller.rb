@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def show
     if !@user
       redirect_to new_user_session_path
-    elsif current_user.tenant?
+    elsif current_user.tenant? && current_user.tenant
       redirect_to tenant_path(current_user.tenant)
     end
   end

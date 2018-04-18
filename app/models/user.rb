@@ -9,9 +9,12 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
   has_one :tenant_user
-  has_one :tenant, through: :tenant_user
+  has_one :tenant, through: :tenant_user, dependent: :destroy
   belongs_to :account
 
+  def first_name
+    self.name.blank? ? "" : self.name.split(" ")[0]
+  end
 
   private
     def ensure_token

@@ -20,7 +20,7 @@
         </br>
         <span class="text-muted text-uppercase">amount due</span>
         <h3 class="large-currency">
-          <sup>$</sup><%= @tenant.amount_due %>
+          <%= number_with_delimiter(number_to_currency(@tenant.amount_due),delimiter:',') %>
         </h3>
         <% if (@tenant.amount_due > 0) %><button class="btn-outline-primary">Pay Now</button><% end %>
       </div>
@@ -47,9 +47,9 @@
 
           <tbody>
             <% @tenant.invoices.order(end_date: :desc).each do |invoice| %>
-              <tr class="clickable-row"  data-href='<%= invoice_path(invoice) %>'>
+              <tr class="clickable-row <%= (invoice.overdue ? 'overdue':'') %>"  data-href='<%= invoice_path(invoice) %>'>
                 <td width="70%"><%= invoice.readable_date %></td>
-                <td width="15%" class="text-center"><sup>$</sup><%= invoice.total %></td>
+                <td width="15%" class="text-center"><%= number_with_delimiter(number_to_currency(invoice.total),delimiter:',') %></td>
                 <td width="15%" class="text-center"><%= invoice.status %></td>
               </tr>
             <% end %>

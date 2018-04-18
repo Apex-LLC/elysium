@@ -1,9 +1,9 @@
 class Tenant < ApplicationRecord
   has_many :invoices
-  has_many :billable_meters
+  has_many :billable_meters, dependent: :destroy
   has_many :payments
   has_many :tenant_users
-  has_many :users, through: :tenant_users
+  has_many :users, through: :tenant_users, dependent: :destroy
   belongs_to :account
 
 
@@ -14,7 +14,7 @@ class Tenant < ApplicationRecord
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
 
   def amount_due
-    unpaid_invoices=self.invoices.where.not(status:"Paid")
+    unpaid_invoices=self.invoices.where.not(status: :paid)
     total_due=0.0
     for invoice in unpaid_invoices
        total_due+=invoice.total 

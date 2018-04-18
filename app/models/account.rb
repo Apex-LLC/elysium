@@ -24,7 +24,7 @@ class Account < ApplicationRecord
   def amount_received
     totalReceived=0.0
     invoices.each do |invoice|
-      if (invoice.status=="Paid" && invoice.send_date.month == DateTime.now.month)
+      if (invoice.status==:paid && invoice.send_date.month == DateTime.now.month)
         totalReceived+=invoice.total
       end
     end

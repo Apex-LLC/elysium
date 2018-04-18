@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   resources :records
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  get "/tenant_sign_up/:acct_id/:id", to: "tenants#sign_up"
+
   #api
   namespace :api do
     namespace :v1 do

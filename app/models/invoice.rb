@@ -7,6 +7,9 @@ class Invoice < ApplicationRecord
   before_save :set_totals
   validates :billable_meters, :length => { :minimum => 1 }
   validates_associated :billable_meters
+  after_initialize :set_default_status, :if => :new_record?
+
+  enum status: [:paid, :unpaid, :overdue]
 
   def graphable_data
     return self.billable_meters.map { |meter|
@@ -43,8 +46,15 @@ class Invoice < ApplicationRecord
   end
 
   def set_paid
-    self.status = "Paid"
-    self.save
+    self.paid!
+  end
+
+  def overdue
+    overdue = (DateTime.now > self.due_date && !self.paid?)
+    if overdue
+      self.overdue!
+    end
+    return overdue
   end
 
   private 
@@ -67,6 +77,10 @@ class Invoice < ApplicationRecord
         end
       end
       return admin_costs
+    end
+
+    def set_default_status
+      self.status ||= :unpaid
     end
 
 end

@@ -16,7 +16,8 @@
 
       <tbody>
         <% @invoices.each do |invoice| %>
-          <tr class="clickable-row table-row-item" data-href='<%= invoice_path(invoice) %>'>
+          <tr class="clickable-row table-row-item <%= (invoice.overdue ? 'overdue':'') %>" 
+            data-href='<%= invoice_path(invoice) %>'>
             <td><%= invoice.number %></td>
             <td><%= invoice.tenant.name %></td>
             <td><%= invoice.readable_date %></td>        
