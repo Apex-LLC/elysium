@@ -10,6 +10,7 @@
           <li class="menu-item"><%= link_to('Account', edit_account_path(current_user.account)) %></li>
           <li class="menu-item"><%= link_to('Logout', destroy_user_session_path, method: :delete) %></li>
         <% else %>
+          <li class="menu-item"><%= link_to('Sign Up', sign_up_path)  %></li>
           <li class="menu-item"><%= link_to('Login', new_user_session_path)  %></li>
         <% end %>
         <li class="menu-item-small"><%= link_to('About', "#")  %></li>

@@ -24,6 +24,11 @@ Rails.application.routes.draw do
 
   get "/tenant_sign_up/:acct_id/:id", to: "tenants#sign_up"
 
+  resources :messages, only: [:new, :create]
+  get "/signed_up", to: "messages#complete"
+  get "/sign_up", to: "messages#new"
+  post "/sign_up", to: "messages#create"
+  
   #api
   namespace :api do
     namespace :v1 do

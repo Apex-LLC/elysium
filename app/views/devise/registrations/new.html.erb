@@ -27,7 +27,7 @@
       </div>
 
       <%= f.hidden_field :account_id, value: @user.account.id %>
-      <%= f.hidden_field :tenant_id, value: params[:id] %>
+      <%= hidden_field_tag :tenant_id, params[:id] %>
 
       <div class="actions">
         <%= f.submit id: "login-button", class: "btn-outline-primary",

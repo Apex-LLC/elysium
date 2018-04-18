@@ -19,11 +19,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
+    sign_out current_user
     build_resource(sign_up_params)
 
     account = nil
-    if (@user.tenant? && params[:user][:tenant_id] != nil)
-      tenant = Tenant.find(params[:user][:tenant_id])
+    if (@user.tenant? && params[:tenant_id] != nil)
+      tenant = Tenant.find(params[:tenant_id])
       @user.tenant = tenant
     end
 
