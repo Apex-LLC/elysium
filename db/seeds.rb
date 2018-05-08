@@ -27,6 +27,7 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
 
   puts 'creating sites'
   site=Site.new(name:"Office Building 1",address: "2407 SE Division st. Portland, OR 97202", website: "OfficeBuilding.com")
+  byebug
   a.site = site
   puts 'done'
 
