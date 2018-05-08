@@ -33,7 +33,6 @@ class User < ApplicationRecord
   end
 
   def set_payments_verified
-    byebug
     if !stripe_token.nil?
       self.tenant.payments_verified = true
       self.tenant.save
