@@ -5,7 +5,11 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = current_account.invoices
+    if current_user.tenant?
+      @invoices = current_user.tenant.invoices
+    else
+      @invoices = current_account.invoices
+    end
   end
 
   # GET /invoices/1

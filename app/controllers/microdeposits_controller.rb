@@ -1,7 +1,6 @@
 class MicrodepositsController < ApplicationController
 
   def create
-    byebug
     # Check for a customer ID and bank account ID -- needed to validate account
     # You could also retrieve this from a session or database
     if params[:customer] && params[:bank_account]
