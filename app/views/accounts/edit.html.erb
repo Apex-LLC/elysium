@@ -8,13 +8,27 @@
 </div>
 
 <div class="row">
+
   <div class="offset-2 col-4 text-left">
-    <%= render "rates/user_list", rates: @account.rates %>
-    <br />
-    <hr>
-    <br />
-    <%= render "admin_costs/account_list", admin_costs: @account.admin_costs %>
+    <% if !current_user.tenant? %>
+      <%= render "rates/user_list", rates: @account.rates %>
+      <br />
+      <hr>
+      <br />
+      <%= render "admin_costs/account_list", admin_costs: @account.admin_costs %>
+    <% else %>
+      <% if current_user.stripe_token.nil? %>
+        <%= render "banks/new" %>
+      <% elsif !current_user.payments_verified
+        customer = Stripe::Customer.retrieve(current_user.stripe_token)
+        bank_account = customer.sources.data.first.id %>
+        <%= render "microdeposits/new", customer: customer.id, bank_account: bank_account %>
+      <% else %>
+        <h3>Bank verified.</h3>
+      <% end %>
+    <% end %>
   </div>
+
   <div class="col-4">
     <%= render :template => 'devise/registrations/edit' %>
   </div>

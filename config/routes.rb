@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
+
   resources :admin_costs
   resources :accounts
   resources :rates
+  resources :banks
+  resources :microdeposits
+  
   root to: "accounts#show"
 
   resources :sites

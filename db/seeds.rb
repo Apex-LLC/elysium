@@ -15,7 +15,7 @@ a=Account.create(name:"Test Account", billing_cycle_start_day: 15, days_until_in
 puts 'done'
 
 puts 'creating users'
-u1=a.users.create(email:"Joe@ApexLLC.com", password:"password", name: "Joe Bauer", phone: "2629307445", role: :admin)
+u1=a.users.create(email:"Joe@ApexLLC.co", password:"password", name: "Joe Bauer", phone: "2629307445", role: :admin)
 u2=a.users.create(email:"Matt@ApexLLC.com", password:"password", role: :owner)
 u3=a.users.create(email:"Dave@ApexLLC.com", password:"password", role: :owner)
 u4=a.users.create(email:"Brendon@ApexLLC.com", password:"password", role: :owner)

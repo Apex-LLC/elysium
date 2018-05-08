@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413232517) do
+ActiveRecord::Schema.define(version: 20180418221344) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +155,8 @@ ActiveRecord::Schema.define(version: 20180413232517) do
     t.integer "logo_file_size"
     t.datetime "logo_updated_at"
     t.bigint "account_id"
+    t.string "stripe_token"
+    t.boolean "payments_verified", default: false
     t.index ["account_id"], name: "index_tenants_on_account_id"
     t.index ["space_id"], name: "index_tenants_on_space_id"
   end

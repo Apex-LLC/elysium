@@ -9,11 +9,9 @@ class ChargesController < ApplicationController
     @amount = params[:amount]
     @invoice = Invoice.find(params[:invoice_id])
 
-    customer = Stripe::Customer.create(
-      :email => params[:stripeEmail],
-      :source  => params[:stripeToken]
-    )
-
+    customer_id = @invoice.tenant.stripe_token
+    customer = Stripe::Customer.retrieve(customer_id)
+    byebug
     charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @amount,
