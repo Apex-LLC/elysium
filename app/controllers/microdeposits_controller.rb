@@ -21,18 +21,18 @@ class MicrodepositsController < ApplicationController
           current_user.set_payments_verified
 
           # Direct the customer to pay
-          flash[:success] = 'Your bank account has been connected.'
+          flash[:notice] = 'Your bank account has been connected.'
 
         rescue Stripe::StripeError => e
           # Too many requests made to the API too quickly
-          flash[:alert] = e.message
+          flash[:notice] = e.message
         end
       else
-        flash[:alert] = 'Invalid deposit amounts entered'
+        flash[:notice] = 'Invalid deposit amounts entered'
       end
     else
-      flash[:alert] = 'No bank account or customer provided. Add a bank account to make a payment.'
+      flash[:notice] = 'No bank account or customer provided. Add a bank account to make a payment.'
     end
-    redirect_to request.referrer, notice: flash[:alert]
+    redirect_to request.referrer, notice: flash[:notice]
   end
 end

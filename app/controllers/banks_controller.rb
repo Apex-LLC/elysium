@@ -32,13 +32,13 @@ class BanksController < ApplicationController
         session[:bank_account] = customer.sources.data.first.id
 
         # Redirect to verify microdeposit amounts
-        flash[:success] = 'Your bank account has been connected.'
+        flash[:notice] = 'Your bank account has been connected.'
       rescue Stripe::StripeError => e
         # Too many requests made to the API too quickly
-        flash[:alert] = e.message
+        flash[:notice] = e.message
       end
     else
-      flash[:alert] = 'Cannot add a bank account at this time. Contact Apex for support.'
+      flash[:notice] = 'Cannot add a bank account at this time. Contact Apex for support.'
     end
 
     redirect_to request.referrer
