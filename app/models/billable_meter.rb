@@ -1,5 +1,4 @@
 class BillableMeter < ApplicationRecord
-  validates :meter_id, :rate_id, presence: true
 
   belongs_to :meter
   belongs_to :tenant

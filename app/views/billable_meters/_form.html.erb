@@ -13,18 +13,6 @@
       
       <div class="row h-100">
 
-        <% if billable_meter.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(billable_meter.errors.count, "error") %> prohibited this billable_meter from being saved:</h2>
-
-          <ul>
-          <% billable_meter.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
-
         <div  class="col-xs-12 col-md-6">
         <h3>Data Source</h3>
         <div id="meter-list">
@@ -46,6 +34,7 @@
       </div>
 
         <div class="col-xs-12 col-md-6">
+          <%= render 'errors/form_errors', object: billable_meter %>
           <h3>Options</h3>
           <div class="field">
             <%= f.text_field :description, placeholder: "description (optional)", size: 200 %>
@@ -78,8 +67,6 @@
 <script type="text/javascript">
 
   jQuery(document).ready(function($) { 
-    $("#login-button").prop('disabled', true);
-
     $(".clickable-row").mousedown(function() {
       $(".clickable-row").removeClass("selected")
       selectedMeter = $(this)
