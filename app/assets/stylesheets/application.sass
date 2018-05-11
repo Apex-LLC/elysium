@@ -25,7 +25,7 @@ $muted-red: rgba(175,21,21,.3)
 
 $navbar-height: 60px
 $hover-transition-time: .25s
-$normal-font: 'SanFranciscoDisplay-Thin','Segoe UI Light'
+$normal-font: 'SanFranciscoText-Thin','Segoe UI Light'
 
 html,body,.container
   height: 100%
@@ -213,10 +213,9 @@ table
   .reference
     width: 60%
   .allocation
-    width: 15%
     text-align: center
   .total
-    width: 24%
+    float: right
     text-align: right
 
 .table-row-item
@@ -269,6 +268,12 @@ table
   label
     margin-bottom: 0
 
+.table-row-item-description
+  @extend .table-row-item
+  padding: 0 8px 0 24px
+  border: none
+  opacity: .8
+
 .table-row-grouping
   padding-bottom: 30px
 
@@ -314,6 +319,11 @@ table
   border: 1px solid $light-accent-color
 
 .clickable-row
+  cursor: pointer
+  &:hover
+    background-color: $light-accent-color
+
+.expanding-row
   cursor: pointer
   &:hover
     background-color: $light-accent-color

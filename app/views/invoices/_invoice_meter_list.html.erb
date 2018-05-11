@@ -52,9 +52,14 @@
     <% end %>
 
     <div class="table-row">
-      <div class='table-row-item meter-item' data-href=''>
+      <div class='table-row-item meter-item expanding-row' data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         <div class="table-cell reference">Taxes and Fees</div>
         <div class="table-cell allocation"> - </div>
+        <div class="table-cell amount"><%= tax_and_fees_due %></div>
+      </div>
+      <div class='table-row-item-description meter-item collapse' id="collapseExample" >
+         <div class="table-cell reference font-italic">2.9% Processing Fee</div>
+        <div class="table-cell allocation">   </div>
         <div class="table-cell amount"><%= tax_and_fees_due %></div>
       </div>
     </div>
