@@ -18,5 +18,11 @@ $(window).load ->
       window.location = $(this).data('href')
     return
 
+$('form').on 'keypress', (e) ->
+  alert 'Test keypress'
+  if e.keyCode == 13
+    return false
+  return
+
 
 

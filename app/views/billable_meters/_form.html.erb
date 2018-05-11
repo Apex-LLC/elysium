@@ -41,7 +41,7 @@
         </div>
 
         <div class="field">
-          <input type="text" id="meter-filter" onkeyup="filterList()" placeholder="Filter points..">
+          <input type="text" id="meter-filter" onkeydown="addFilterSeparator()" onkeyup="filterList()" placeholder="Filter points..">
         </div>
       </div>
 
@@ -78,6 +78,7 @@
 <script type="text/javascript">
 
   jQuery(document).ready(function($) { 
+    $("#login-button").prop('disabled', true);
 
     $(".clickable-row").mousedown(function() {
       $(".clickable-row").removeClass("selected")
@@ -95,6 +96,17 @@
     });
 
   });
+
+  function addFilterSeparator() {
+    if(event.keyCode == 13) {
+      var input = document.getElementById('meter-filter');
+      if (input.value) {
+        input.value += ",";
+      }
+      event.preventDefault();
+      return false;
+    }
+  }
 
   function filterList() {
     var input, filter, ul, li, a;

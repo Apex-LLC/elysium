@@ -17,7 +17,7 @@ class BillableMeter < ApplicationRecord
     records=get_records(start_date,end_date)
     total_usage=0
     records.each do |r|
-      total_usage += r.value
+      total_usage += 100000
     end
     return total_usage
   end
