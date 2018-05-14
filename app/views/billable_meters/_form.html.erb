@@ -56,7 +56,7 @@
           <%= f.hidden_field :tenant_id, :value => @tenant.id %>
 
           <div class="actions">
-            <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Create" %>
+            <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Create", 'data-disable-with': "wait..." %>
           </div>
         </div>
       </div>

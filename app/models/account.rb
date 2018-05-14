@@ -5,6 +5,10 @@ class Account < ApplicationRecord
   has_many :rates
   has_many :admin_costs
 
+  def amount_overdue
+    return amount_due - amount_billed
+  end
+
   def amount_billed
     amount_billed=0.0
     invoices.select{|i| i.end_date.month == DateTime.now.prev_month.month}.each do |invoice|
