@@ -27,7 +27,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get "/tenant_sign_up/:acct_id/:id", to: "tenants#sign_up"
-
+  post "/accounts/:id/update_billing_day", to: "accounts#update_billing_day"  
+  post "/accounts/:id/update_days_until_invoice_due", to: "accounts#update_days_until_invoice_due"
   resources :messages, only: [:new, :create]
   get "/signed_up", to: "messages#complete"
   get "/sign_up", to: "messages#new"

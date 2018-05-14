@@ -53,4 +53,8 @@ class Account < ApplicationRecord
     return billable_meters
   end
 
+  def billing_cycle_span_description
+    
+  end
+
 end

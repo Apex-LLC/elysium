@@ -7,7 +7,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" id="settings">
 
   <div class="offset-2 col-4 text-left">
     <% if !current_user.tenant? %>
@@ -15,7 +15,27 @@
       <br />
       <hr>
       <br />
-      <%= render "admin_costs/account_list", admin_costs: @account.admin_costs %>
+      <%= form_tag "update_billing_day", method: :post do %>
+        <% current_cycle_start_day = current_account.billing_cycle_start_day ? current_account.billing_cycle_start_day : 1 
+        %>
+        <div class="input-group">
+          <div class="select-label">Update your billing cycle end date:</div>
+          <%= select_tag(:billing_cycle_start_day, options_for_select(1..31, current_cycle_start_day), id: "billing-cycle-select") %>
+          <%= submit_tag "Update", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+      <p/>
+      <%= form_tag "update_days_until_invoice_due", method: :post do %>
+        <% current_cycle_start_day = current_account.days_until_invoice_due ? current_account.days_until_invoice_due : 20 
+        %>
+        <div class="input-group">
+          <div class="select-label">Number of days until invoice due:</div>
+          <%= select_tag(:days_until_invoice_due, options_for_select(20..60, current_cycle_start_day), id: "billing-cycle-select") %>
+          <%= submit_tag "Update", class: "btn btn-primary" %>
+        </div>
+        <p/>        
+      <% end %>
+      <span class="font-italic">Your invoices will be available when we recieve data for the <%= @account.billing_cycle_start_day.ordinalize %>, and will be due <%= @account.days_until_invoice_due %> days later.</span>
     <% else %>
       <% if current_user.stripe_token.nil? %>
         <%= render "banks/new" %>
@@ -33,3 +53,16 @@
     <%= render :template => 'devise/registrations/edit' %>
   </div>
 </div>
+
+<script type="text/javascript">
+  jQuery(document).ready(function($) { 
+    $('select#billing-cycle-select').select2({
+      theme: "bootstrap",
+      allowClear: false,
+      dropdownParent: $("#settings"),
+      minimumResultsForSearch: 100,
+      width: 60
+    });
+  });
+</script>
+

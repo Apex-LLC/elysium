@@ -1,8 +1,14 @@
 <% if object.errors.any? %>
+  <% 
+    objectName = object.class.name
+    if (objectName == "BillableMeter")
+      objectName = "meter"
+    end
+  %>
   </br>
   <div class="row">
     <div id="error_explanation" class="col-12">
-      <h4 class="text-muted"><%= pluralize(object.errors.count, "error") %> prohibited this <%= object.class.name %> from being saved:</h4>
+      <h4 class="text-muted">Oops! We need a little more info to save this <%= objectName %>:</h4>
 
       <ul class="list-unstyled">
       <% object.errors.full_messages.each do |message| %>

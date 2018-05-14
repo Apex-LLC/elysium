@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: [:show, :edit, :update, :destroy]
+  before_action :set_account, only: [:show, :edit, :update, :destroy, :update_billing_day, :update_days_until_invoice_due]
   before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts
@@ -66,6 +66,33 @@ class AccountsController < ApplicationController
       format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def update_billing_day
+    noticeText = ""
+    billing_day = params[:billing_cycle_start_day]
+    if (@account && billing_day)
+      @account.billing_cycle_start_day = billing_day
+      @account.save
+      noticeText = "The last day of your billing cycle is now set to the " + billing_day.to_i.ordinalize + " of the month."
+    else
+      noticeText = "There was a problem updating your billing cycle end date. Contact Apex for support"
+    end
+    redirect_back(fallback_location: root_path,notice: noticeText)
+  end
+
+  def update_days_until_invoice_due
+    noticeText = ""
+    days_until_due = params[:days_until_invoice_due]
+    byebug
+    if (@account && days_until_due)
+      @account.days_until_invoice_due = days_until_due
+      @account.save
+      noticeText = "Your invoices will be due " + days_until_due + " days after they are sent."
+    else
+      noticeText = "There was a problem updating your invoice due date. Contact Apex for support"
+    end
+    redirect_back(fallback_location: root_path,notice: noticeText)
   end
 
   private
