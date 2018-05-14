@@ -4,8 +4,13 @@
     <%= image_tag "logo.png", class: "rounded-circle" %>
     <span>ELYSIUM</span>
   </a>
+  <span id='vertical-menu-separator'>|</span>
+  <a class="static-menu-item" href="<%= tenants_path %>">Tenants</a>
+  <a class="static-menu-item" href="<%= invoices_path %>">Invoices</a>
+  <a class="static-menu-item" href="<%= meters_path %>">Meters</a>
+
   <button class="navbar-toggler ml-auto hidden-sm-up float-xs-right" onclick="toggleMenu();">
     <span class="navbar-toggler-icon"></span>
   </button>
-  </div>
+
 </nav>

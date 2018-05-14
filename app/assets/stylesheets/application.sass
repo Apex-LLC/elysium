@@ -26,6 +26,8 @@ $muted-red: rgba(175,21,21,.3)
 $navbar-height: 60px
 $hover-transition-time: .25s
 $normal-font: 'SanFranciscoText-Thin','Segoe UI Light'
+$semibold-font: 'SanFranciscoText','Segoe UI'
+$bold-font: 'SanFranciscoDisplay-Bold','Segoe UI Semibold'
 
 html,body,.container
   height: 100%
@@ -36,7 +38,7 @@ a#title
   color: $accent-color
   letter-spacing: 5px
   font-size: 1.1em
-  font-family: 'SanFranciscoDisplay-Bold','Segoe UI Semibold' !important
+  font-family: $bold-font !important
 
 img
   padding: 10px
@@ -402,6 +404,19 @@ div > .clickable-row
     img
       width: 12vw
       min-width: 140px     
+
+.static-menu-item
+  text-transform: uppercase
+  margin-left: 10px
+  font-family: $semibold-font
+  text-decoration: none !important
+  color: rgba(0, 0, 0, 0.5)  
+  &:hover
+    color: $accent-color
+
+#vertical-menu-separator
+  font-family: $bold-font
+  color: rgba(0, 0, 0, 0.5)
 
 .devise-option
   padding-top: 8px
