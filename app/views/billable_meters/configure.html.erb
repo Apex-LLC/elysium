@@ -1,0 +1,133 @@
+<div class="row h-100">
+  <div class="col-12">
+    <h4 class="text-center">Configure a Meter</h4>
+    <hr style="padding: 0 40px;"/>
+    </br>   
+      
+    <div class="row h-100">
+      <div  class="col-xs-12 col-md-6 h-100">
+        <%= form_for(@billable_meter, html: {class: "h-100"}) do |f| %>
+          <h4 class="text-muted">ADS Meters</h4>
+          <div class="table-header-row">
+            <div class='table-row-item meter-item'>
+              <div class="table-cell reference">Reference</div>
+              <div class="table-cell allocation"></div>
+              <div class="table-cell link"></div>
+            </div>
+          </div>
+          <div id="meter-list">
+
+            <div class="table">    
+            <% current_site.meters.each do |meter| %>
+              <div class="table-row">
+                <div class='table-row-item space-item clickable-row' id="<%= meter.id %>" >
+                  <div class="table-cell full-width"><%= meter.reference %></div>
+                </div>
+              </div>
+            <% end %>
+            </div>
+          </div>
+
+          <div class="field">
+            <label id="filter-label" class="font-italic">Filter your points, separating multiple filter terms with ","</label>
+            <input type="text" id="meter-filter" onkeydown="addFilterSeparator()" onkeyup="filterList()" placeholder="Filter points...">
+          </div>
+
+          <hr style="padding: 0 40px;"/>
+          
+          <%= render 'errors/form_errors', object: @billable_meter %>
+          <div class="input-group float-right meter-config">
+
+              <%= f.text_field :description, placeholder: "description (optional)" %>
+
+              <% defaultOption = options_for_select([[]]) %>
+              <% options = options_from_collection_for_select(current_account.rates, 'id', 'symbol') %>
+              <%= f.select :rate_id, defaultOption << options, {}, id: "rate-select", include_blank: true %>
+
+          </div>
+          </br>
+          <%= f.hidden_field :meter_id, id: "meter-id" %>
+          <%= f.hidden_field :account_id, value: current_user.account.id %>
+
+          <div class="actions text-right">
+            <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Save Configuration", 'data-disable-with': "wait..." %>
+          </div>
+        <% end %> <!-- /form -->
+      </div> <!-- /left col -->
+      <div class="col-xs-12 col-md-6 h-100">
+        <%= render 'billable_meters/configured_list' %>
+      </div>
+    </div> <!-- /row -->
+  </div>
+</div>
+
+<script type="text/javascript">
+
+  jQuery(document).ready(function($) { 
+
+    $(".clickable-row").mousedown(function() {
+      $(".clickable-row").removeClass("selected")
+      selectedMeter = $(this)
+      selectedMeter.addClass("selected")
+      $('#meter-id').val(selectedMeter.attr('id'));
+    });
+
+    $(".clickable-row").first().mousedown();
+
+    $('select#rate-select').select2({
+      theme: "bootstrap",
+      minimumResultsForSearch: Infinity,
+      placeholder: "Rate",
+      allowClear: false
+    });
+
+  });
+
+  function addFilterSeparator() {
+    if(event.keyCode == 13) {
+      var input = document.getElementById('meter-filter');
+      if (input.value) {
+        input.value += ",";
+      }
+      event.preventDefault();
+      return false;
+    }
+  }
+
+  function filterList() {
+    var input, filter, ul, li, a;
+    input = document.getElementById('meter-filter');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("meter-list");
+
+    var tableRows = $("#meter-list.table-row");
+        
+    var KeyID=event.keyCode;
+    
+    if (KeyID == 188){
+      return;
+    }else if (KeyID == 8 || KeyID == 46 || filter.length == 0){
+      tableRows = $("#meter-list .table-row");
+    }else{
+      tableRows = $("#meter-list .table-row:visible");
+    }
+    
+    var filters = filter.split(",").filter(function(e){return e});
+    
+    for (var i = 0; i<tableRows.length;i++){
+      meterItem = tableRows[i];
+      meterItemText = meterItem.innerHTML.toUpperCase();
+      
+      var show = filters.filter(filterItem => 
+        filterItem != '' && meterItemText.indexOf(filterItem) >= 0)
+        .length == filters.length;
+        
+      if (show) {
+        tableRows[i].style.display = "";
+      } else {
+        tableRows[i].style.display = "none";
+      }
+    }
+  }
+
+</script>

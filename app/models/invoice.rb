@@ -5,7 +5,7 @@ class Invoice < ApplicationRecord
   has_one :payment
 
   before_save :set_totals
-  validates :billable_meters, :length => { :minimum => 1 }
+  # validates :billable_meters, :length => { :minimum => 1 }
   validates_associated :billable_meters
   after_initialize :set_default_status, :if => :new_record?
 

@@ -37,30 +37,36 @@ class BillableMetersController < ApplicationController
   # POST /billable_meters
   # POST /billable_meters.json
   def create
+    if associating_with_tenant
+      update
+      return
+    end
+
     @billable_meter = BillableMeter.new(billable_meter_params)
 
-    respond_to do |format|
-      if @billable_meter.save
-        format.html { redirect_to @billable_meter.tenant, notice: 'Your meter was associated with ' + @billable_meter.tenant.name + '.' }
-        format.json { render :show, status: :created, location: @billable_meter }
-      else
-        @tenant=@billable_meter.tenant
-        format.js { render :new, notice: @billable_meter.errors }
-        format.html { render :new }
-        format.json { render json: @billable_meter.errors, status: :unprocessable_entity }
-      end
+    notice_text = ""
+    if @billable_meter.save
+      @billable_meter = BillableMeter.new
+      flash[:notice] =  'Your meter was successfully created.'
+    else
+      flash[:notice] = 'Unable to save your meter'
     end
+    render :configure
   end
 
   # PATCH/PUT /billable_meters/1
   # PATCH/PUT /billable_meters/1.json
   def update
+    @billable_meter = BillableMeter.find(billable_meter_params[:meter_id])
+    @billable_meter.tenant = Tenant.find(billable_meter_params[:tenant_id])
+
     respond_to do |format|
-      if @billable_meter.update(billable_meter_params)
-        format.html { redirect_to @billable_meter, notice: 'Billable meter was successfully updated.' }
-        format.json { render :show, status: :ok, location: @billable_meter }
+      if @billable_meter.save
+        format.html { redirect_to @billable_meter.tenant, notice: 'Your meter was associated with ' + @billable_meter.tenant.name + '.' }
       else
-        format.html { render :edit }
+        @tenant=@billable_meter.tenant
+        format.js { render :new, notice: @billable_meter.errors }
+        format.html { render :new }
         format.json { render json: @billable_meter.errors, status: :unprocessable_entity }
       end
     end
@@ -71,9 +77,18 @@ class BillableMetersController < ApplicationController
   def destroy
     @billable_meter.destroy
     respond_to do |format|
-      format.html { redirect_to @billable_meter.tenant, notice: 'The meter was successfully removed.' }
-      format.json { head :no_content }
+      if (@billable_meter.tenant)
+        format.html { redirect_to @billable_meter.tenant, notice: 'The meter was successfully removed.' }
+        format.json { head :no_content }
+      else
+        flash[:notice] = 'The meter was successfully removed.'
+        format.html { render :configure }
+      end
     end
+  end
+
+  def configure
+    @billable_meter = @billable_meter ? @billable_meter : BillableMeter.new
   end
 
   private
@@ -84,10 +99,14 @@ class BillableMetersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def billable_meter_params
-      params.require(:billable_meter).permit(:meter_id, :description, :percent_allocation, :start_time, :end_time, :tenant_id, :rate_id)
+      params.require(:billable_meter).permit(:meter_id, :description, :percent_allocation, :start_time, :end_time, :tenant_id, :rate_id, :account_id)
     end
 
     def get_tenant_from_params
       return Tenant.find(params[:tenant])
+    end
+
+    def associating_with_tenant
+      billable_meter_params[:tenant_id] && billable_meter_params[:meter_id]
     end
 end

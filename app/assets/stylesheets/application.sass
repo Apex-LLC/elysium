@@ -75,6 +75,13 @@ sup
 .input-group>.select2
   margin-right: 8px
 
+.meter-config
+  .select2
+    margin-right: 0px
+    width: 30% !important
+  input
+    width: 68%
+
 .select-label
   display: flex
   align-items: center
@@ -107,6 +114,7 @@ nav
   height: $navbar-height
   position: fixed
   width: 100%
+  z-index: 1000
   img 
     height: $navbar-height
 
@@ -208,7 +216,7 @@ table
 
 .table-row
   padding: 4px
-  display: table-row
+  height: 48px  
 
 .table-header-row
   font-weight: bold
@@ -319,16 +327,29 @@ table
   border-radius: 4px
   overflow: scroll
 
+#configured-meter-list
+  @extend #meter-list
+  height: 100%
+  max-height: 100%
+  min-height: 100%
+  margin-bottom: 100px
+
 #new_billable_meter
   padding: 0 40px
 
 #meter-filter
   float: right
   margin-top: 10px
-  width: 40%
+  width: 48%
   min-width: 200px
   border-radius: 4px  
   border: 1px solid $light-accent-color
+
+#filter-label
+  margin-top: 14px
+  height: 2em
+  color: rgba(0,0,0,.5)
+  font-size: .8rem
 
 .clickable-row
   cursor: pointer

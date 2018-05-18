@@ -4,6 +4,7 @@ class Account < ApplicationRecord
   has_many :tenants
   has_many :rates
   has_many :admin_costs
+  has_many :billable_meters
 
   def amount_overdue
     return amount_due - amount_billed
@@ -46,15 +47,6 @@ class Account < ApplicationRecord
   def billing_cycles
     ordered_invoices = self.invoices
     return ordered_invoices.group_by{|i| i.readable_date }.map
-  end
-
-  def billable_meters
-    billable_meters=[]
-    for tenant in self.tenants
-      billable_meters << tenant.billable_meters.all
-    end
-    billable_meters = billable_meters.flatten
-    return billable_meters
   end
 
   def billing_cycle_span_description

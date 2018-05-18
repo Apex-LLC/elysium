@@ -1,0 +1,31 @@
+     
+<h4 class="text-muted">Configured Meters</h4>
+<div class="table-header-row">
+  <div class='table-row-item meter-item'>
+    <div class="table-cell reference">Reference</div>
+    <div class="table-cell allocation">Rate</div>
+    <div class="table-cell link">Delete</div>
+  </div>
+</div>
+<div id="configured-meter-list" class="h-100">
+  <div class="table h-100">
+    <% if (current_account.billable_meters.all.count > 0)
+      current_account.billable_meters.all.each do |meter| 
+        if (meter.description?) 
+          meter_reference = meter.description 
+        else 
+          meter_reference = meter.meter.reference 
+        end  %>
+        <div class="table-row">
+          <div class='table-row-item meter-item'>
+            <div class="table-cell reference">
+              <%= meter_reference %>
+            </div>
+            <div class="table-cell allocation"><%= meter.rate.rate.to_s + "/" + meter.rate.symbol %></div>
+            <div class="table-cell link"><%= link_to '✕', meter, method: :delete, data: { confirm: "Are you sure you would like to remove this meter?" } %></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       get 'get_meters'
     end
   end
+
+  get "meter-setup", to: "billable_meters#configure"
+
   resources :contacts
   resources :billable_meters
   resources :meters

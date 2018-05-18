@@ -18,10 +18,16 @@
         <div id="meter-list">
 
           <div class="table">    
-          <% current_site.meters.each do |meter| %>
+          <% current_account.billable_meters.each do |meter|
+            if (meter.description?) 
+              meter_reference = meter.description 
+            else 
+              meter_reference = meter.meter.reference 
+            end  %>
             <div class="table-row">
-              <div class='table-row-item space-item clickable-row' id="<%= meter.id %>" >
-                <div class="table-cell full-width"><%= meter.reference %></div>
+              <div class='table-row-item meter-item clickable-row' id="<%= meter.id %>" >
+                <div class="table-cell reference"><%= meter_reference %></div>
+                <div class="table-cell allocation">$<%= meter.rate.rate.to_s + "/" + meter.rate.symbol %></div>
               </div>
             </div>
           <% end %>
@@ -36,19 +42,8 @@
         <div class="col-xs-12 col-md-6">
           <%= render 'errors/form_errors', object: billable_meter %>
           <h3>Options</h3>
-          <div class="field">
-            <%= f.text_field :description, placeholder: "description (optional)", size: 200 %>
-          </div>
-          </br>
           <div class="field">            
             <%= f.number_field :percent_allocation, placeholder: "\% Allocation (100\% if blank)", size: 200 %>
-          </div>
-          </br>
-          
-          <div class="field">
-            <% defaultOption = options_for_select([[]]) %>
-            <% options = options_from_collection_for_select(current_account.rates, 'id', 'symbol') %>
-            <%= f.select :rate_id, defaultOption << options, {}, id: "rate-select", include_blank: true %>
           </div>
           </br>
 
@@ -56,7 +51,7 @@
           <%= f.hidden_field :tenant_id, :value => @tenant.id %>
 
           <div class="actions">
-            <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Create", 'data-disable-with': "wait..." %>
+            <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Associate", 'data-disable-with': "wait..." %>
           </div>
         </div>
       </div>
@@ -74,6 +69,8 @@
       $('#meter-id').val(selectedMeter.attr('id'));
     });
 
+    $(".clickable-row").first().mousedown();
+
     $('select#rate-select').select2({
       theme: "bootstrap",
       minimumResultsForSearch: Infinity,
@@ -81,7 +78,6 @@
       dropdownParent: $('.lightbox'),
       allowClear: false
     });
-
   });
 
   function addFilterSeparator() {
@@ -101,16 +97,16 @@
     filter = input.value.toUpperCase();
     ul = document.getElementById("meter-list");
 
-    var tableRows = $("#meter-list.table-row-item");
+    var tableRows = $("#meter-list.table-row");
         
     var KeyID=event.keyCode;
     
     if (KeyID == 188){
       return;
     }else if (KeyID == 8 || KeyID == 46 || filter.length == 0){
-      tableRows = $("#meter-list .table-row-item");
+      tableRows = $("#meter-list .table-row");
     }else{
-      tableRows = $("#meter-list .table-row-item:visible");
+      tableRows = $("#meter-list .table-row:visible");
     }
     
     var filters = filter.split(",").filter(function(e){return e});

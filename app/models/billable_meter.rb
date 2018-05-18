@@ -1,7 +1,8 @@
 class BillableMeter < ApplicationRecord
 
   belongs_to :meter
-  belongs_to :tenant
+  belongs_to :tenant, optional: true
+  belongs_to :account
   has_and_belongs_to_many :invoices
   belongs_to :rate
   before_save :set_percent_allocation

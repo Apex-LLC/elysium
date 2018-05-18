@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180418221344) do
+ActiveRecord::Schema.define(version: 20180518012100) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,8 @@ ActiveRecord::Schema.define(version: 20180418221344) do
     t.bigint "meter_id"
     t.string "description"
     t.bigint "rate_id", null: false
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_billable_meters_on_account_id"
     t.index ["meter_id"], name: "index_billable_meters_on_meter_id"
     t.index ["rate_id"], name: "index_billable_meters_on_rate_id"
     t.index ["space_id"], name: "index_billable_meters_on_space_id"
@@ -190,6 +192,7 @@ ActiveRecord::Schema.define(version: 20180418221344) do
   end
 
   add_foreign_key "admin_costs", "accounts"
+  add_foreign_key "billable_meters", "accounts"
   add_foreign_key "billable_meters", "meters"
   add_foreign_key "billable_meters", "rates"
   add_foreign_key "billable_meters", "spaces"
