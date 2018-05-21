@@ -44,7 +44,6 @@ class BillableMetersController < ApplicationController
 
     @billable_meter = BillableMeter.new(billable_meter_params)
 
-    notice_text = ""
     if @billable_meter.save
       @billable_meter = BillableMeter.new
       flash[:notice] =  'Your meter was successfully created.'
@@ -59,6 +58,7 @@ class BillableMetersController < ApplicationController
   def update
     @billable_meter = BillableMeter.find(billable_meter_params[:meter_id])
     @billable_meter.tenant = Tenant.find(billable_meter_params[:tenant_id])
+    @billable_meter.is_peak_demand_meter = billable_meter_params[:is_peak_demand_meter]
 
     respond_to do |format|
       if @billable_meter.save
@@ -99,7 +99,7 @@ class BillableMetersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def billable_meter_params
-      params.require(:billable_meter).permit(:meter_id, :description, :percent_allocation, :start_time, :end_time, :tenant_id, :rate_id, :account_id)
+      params.require(:billable_meter).permit(:meter_id, :description, :percent_allocation, :start_time, :end_time, :tenant_id, :rate_id, :account_id, :is_peak_demand_meter)
     end
 
     def get_tenant_from_params
@@ -107,6 +107,6 @@ class BillableMetersController < ApplicationController
     end
 
     def associating_with_tenant
-      billable_meter_params[:tenant_id] && billable_meter_params[:meter_id]
+      return !billable_meter_params[:tenant_id].blank? && !billable_meter_params[:meter_id].blank?
     end
 end

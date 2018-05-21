@@ -4,7 +4,8 @@
       <div class="table-header-row">
         <div class='table-row-item meter-item'>
           <div class="table-cell reference">Reference</div>
-          <div class="table-cell allocation">Allocation</div>
+          <div class="table-cell allocation">%</div>
+          <div class="table-cell type">P.D.</div>
           <div class="table-cell link">Delete</div>
         </div>
       </div>
@@ -24,6 +25,7 @@
                   <%= meter_reference %>                  
                 </div>
                 <div class="table-cell allocation"><%= meter.percent_allocation %>%</div>
+                <div class="table-cell type"><%= meter.is_peak_demand_meter %></div>
                 <div class="table-cell link"><%= link_to '✕', meter, method: :delete, data: { confirm: "Are you sure you would like to remove this meter from " + @tenant.name + "?" } %></div>
               </div>
             </div>

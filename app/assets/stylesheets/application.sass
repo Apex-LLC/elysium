@@ -216,7 +216,8 @@ table
 
 .table-row
   padding: 4px
-  height: 48px  
+  height: 48px
+  display: table-row
 
 .table-header-row
   font-weight: bold
@@ -248,12 +249,15 @@ table
       width: 40%
     .reference
       text-align: left
-      width: 60%
+      width: 55%
     .allocation
-      width: 15%
+      width: 12%
+      text-align: center
+    .type
+      width: 12%
       text-align: center
     .link
-      width: 15%
+      width: 12%
       text-align: center
     .amount
       width: 24%
@@ -333,6 +337,8 @@ table
   max-height: 100%
   min-height: 100%
   margin-bottom: 100px
+  .table-row
+    display: grid
 
 #new_billable_meter
   padding: 0 40px

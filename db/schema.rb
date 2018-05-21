@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518012100) do
+ActiveRecord::Schema.define(version: 20180518225412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20180518012100) do
     t.string "description"
     t.bigint "rate_id", null: false
     t.bigint "account_id"
+    t.boolean "is_peak_demand_meter", default: false
     t.index ["account_id"], name: "index_billable_meters_on_account_id"
     t.index ["meter_id"], name: "index_billable_meters_on_meter_id"
     t.index ["rate_id"], name: "index_billable_meters_on_rate_id"

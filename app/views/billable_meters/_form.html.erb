@@ -46,7 +46,11 @@
             <%= f.number_field :percent_allocation, placeholder: "\% Allocation (100\% if blank)", size: 200 %>
           </div>
           </br>
-
+          <div class="field">   
+            <%= f.check_box :is_peak_demand_meter, class: "checkbox" %>         
+            <%= f.label "Peak demand meter?", class: "checkbox inline" %>
+          </div>
+          </br>
           <%= f.hidden_field :meter_id, :id => "meter-id" %>
           <%= f.hidden_field :tenant_id, :value => @tenant.id %>
 
