@@ -43,12 +43,12 @@
           <%= render 'errors/form_errors', object: billable_meter %>
           <h3>Options</h3>
           <div class="field">            
-            <%= f.number_field :percent_allocation, placeholder: "\% Allocation (100\% if blank)", size: 200 %>
+            <%= f.number_field :percent_allocation, placeholder: "\% Allocation (100\% if blank)", size: 200, step: 10 %>
           </div>
           </br>
           <div class="field">   
             <%= f.check_box :is_peak_demand_meter, class: "checkbox" %>         
-            <%= f.label "Peak demand meter?", class: "checkbox inline" %>
+            <a href="" class="checkbox inline" data-toggle="tooltip" data-placement="right" title="Use only highest value in invoice.">Peak demand meter</a>
           </div>
           </br>
           <%= f.hidden_field :meter_id, :id => "meter-id" %>
@@ -71,6 +71,9 @@
       selectedMeter = $(this)
       selectedMeter.addClass("selected")
       $('#meter-id').val(selectedMeter.attr('id'));
+
+    $('[data-toggle="tooltip"]').tooltip();
+
     });
 
     $(".clickable-row").first().mousedown();

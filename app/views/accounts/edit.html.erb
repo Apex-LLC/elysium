@@ -30,7 +30,7 @@
         %>
         <div class="input-group">
           <div class="select-label">Number of days until invoice due:</div>
-          <%= select_tag(:days_until_invoice_due, options_for_select(20..60, current_cycle_start_day), id: "billing-cycle-select") %>
+          <%= select_tag(:days_until_invoice_due, options_for_select((20..60).step(5), current_cycle_start_day), id: "billing-cycle-select") %>
           <%= submit_tag "Update", class: "btn btn-primary" %>
         </div>
         <p/>        
