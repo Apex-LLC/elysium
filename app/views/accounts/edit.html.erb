@@ -11,15 +11,11 @@
 
   <div class="offset-2 col-4 text-left">
     <% if !current_user.tenant? %>
-      <%= render "rates/user_list", rates: @account.rates %>
-      <br />
-      <hr>
-      <br />
       <%= form_tag "update_billing_day", method: :post do %>
         <% current_cycle_start_day = current_account.billing_cycle_start_day ? current_account.billing_cycle_start_day : 1 
         %>
         <div class="input-group">
-          <div class="select-label">Update your billing cycle end date:</div>
+          <div class="select-label">Update your billing cycle start date:</div>
           <%= select_tag(:billing_cycle_start_day, options_for_select(1..31, current_cycle_start_day), id: "billing-cycle-select") %>
           <%= submit_tag "Update", class: "btn btn-primary" %>
         </div>

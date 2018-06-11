@@ -71,21 +71,22 @@ class AccountsController < ApplicationController
   def update_billing_day
     noticeText = ""
     billing_day = params[:billing_cycle_start_day]
-    if (@account && billing_day)
+
+    if (@account && billing_day != nil)
       @account.billing_cycle_start_day = billing_day
       @account.save
-      noticeText = "The last day of your billing cycle is now set to the " + billing_day.to_i.ordinalize + " of the month."
+      noticeText = "The first day of your billing cycle is now set to the " + billing_day.to_i.ordinalize + " of the month."
     else
-      noticeText = "There was a problem updating your billing cycle end date. Contact Apex for support"
+      noticeText = "There was a problem updating your billing cycle start date. Contact Apex for support"
     end
-    redirect_back(fallback_location: root_path,notice: noticeText)
+    redirect_back(fallback_location: root_path, notice: noticeText)
   end
 
   def update_days_until_invoice_due
     noticeText = ""
     days_until_due = params[:days_until_invoice_due]
-    byebug
-    if (@account && days_until_due)
+
+    if (@account && days_until_due != nil)
       @account.days_until_invoice_due = days_until_due
       @account.save
       noticeText = "Your invoices will be due " + days_until_due + " days after they are sent."

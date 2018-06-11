@@ -1,6 +1,6 @@
 <div class="col-md-1"></div>
   <div class="">          
-    <h3>Rates</h3>
+    <h4 class="text-muted">Rates</h4>
       <div class="table-header-row">
         <div class='table-row-item rate-item'>
           <div class="table-cell symbol">Symbol</div>
@@ -44,7 +44,7 @@
                 <%= form.text_field :description, id: :rate_description, placeholder: "Description" %>
               </div>
 
-              <%= form.hidden_field :account_id, :value => @account.id %>
+              <%= form.hidden_field :account_id, :value => account.id %>
 
               <div class="actions inline-field table-cell symbol">
                 <%= form.submit class: "btn-primary", value: "Add" %>
