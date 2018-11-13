@@ -25,13 +25,17 @@ $muted-red: rgba(175,21,21,.3)
 
 $navbar-height: 60px
 $hover-transition-time: .25s
-$normal-font: 'SanFranciscoText-Thin','Segoe UI Light'
-$semibold-font: 'SanFranciscoText','Segoe UI'
-$bold-font: 'SanFranciscoDisplay-Bold','Segoe UI Semibold'
+$normal-font: -apple-system, BlinkMacSystemFont,“Segoe UI”, “Roboto”, “Oxygen”,“Ubuntu”, “Cantarell”, “Fira Sans”,“Droid Sans”, “Helvetica Neue”, sans-serif
+$semibold-font: -apple-system, BlinkMacSystemFont,“Segoe UI”, “Roboto”, “Oxygen”,“Ubuntu”, “Cantarell”, “Fira Sans”,“Droid Sans”, “Helvetica Neue”, sans-serif
+$bold-font: -apple-system, BlinkMacSystemFont,“Segoe UI”, “Roboto”, “Oxygen”,“Ubuntu”, “Cantarell”, “Fira Sans”,“Droid Sans”, “Helvetica Neue”, sans-serif
 
 html,body,.container
   height: 100%
   font-family: $normal-font !important
+  font-weight: lighter !important
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
+  font-weight: 100
 
 a#title
   text-decoration: none
@@ -39,6 +43,7 @@ a#title
   letter-spacing: 5px
   font-size: 1.1em
   font-family: $bold-font !important
+  font-weight: bold
 
 img
   padding: 10px

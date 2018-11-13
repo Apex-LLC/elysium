@@ -30,7 +30,7 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
   a.site = site
   puts 'done'
 
-  a.rates << Rate.create(symbol:"kWh",rate:0.084)
+  a.rates << Rate.create(symbol:"kWh",rate:0.0084)
 
   puts 'creating meters'
   for i in 1..12
