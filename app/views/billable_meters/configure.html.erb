@@ -41,7 +41,7 @@
               <%= f.text_field :description, placeholder: "description (optional)" %>
 
               <% defaultOption = options_for_select([[]]) %>
-              <% options = options_from_collection_for_select(current_account.rates, 'id', 'symbol') %>
+              <% options = options_from_collection_for_select(current_account.rates, 'id', 'display_name') %>
               <%= f.select :rate_id, defaultOption << options, {}, id: "rate-select", include_blank: true %>
 
           </div>
