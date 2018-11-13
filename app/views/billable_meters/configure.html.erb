@@ -1,12 +1,12 @@
-<div class="row h-100">
+<div class="row">
   <div class="col-12">
     <h4 class="text-center">Configure a Meter</h4>
     <hr style="padding: 0 40px;"/>
     </br>   
       
-    <div class="row h-100">
-      <div  class="col-xs-12 col-md-6 h-100">
-        <%= form_for(@billable_meter, html: {class: "h-100"}) do |f| %>
+    <div class="row">
+      <div  class="col-xs-12 col-md-6 padded-configuration-pane">
+        <%= form_for(@billable_meter) do |f| %>
           <h4 class="text-muted">ADS Meters</h4>
           <div class="table-header-row">
             <div class='table-row-item meter-item'>
@@ -53,12 +53,15 @@
             <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Save Configuration", 'data-disable-with': "wait..." %>
           </div>
                   <hr />
-        <%= render "rates/user_list", rates: current_account.rates, account: current_account %>
         <% end %> <!-- /form -->
+
+        <%= render "rates/user_list", rates: current_account.rates, account: current_account %>
+
       </div> <!-- /left col -->
-      <div class="col-xs-12 col-md-6 h-100">
+      <div class="col-xs-12 col-md-6 static-configured-pane">
         <%= render 'billable_meters/configured_list' %>
       </div>
+
     </div> <!-- /row -->
   </div>
 </div>

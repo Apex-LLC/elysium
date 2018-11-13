@@ -29,6 +29,12 @@ $normal-font: -apple-system, BlinkMacSystemFont,“Segoe UI”, “Roboto”, �
 $semibold-font: -apple-system, BlinkMacSystemFont,“Segoe UI”, “Roboto”, “Oxygen”,“Ubuntu”, “Cantarell”, “Fira Sans”,“Droid Sans”, “Helvetica Neue”, sans-serif
 $bold-font: -apple-system, BlinkMacSystemFont,“Segoe UI”, “Roboto”, “Oxygen”,“Ubuntu”, “Cantarell”, “Fira Sans”,“Droid Sans”, “Helvetica Neue”, sans-serif
 
+*
+  -moz-box-sizing: border-box
+  -webkit-box-sizing: border-box
+  box-sizing: border-box
+
+
 html,body,.container
   height: 100%
   font-family: $normal-font !important
@@ -344,13 +350,17 @@ tr
   @extend #meter-list
   height: 100%
   max-height: 100%
-  min-height: 100%
-  margin-bottom: 100px
   .table-row
     display: grid
 
-#new_billable_meter
+.padded-configuration-pane
   padding: 0 40px
+  margin-bottom: 40px
+
+.static-configured-pane
+  display: flex
+  flex-direction: column
+  margin-bottom: 40px
 
 #meter-filter
   float: right
