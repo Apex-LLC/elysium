@@ -21,11 +21,12 @@ class Invoice < ApplicationRecord
   end
 
   def readable_date
-    formatted_start_date=self.start_date.strftime("%B #{self.start_date.day.ordinalize}")
-    formatted_end_date=self.end_date.strftime("%B #{self.end_date.day.ordinalize}")
-    year = self.start_date.year.to_s
-    return formatted_start_date + " - " + formatted_end_date + ", " + year
-  end
+    if self.start_date.day == 1 && self.end_date == self.start_date.end_of_month.to_date
+      return readable_date_single_month
+    else
+      return readable_date_with_dates
+    end
+  end  
 
   def usage
     usage=0.0
@@ -81,6 +82,19 @@ class Invoice < ApplicationRecord
 
     def set_default_status
       self.status ||= :unpaid
+    end
+
+    def readable_date_single_month
+      month = Date::MONTHNAMES[self.start_date.month]
+      year = self.start_date.year.to_s
+      return month + " " + year
+    end
+
+    def readable_date_with_dates
+      formatted_start_date=self.start_date.strftime("%B #{self.start_date.day.ordinalize}")
+      formatted_end_date=self.end_date.strftime("%B #{self.end_date.day.ordinalize}")
+      year = self.start_date.year.to_s
+      return formatted_start_date + " - " + formatted_end_date + ", " + year
     end
 
 end
