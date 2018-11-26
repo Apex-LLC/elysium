@@ -17,6 +17,8 @@
         </br>    
         <h5><%= @tenant.email %></h5>
         <h5><%= @tenant.phone %></h5>
+        <%= link_to 'edit tenant info', edit_tenant_path(tenant: @tenant), remote: true %>
+        </br>
         </br>
         <span class="text-muted text-uppercase">amount due</span>
         <h3 class="large-currency">
