@@ -1,45 +1,45 @@
 <div class="col-md-1"></div>
-  <div class="<%= associatedMeterWidth %> h-100" >          
-    <h3>Associated Meters</h3>
-      <div class="table-header-row">
-        <div class='table-row-item meter-item'>
-          <div class="table-cell reference">Reference</div>
-          <div class="table-cell allocation">%</div>
-          <div class="table-cell type">P.D.</div>
-          <div class="table-cell link">Delete</div>
-        </div>
+<div class="<%= associatedMeterWidth %> growing-flex-column" >          
+  <h3>Associated Meters</h3>
+    <div class="table-header-row">
+      <div class='table-row-item meter-item'> 
+        <div class="table-cell reference">Reference</div>
+        <div class="table-cell allocation">%</div>
+        <div class="table-cell type">P.D.</div>
+        <div class="table-cell link">Delete</div>
       </div>
-    <div id="meter-list">
-      <div class="table h-100">
-        <% 
-        if (@tenant.billable_meters.count > 0)
-          @tenant.billable_meters.each do |meter| 
-            if (meter.description?) 
-              meter_reference = meter.description 
-            else 
-              meter_reference = meter.meter.reference 
-            end  %>
-            <div class="table-row">
-              <div class='table-row-item meter-item'>
-                <div class="table-cell reference">
-                  <%= meter_reference %>                  
-                </div>
-                <div class="table-cell allocation"><%= meter.percent_allocation %>%</div>
-                <div class="table-cell type"><%= meter.is_peak_demand_meter %></div>
-                <div class="table-cell link"><%= link_to '✕', meter, method: :delete, data: { confirm: "Are you sure you would like to remove this meter from " + @tenant.name + "?" } %></div>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
+    </div>
+  <div id="meter-list">
+    <div class="table h-100">
+      <% 
+      if (@tenant.billable_meters.count > 0)
+        @tenant.billable_meters.each do |meter| 
+          if (meter.description?) 
+            meter_reference = meter.description 
+          else 
+            meter_reference = meter.meter.reference 
+          end  %>
           <div class="table-row">
             <div class='table-row-item meter-item'>
-              <div class="table-cell">
-                 No meters have been associated with this tenant.  <%= link_to 'Add One', new_billable_meter_path(tenant: @tenant), remote: true %>
+              <div class="table-cell reference">
+                <%= meter_reference %>                  
               </div>
+              <div class="table-cell allocation"><%= meter.percent_allocation %>%</div>
+              <div class="table-cell type"><%= meter.is_peak_demand_meter %></div>
+              <div class="table-cell link"><%= link_to '✕', meter, method: :delete, data: { confirm: "Are you sure you would like to remove this meter from " + @tenant.name + "?" } %></div>
             </div>
           </div>
         <% end %>
-      </div>
+      <% else %>
+        <div class="table-row">
+          <div class='table-row-item meter-item'>
+            <div class="table-cell">
+               No meters have been associated with this tenant.  <%= link_to 'Add One', new_billable_meter_path(tenant: @tenant), remote: true %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
-    <%= link_to 'Associate a Meter', new_billable_meter_path(tenant: @tenant), remote: true %>
   </div>
+  <%= link_to 'Associate a Meter', new_billable_meter_path(tenant: @tenant), remote: true %>
+</div>

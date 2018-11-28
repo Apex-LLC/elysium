@@ -1,5 +1,5 @@
 
-    <%= image_tag "logo.png", class: "contact-image rounded-circle" %>
+    <div class="contact-image" style="background-image: url(<%= @tenant.logo %>)"></div>
 
     </br>
 
@@ -19,9 +19,10 @@
           <%= f.phone_field :phone, id: "phoneNumber", placeholder: "(XXX) XXX-XXXX", onkeypress:"return numberPressed(event);" %>
         </div>
         </br>
-<!--         <div class="field">
-          <%= f.file_field :logo %>
-        </div> -->
+        <div class="field">
+          <%= f.file_field :logo, class: "custom-file-input-2" %>
+        </div>
+        <%= token_tag(nil) %>
         <div class="actions">
           <%= f.submit id: "login-button", class: "btn-outline-primary", value: "Save",'data-disable-with':"Wait..." %>
         </div>
