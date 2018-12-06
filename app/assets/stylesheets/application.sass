@@ -175,6 +175,12 @@ nav
   background-position: center
   background-size: cover
 
+.contact-image-thumbnail
+  @extend .contact-image
+  width: 100%
+  height: auto
+  padding-top: 100%
+
 .text-muted
   color: $accent-color !important
   opacity: .8
@@ -484,8 +490,9 @@ div > .clickable-row
   visibility: hidden
 
 .custom-file-input-2::before
+  color: white
   content: 'Select Logo'
-  background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3)
+  background: $translucent-accent-color
   border: 1px solid #999
   border-radius: 3px
   padding: 5px 8px

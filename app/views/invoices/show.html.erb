@@ -2,9 +2,11 @@
   <div class="offset-2 col-8">
     
     <div class="row">
-      <div class="col-2">
-        <%= image_tag "logo.png", class: "full-width-image rounded-circle" %>
+      <div class="col-2">        
+        <div class="contact-image-thumbnail" style="background-image: url(<%= @invoice.tenant.logo %>)">
+        </div>
       </div>
+
       <div class="col-5 my-auto">
         <h1><%= @invoice.tenant.name %></h1>
         <h4><%= @invoice.readable_date %></h4>
