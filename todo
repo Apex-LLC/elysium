@@ -11,5 +11,5 @@ X - add fees line in invoice
 ##################################################
 
 - billable meter needs a rate - amount due can be calculated from that
-- profile photos (http://www.peoplecancode.com/tutorials/users-avatars-uploading-images-using-paperclip)
+X - profile photos (http://www.peoplecancode.com/tutorials/users-avatars-uploading-images-using-paperclip)
 - when creating a billable meter, don't show meters that already have been used already

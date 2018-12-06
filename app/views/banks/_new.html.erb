@@ -76,7 +76,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.payment/1.4.1/jquery.payment.js"></script>
 <script>
   // Set your Stripe publishable API key here
-  Stripe.setPublishableKey('<%=ENV['PUBLISHABLE_KEY']%>');
+  Stripe.setPublishableKey('<%= Rails.configuration.stripe[:publishable_key] %>');
   $(function() {
     var $form = $('#bank-form');
     $form.submit(function(event) {
