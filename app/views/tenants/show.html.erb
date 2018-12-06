@@ -12,7 +12,7 @@
         end
       %>
       <div class="<%= tenantInfoWidth %> text-center">
-        <div class="contact-image" style="background-image: url(<%= @tenant.logo %>)"></div>
+        <div class="contact-image" style="background-image: url(<%= image_url(@tenant.logo) %>)"></div>
         </br>
         <h2><%= @tenant.name %></h2>
         </br>    

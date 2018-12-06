@@ -10,7 +10,7 @@ class Tenant < ApplicationRecord
   validates :name, :email, :account_id, presence: true
   validates :email, :uniqueness => { :case_sensitive => false }
 
-  has_attached_file :logo, styles: { medium: "300x300>"}, default_url: "/assets/logo.png"
+  has_attached_file :logo, styles: { medium: "300x300>"}, default_url: "logo.png"
   validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
 
   def amount_due
