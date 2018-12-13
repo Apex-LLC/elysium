@@ -30,7 +30,7 @@ gem 'haml'
 gem 'hirb'
 
 gem 'paperclip'
-gem 'aws-sdk'
+gem 'aws-sdk-s3'
 
 gem 'select2-rails'
 
