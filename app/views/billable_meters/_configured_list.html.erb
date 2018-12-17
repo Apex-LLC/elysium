@@ -21,7 +21,11 @@
             <div class="table-cell reference">
               <%= meter_reference %>
             </div>
-            <div class="table-cell allocation"><%= meter.rate.rate.to_s + "/" + meter.rate.symbol %></div>
+            <div class="table-cell allocation">
+              <a href="#" class="editable-allocation" data-type="select" data-resource="billable_meter" data-value="<%= meter.rate.id %>" data-pk="<%= meter.id %>" data-name="rate_id" data-url="<%= billable_meter_path(meter) %>">
+                <%= meter.rate.rate.to_s + "/" + meter.rate.symbol %>
+              </a>
+            </div>
             <div class="table-cell link"><%= link_to '✕', meter, method: :delete, data: { confirm: "Are you sure you would like to remove this meter?" } %></div>
           </div>
         </div>
@@ -29,3 +33,15 @@
     <% end %>
   </div>
 </div>
+
+<script>
+
+  var rate_options = <%= raw current_account.rates.order(:id).map { |rate| {  value:rate.id, text:rate.rate.to_s + "/" + rate.symbol }}.to_json %>;
+
+  $(document).ready(function() {
+
+    $('.editable-allocation').editable({  
+      source: rate_options
+    });
+  });
+</script>

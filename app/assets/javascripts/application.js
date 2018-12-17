@@ -18,5 +18,7 @@
 //= require select2
 //= require Chart.bundle
 //= require chartkick
+//= require bootstrap-editable
+//= require bootstrap-editable-rails
 //= require_tree .
 //= require_tree ./application

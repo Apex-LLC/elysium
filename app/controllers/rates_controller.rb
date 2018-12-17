@@ -38,7 +38,7 @@ class RatesController < ApplicationController
     respond_to do |format|
       if @rate.update(rate_params)
         format.html { redirect_to @rate, notice: 'Rate was successfully updated.' }
-        format.json { render :show, status: :ok, location: @rate }
+        format.json { head :no_content }
       else
         format.html { render :edit }
         format.json { render json: @rate.errors, status: :unprocessable_entity }

@@ -56,20 +56,34 @@ class BillableMetersController < ApplicationController
   # PATCH/PUT /billable_meters/1
   # PATCH/PUT /billable_meters/1.json
   def update
-    @billable_meter = BillableMeter.find(billable_meter_params[:meter_id])
-    @billable_meter.tenant = Tenant.find(billable_meter_params[:tenant_id])
-    @billable_meter.is_peak_demand_meter = billable_meter_params[:is_peak_demand_meter]
 
-    respond_to do |format|
-      if @billable_meter.save
-        format.html { redirect_to @billable_meter.tenant, notice: 'Your meter was associated with ' + @billable_meter.tenant.name + '.' }
-      else
-        @tenant=@billable_meter.tenant
-        format.js { render :new, notice: @billable_meter.errors }
-        format.html { render :new }
-        format.json { render json: @billable_meter.errors, status: :unprocessable_entity }
+    if (associating_with_tenant)
+      @billable_meter = BillableMeter.find(billable_meter_params[:meter_id])
+      @billable_meter.tenant = Tenant.find(billable_meter_params[:tenant_id])
+      @billable_meter.is_peak_demand_meter = billable_meter_params[:is_peak_demand_meter]
+
+      respond_to do |format|
+        if @billable_meter.save
+          format.html { redirect_to @billable_meter.tenant, notice: 'Your meter was associated with ' + @billable_meter.tenant.name + '.' }
+        else
+          @tenant=@billable_meter.tenant
+          format.js { render :new, notice: @billable_meter.errors }
+          format.html { render :new }
+          format.json { render json: @billable_meter.errors, status: :unprocessable_entity }
+        end
       end
-    end
+    else
+      respond_to do |format|
+        if @billable_meter.update(billable_meter_params)
+          format.html { redirect_to @billable_meter.tenant, notice: 'Your meter was associated with ' + @billable_meter.tenant.name + '.' }
+          format.json { head :no_content }
+        else
+          format.js { render :new, notice: @billable_meter.errors }
+          format.html { render :new }
+          format.json { render json: @billable_meter.errors, status: :unprocessable_entity }
+        end
+      end   
+    end # end of billable meter if
   end
 
   # DELETE /billable_meters/1

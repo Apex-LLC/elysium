@@ -10,10 +10,15 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *
+ *
  */
 @import "bootstrap"
 @import "select2"
 @import "select2-bootstrap"
+@import "bootstrap-editable"
+@import "fonts.scss"
+@import "rates.scss"
 
 $accent-color: rgb(63,151,245)
 $translucent-accent-color: rgba(63,151,245,.97)
@@ -333,6 +338,7 @@ tr
 
 .table-cell
   display: inline-table
+  position: relative
 
 .inline-field
   @extend .field

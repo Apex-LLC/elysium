@@ -32,6 +32,8 @@ gem 'hirb'
 gem 'paperclip'
 gem 'aws-sdk-s3'
 
+gem 'bootstrap-editable-rails'
+
 gem 'select2-rails'
 
 # Use jquery as the JavaScript library
