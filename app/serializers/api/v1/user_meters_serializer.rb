@@ -3,7 +3,7 @@ class Api::V1::UserMetersSerializer < Api::V1::BaseSerializer
 
   def meters
     billable_meters = []
-    tenants = object.tenants
+    tenants = object.account.tenants #object is a user object. Need to get admin user's account to find out which tenants it owns
     tenants.each do |t|
       t.billable_meters.each do |b|
         billable_meters << 
