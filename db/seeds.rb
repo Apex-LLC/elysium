@@ -62,9 +62,9 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
     meter_id_1=rand(1..4)
     meter_id_2=rand(5..8)
     meter_id_3=rand(9..12)
-    b1=BillableMeter.create(description: "East Office kWh #" + meter_id_1.to_s, meter_id: meter_id_1, rate_id: 1)
-    b2=BillableMeter.create(description: "East Office kWh #" + meter_id_2.to_s, meter_id: meter_id_2, rate_id: 1)
-    b3=BillableMeter.create(description: "East Office kWh #" + meter_id_3.to_s, meter_id: meter_id_3, rate_id: 1)
+    b1=BillableMeter.create(description: "East Office kWh #" + meter_id_1.to_s, meter_id: meter_id_1, rate_id: 1, account_id: a.id)
+    b2=BillableMeter.create(description: "East Office kWh #" + meter_id_2.to_s, meter_id: meter_id_2, rate_id: 1, account_id: a.id)
+    b3=BillableMeter.create(description: "East Office kWh #" + meter_id_3.to_s, meter_id: meter_id_3, rate_id: 1, account_id: a.id)
     t.billable_meters << [b1,b2,b3]
     
     startDate=DateTime.new(DateTime.now.year,DateTime.now.month,1) 
