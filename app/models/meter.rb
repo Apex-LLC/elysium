@@ -19,9 +19,13 @@ class Meter < ApplicationRecord
   end
 
   def import_records(file)
+    logger.info "Importing records for [" + self.reference + "]..."
     CSV.foreach(file.path, headers:true) do |row|
-      record = Record.new row.to_hash
-      self.records << record
+      record = self.records.new row.to_hash
+      logger.info "  - [" + record.datetime.to_s + "," + record.value.to_s + "]"
+      if (record.valid?)
+        self.records << record
+      end
     end
     self.last_collection = DateTime.now
     self.save
