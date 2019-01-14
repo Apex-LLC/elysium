@@ -20,15 +20,28 @@ class Meter < ApplicationRecord
 
   def import_records(file)
     logger.info "Importing records for [" + self.reference + "]..."
+    successful=0
+    unsuccessful=0
+
     CSV.foreach(file.path, headers:true) do |row|
-      record = self.records.new row.to_hash
-      logger.info "  - [" + record.datetime.to_s + "," + record.value.to_s + "]"
-      if (record.valid?)
+      record = Record.new row.to_hash
+      record.meter = self
+      
+      if (record.valid? && !self.records.where(datetime: record.datetime).exists?)
         self.records << record
+        logger.info "NEW RECORD ADDED: " + row.to_hash.to_s
+        successful+=1
+      else
+        logger.info "RECORD SKIPPED: " + record.errors.full_messages.to_sentence
+        unsuccessful+=1
       end
+
     end
+    
     self.last_collection = DateTime.now
     self.save
+
+    logger.info "Successfully added " + successful.to_s + " records. " + unsuccessful.to_s + " records were not added."
     true    
   end 
 
