@@ -4,7 +4,7 @@
     <%= image_tag "logo.png", class: "rounded-circle" %>
     <span>ELYSIUM</span>
   </a>
-  <% unless controller_name == "sessions" && action_name == "new" %>
+  <% unless controller_name == "sessions" && action_name == "new" || controller_name == "accounts" && action_name == "eula" %>
     
     <span id='vertical-menu-separator'>|</span>
     <a class="static-menu-item" href="<%= tenants_path %>">Tenants</a>
