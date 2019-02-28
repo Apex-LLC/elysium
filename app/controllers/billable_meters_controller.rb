@@ -19,6 +19,12 @@ class BillableMetersController < ApplicationController
   def show
   end
 
+  # def test
+  #   @billable_meter = BillableMeter.last
+  #   usage = @billable_meter.get_usage(DateTime.now-11, DateTime.now)
+  #   puts usage
+  # end
+
   # GET /billable_meters/new
   def new
     @billable_meter = BillableMeter.new

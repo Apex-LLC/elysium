@@ -1,4 +1,62 @@
 
+  <script>
+    function isNumberKey(evt)
+     {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31 
+          && (charCode < 48 || charCode > 57))
+           return false;
+
+        return true;
+      }
+
+      var rateMeterDictionary = new Object();
+
+     function addRateMetersToDictionary(id, meters)
+     {
+        rateMeterDictionary[id] = meters;
+     }
+
+    $.fn.editable.defaults.mode = 'inline';
+
+    $(document).ready(function() {
+
+      $('.editable').editable();
+
+
+      $('.editable').mousedown(function(event){
+        var rateId = $(this).attr('id');
+        
+        alertString = 'Modifying this field will effect the following meters associated this rate:\r\n'
+        
+        $.each(rateMeterDictionary[rateId], function( i,rate ) 
+        {
+          alertString += "\r\n" + rate.description
+        });
+
+        var focused = document.activeElement;
+
+        swal({
+          title: "",
+          text: alertString,
+          icon: "warning",
+          buttons: ["Cancel", "I understand"],
+          dangerMode: true
+        }).then((value) => {
+          if (!value) {
+            event.preventDefault();
+          }else {
+            
+            focused.click();
+          }
+        });
+
+
+      });
+    });
+    
+  </script>
+
   <div id="rate-config-list">          
     <h4 class="text-muted">Rates</h4>
       <div class="table-header-row">
@@ -17,24 +75,26 @@
             <div class="table-row">
               <div class='table-row-item rate-item'>
                 <div class="table-cell symbol"><sup>&nbsp;</sup>
-                  <a href="#" class="editable" data-type="text" data-resource="rate" data-name="symbol" data-url="<%= rate_path(rate) %>">
+                  <a id="<%= rate.id %>" href="#" class="editable" data-type="text" data-resource="rate" data-name="symbol" data-url="<%= rate_path(rate) %>">
                     <%= rate.symbol %>
                   </a>
                 </div>
 
                 <div class="table-cell rate"><sup>$</sup>
-                  <a href="#" class="editable" data-type="number" data-resource="rate" data-name="rate" data-url="<%= rate_path(rate) %>">
+                  <a id="<%= rate.id %>" href="#" class="editable" data-type="number" data-resource="rate" data-name="rate" data-url="<%= rate_path(rate) %>">
                     <%= rate.rate %>
                   </a>
                 </div>
                 <div class="table-cell description"><sup>&nbsp;</sup>
-                  <a href="#" class="editable" data-type="text" data-resource="rate" data-name="description" data-url="<%= rate_path(rate) %>">
+                  <a id="<%= rate.id %>" href="#" class="editable" data-type="text" data-resource="rate" data-name="description" data-url="<%= rate_path(rate) %>">
                     <%= rate.description %>
                   </a>
                 </div>
                 <div class="table-cell link"><%= link_to '✕', rate, method: :delete, data: { confirm: "Are you sure you would like to remove this rate?" } %></div>
               </div>
             </div>
+
+            <%= javascript_tag "addRateMetersToDictionary(#{rate.id}, #{rate.billable_meters.to_json});" %>
           <% end %>
         <% end %>
         <div class="table-row">
@@ -70,21 +130,3 @@
     <hr style="margin-bottom: 0;"/>
   </div>
 
-  <script>
-    function isNumberKey(evt)
-     {
-        var charCode = (evt.which) ? evt.which : evt.keyCode;
-        if (charCode != 46 && charCode > 31 
-          && (charCode < 48 || charCode > 57))
-           return false;
-
-        return true;
-     }
-
-    $.fn.editable.defaults.mode = 'inline';
-
-    $(document).ready(function() {
-      $('.editable').editable();  
-    });
-    
-  </script>

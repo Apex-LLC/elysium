@@ -26,7 +26,7 @@ class Meter < ApplicationRecord
     CSV.foreach(file.path, headers:true) do |row|
       record = Record.new row.to_hash
       record.meter = self
-      
+
       if (record.valid? && !self.records.where(datetime: record.datetime).exists?)
         self.records << record
         logger.info "NEW RECORD ADDED: " + row.to_hash.to_s
