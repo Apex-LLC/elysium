@@ -6,7 +6,7 @@ class Api::V1::MetersController < Api::V1::BaseController
       return
     end
 
-    success=Meter.import_meters(params[:file], current_user.id)   
+    success=Meter.import_meters(params[:file], current_user.account.site.id)   
     if success
       render json: "Meter(s) imported successfully".to_json
     else

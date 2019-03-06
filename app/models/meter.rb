@@ -6,6 +6,7 @@ class Meter < ApplicationRecord
   require 'csv'
 
   def self.import_meters(file,site_id)
+
     CSV.foreach(file.path, headers:true) do |row|
       meter = Meter.new row.to_hash
 
