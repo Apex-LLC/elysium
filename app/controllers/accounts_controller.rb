@@ -32,6 +32,7 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = Account.new(account_params)
+    set_account_defaults
 
     respond_to do |format|
       if @account.save
@@ -103,6 +104,16 @@ class AccountsController < ApplicationController
         @account = current_user.account
       else
         redirect_to new_user_session_path
+      end
+    end
+
+    def set_account_defaults
+      if (@account.billing_cycle_start_day == nil)
+        @account.billing_cycle_start_day = 1
+      end
+      
+      if (@account.days_until_invoice_due == nil)
+        @account.days_until_invoice_due = 20
       end
     end
 

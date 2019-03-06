@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get "eula", to: "accounts#eula"
   get "meter-setup", to: "billable_meters#configure"
 
-  get "test", to: "billable_meters#test"
+  # get "test", to: "billable_meters#test"
   
   resources :contacts
   resources :billable_meters
