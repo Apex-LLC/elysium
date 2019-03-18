@@ -11,7 +11,7 @@ class ChargesController < ApplicationController
 
     customer_id = @invoice.tenant.stripe_token
     customer = Stripe::Customer.retrieve(customer_id)
-    byebug
+
     charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @amount,

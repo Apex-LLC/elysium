@@ -6,7 +6,7 @@ class Invoice < ApplicationRecord
 
   before_save :set_totals
   # validates :billable_meters, :length => { :minimum => 1 }
-  validates_associated :billable_meters
+  validates_associated :billable_meters, :message=> lambda{|class_obj, obj| obj[:value].errors.full_messages.join(",") }
   after_initialize :set_default_status, :if => :new_record?
 
   enum status: [:paid, :unpaid, :overdue]
@@ -21,7 +21,7 @@ class Invoice < ApplicationRecord
   end
 
   def readable_date
-    if self.start_date.day == 1 && self.end_date == self.start_date.end_of_month.to_date
+    if self.start_date.day == 1 && self.end_date.to_date == self.start_date.end_of_month.to_date
       return readable_date_single_month
     else
       return readable_date_with_dates

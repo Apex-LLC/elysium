@@ -31,8 +31,8 @@
     </div>
 
     </br>
-    
-    <% if (@invoice.status == "Unpaid") %>
+
+    <% if (@invoice.status == "unpaid") %>
       <% total = ((@invoice.total) * 100.0).to_i %>
       <div class="text-center">
         <%= form_tag charges_path do %>

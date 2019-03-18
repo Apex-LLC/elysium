@@ -23,4 +23,26 @@ class Tenant < ApplicationRecord
     end
     return total_due
   end
+
+  def invoice_due
+    last_run_more_than_a_month_ago = last_invoice_end_date <= Date.today.last_month
+    data_exists_for_current_period = true
+
+    if (last_run_more_than_a_month_ago && data_exists_for_current_period)
+      return true
+    end
+
+    return false
+  end
+
+  def last_invoice_end_date
+    last_invoice = self.invoices.last
+
+    if (last_invoice != nil)
+      return last_invoice.end_date
+    end
+
+    return DateTime.new
+  end
+
 end
