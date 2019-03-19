@@ -70,6 +70,7 @@ class AccountsController < ApplicationController
   end
 
   def update_billing_day
+
     noticeText = ""
     billing_day = params[:billing_cycle_start_day]
 

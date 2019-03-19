@@ -137,7 +137,9 @@ class BillableMeter < ApplicationRecord
   end
 
   def graphable_data_hash(start_date, end_date)
+    puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX GETTING GRAPH DATA"
     records = get_records(start_date, end_date)
+    puts records.count + " RECORDS EXIST FOR THIS METER"
     record_map = records.map{|r| [r.datetime,r.value.round(2)]}
     return Hash[record_map]
   end
