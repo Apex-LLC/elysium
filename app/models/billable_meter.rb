@@ -10,7 +10,7 @@ class BillableMeter < ApplicationRecord
   def get_records(start_date,end_date)
     records=self.meter.records
     records= records.select{ |r| r[:datetime] >= start_date && r[:datetime] <= end_date }
-    return records
+    return records.sort_by{|r| r.datetime}
   end
 
   def get_usage(start_date,end_date)
