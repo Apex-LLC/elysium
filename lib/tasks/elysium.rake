@@ -25,7 +25,7 @@ namespace :elysium do
 
           invoice = tenant.invoices.new(number: 100, start_date: start_date, end_date: end_date - 1.seconds, send_date: end_date + 6, due_date: end_date + account.days_until_invoice_due)
           invoice.billable_meters << tenant.billable_meters
-          byebug
+
           invoice.save
 
           puts "done."
