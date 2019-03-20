@@ -18,7 +18,11 @@
         meter_reference = meter.meter.reference 
       end  
       meter_usage = number_with_precision(meter.get_usage(@invoice.start_date,@invoice.end_date), precision:2, delimiter:',')
-      meter_amount_due = number_to_currency(meter.get_amount_due(@invoice.start_date,@invoice.end_date))
+      if (meter.is_peak_demand_meter?)
+        meter_amount_due = number_to_currency(meter.get_amount_due_peak_demand(@invoice.start_date,@invoice.end_date))
+      else
+        meter_amount_due = number_to_currency(meter.get_amount_due_from_usage(meter_usage))
+      end
       %>
       <div class="table-row">
         <div class='table-row-item meter-item' data-href=''>

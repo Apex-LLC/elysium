@@ -116,6 +116,12 @@ class BillableMeter < ApplicationRecord
     return c
   end
 
+  def get_amount_due_peak_demand(start_date,end_date)
+    total_usage = get_peak_demand(start_date, end_date)
+    
+    return get_amount_due_from_usage(total_usage)
+  end
+
   def get_peak_demand(start_date, end_date)
     records = get_records(start_date, end_date)
     if (records.count > 0)
@@ -125,15 +131,8 @@ class BillableMeter < ApplicationRecord
     end
   end
 
-  def get_amount_due(start_date,end_date)
-    total_usage = 0.0
-    if (self.is_peak_demand_meter?)
-      total_usage = get_peak_demand(start_date, end_date)
-    else
-      total_usage = get_usage(start_date,end_date)
-    end
-    
-    return total_usage*self.rate.rate
+  def get_amount_due_from_usage(usage)
+    return usage*self.rate.rate
   end
 
   def graphable_data_hash(start_date, end_date)
