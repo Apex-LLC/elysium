@@ -137,32 +137,40 @@ class BillableMeter < ApplicationRecord
   end
 
   def graphable_data_hash(start_date, end_date)
-    puts "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX GETTING GRAPH DATA"
-    records = get_records(start_date, end_date)
+    records = get_records(start_date, end_date)    
     clean_records = []
+
     records.each_with_index do |r,i|
-      if (i == records.count - 1)
-        break
-      end
-
-      if i==0
+      if is_first_or_last_record(i, records)
         clean_records << r
         next
       end
 
-      if (r.value == records[i-1].value && r.value == records[i+1])
+      if (current_record_equals_prev_and_next(r, records))
         next
-      else
-        clean_records << r
       end
+
+      clean_records << r
     end
 
-    puts clean_records.count.to_s + " RECORDS EXIST FOR THIS METER"
     record_map = clean_records.map{|r| [r.datetime,r.value.round(2)]}
     return Hash[record_map]
   end
 
   private
+
+    def is_first_or_last_record(index, records_array)
+      return index==0 || index == records_array.count - 1
+    end
+
+    def current_record_equals_prev_and_next(current_record, records_array)
+      current_index = records_array.index(current_record)
+      current_record_value = current_record.value
+      prev_record_value = records_array[current_index-1].value
+      next_record_value = records_array[current_index+1].value
+      return current_record_value == prev_record_value && current_record_value == next_record_value
+    end
+
     def set_percent_allocation      
       self.percent_allocation = 100 if self.percent_allocation.blank?
     end
