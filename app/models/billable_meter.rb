@@ -136,7 +136,7 @@ class BillableMeter < ApplicationRecord
   end
 
   def graphable_data_hash(start_date, end_date)
-    puts "Building graphable_data_hash for " + self.meter.description
+    puts "Building graphable_data_hash for " + self.description
     records = get_records(start_date, end_date)    
     clean_records = []
 
