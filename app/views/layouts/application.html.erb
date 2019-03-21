@@ -17,6 +17,14 @@
         });
       </script>
     <% end %>
+
+    <% if flash[:alert] %>
+      <script language='javascript'>
+        $(document).ready(function() {
+          <%= fading_flash_alert %>
+        });
+      </script>
+    <% end %>
   </head>
 
   <body>    

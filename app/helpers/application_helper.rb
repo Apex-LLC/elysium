@@ -12,6 +12,18 @@ module ApplicationHelper
     notice.html_safe
   end
 
+  def fading_flash_alert
+    # note: you must have a div with id='notices' or rename the div appended to below with your element which
+    # is the container for the flash messages       
+    return '' if !flash[:alert]
+    notice_id = rand.to_s.gsub(/\./, '')
+    notice = <<-EOF
+      $('#notices').append("<div id='#{notice_id}' class='text-danger flash_notice'>#{flash[:alert]}</div>");
+      $("##{notice_id}").fadeOut(3500);
+    EOF
+    notice.html_safe
+  end
+
   def current_account
     if (user_signed_in? && current_user.account != nil)      
       return current_user.account

@@ -136,6 +136,7 @@ class BillableMeter < ApplicationRecord
   end
 
   def graphable_data_hash(start_date, end_date)
+    puts "Building graphable_data_hash for " + self.meter.description
     records = get_records(start_date, end_date)    
     clean_records = []
 
@@ -153,6 +154,7 @@ class BillableMeter < ApplicationRecord
     end
 
     record_map = clean_records.map{|r| [r.datetime,r.value.round(2)]}
+    puts "finished building graph hash."
     return Hash[record_map]
   end
 
