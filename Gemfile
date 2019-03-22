@@ -50,6 +50,8 @@ gem 'devise'
 gem 'chartkick'
 gem 'stripe'
 
+gem 'groupdate'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
