@@ -22,7 +22,6 @@
               <%= meter_reference %>
             </div>
             <div class="table-cell allocation">
-              <sup>$</sup>
               <a href="#" class="editable-allocation" data-type="select" data-resource="billable_meter" data-value="<%= meter.rate.id %>" data-pk="<%= meter.id %>" data-name="rate_id" data-url="<%= billable_meter_path(meter) %>">
                 <%= ("%.2f" % meter.rate.rate).to_s + "/" + meter.rate.symbol %>
               </a>
