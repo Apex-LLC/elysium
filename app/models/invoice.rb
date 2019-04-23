@@ -2,7 +2,7 @@
 class Invoice < ApplicationRecord
   belongs_to :tenant
   has_and_belongs_to_many :billable_meters
-  has_one :payment
+  has_one :payment, dependent: :destroy
 
   before_save :set_totals
   # validates :billable_meters, :length => { :minimum => 1 }
