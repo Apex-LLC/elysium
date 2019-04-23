@@ -39,7 +39,7 @@ class BillableMeter < ApplicationRecord
 
   def graphable_data_hash(start_date, end_date)
     records = get_records(start_date, end_date)    
-    record_map = records.group_by_day { |r| r.datetime }.map { |day, records| [day, find_usage_from_records(records)] }
+    record_map = records.group_by_day { |r| r.datetime }.map { |day, records| [day, find_usage_from_records(records).round(2)] }
     return Hash[record_map]
   end
 
