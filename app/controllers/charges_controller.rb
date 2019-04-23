@@ -29,7 +29,7 @@ class ChargesController < ApplicationController
     redirect_back(fallback_location: root_path,notice: "Thank your for your payment!")
 
     rescue Stripe::CardError => e
-      flash[:error] = e.message
+      flash[:notice] = e.message
       redirect_to root_path
   end
 
