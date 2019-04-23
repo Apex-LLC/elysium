@@ -7,12 +7,16 @@ class Account < ApplicationRecord
   has_many :billable_meters
 
   def amount_overdue
-    return amount_due - amount_billed
+    amount_overdue=0.0
+    invoices.select{|i| i.status == "overdue"}.each do |invoice|
+      amount_overdue += invoice.total
+    end
+    return amount_overdue
   end
 
   def amount_billed
     amount_billed=0.0
-    invoices.select{|i| i.end_date.month == DateTime.now.prev_month.month}.each do |invoice|
+    invoices.select{|i| i.end_date.month == (DateTime.now.month + billing_cycle_start_day.days).prev_month.month}.each do |invoice|
       amount_billed += invoice.total
     end
     return amount_billed
