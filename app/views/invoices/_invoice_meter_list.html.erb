@@ -30,7 +30,7 @@
           <div class="table-cell reference">
             <%= meter_reference %>                  
           </div>
-          <div class="table-cell allocation"><%= meter_usage %></div>
+          <div class="table-cell allocation"><%= meter_usage.to_s + " (" + meter.rate.symbol + ")"%></div>
           <div class="table-cell amount"><%= meter_amount_due %></div>
         </div>
       </div>
@@ -71,7 +71,7 @@
     <div class="table-row">
       <div class='table-totals'>
         <div class="table-cell reference">Totals</div>
-        <div class="table-cell allocation"><%= invoice_usage %> kWh</div>
+        <div class="table-cell allocation"><%= invoice_usage %></div>
         <div class="table-cell total"><%= total_due %></div>
       </div>
     </div>
