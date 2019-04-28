@@ -62,11 +62,11 @@ class BillableMetersController < ApplicationController
   # PATCH/PUT /billable_meters/1
   # PATCH/PUT /billable_meters/1.json
   def update
-
     if (associating_with_tenant)
       @billable_meter = BillableMeter.find(billable_meter_params[:meter_id])
       @billable_meter.tenant = Tenant.find(billable_meter_params[:tenant_id])
       @billable_meter.is_peak_demand_meter = billable_meter_params[:is_peak_demand_meter]
+      @billable_meter.percent_allocation = billable_meter_params[:percent_allocation]
 
       respond_to do |format|
         if @billable_meter.save
