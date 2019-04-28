@@ -64,6 +64,10 @@ namespace :elysium do
 
           invoice.save
 
+          if (invoice.amount == 0.0)
+            invoice.destroy
+          end
+
           puts "done."
 
           start_date = start_date.prev_month;
