@@ -4,6 +4,6 @@ class Rate < ApplicationRecord
   validates :rate, numericality: {greater_than: 0}
 
   def display_name 
-    "#{self.symbol} ($#{self.rate})"
+    "#{self.symbol} ($" + "%.2f" % self.rate + ")"
   end
 end
