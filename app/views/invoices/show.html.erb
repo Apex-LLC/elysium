@@ -32,7 +32,7 @@
 
     </br>
 
-    <% if (@invoice.status != "paid") %>
+    <% if (@invoice.status != "paid" && current_user.tenant?) %>
       <% total = ((@invoice.total) * 100.0).to_i %>
       <div class="text-center">
         <%= form_tag charges_path do %>
@@ -46,14 +46,16 @@
           
           <%= hidden_field_tag 'amount', total %>
           <%= hidden_field_tag 'invoice_id', @invoice.id %>
+          
+          <%= button_tag "Pay Now", class: "payment btn-outline-primary", 'data-disable-with' => "Processing.."  %>
 
-
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-outline-primary btn-large"
+<!-- , data: { confirm: "Are you sure? Your connected bank account will be charged $" + @invoice.total.to_s } -->
+<!--           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-outline-primary btn-large"
             data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
             data-description="Pay your Invoice"
             data-amount="<%= total %>"
             data-email="<%= current_user.email %>"
-            data-locale="auto"></script>
+            data-locale="auto"></script> -->
           <% end %>
       </div>
     <% elsif (@invoice.payment != nil)
@@ -72,3 +74,29 @@
 </br>
 </br>
     
+<script>
+  $('.payment').mousedown(function(event){
+
+        paymentButton = $('.payment');
+
+        var total = <%= @invoice.total.to_s %>;
+        
+        alertString = 'Are you sure?\r\nYour connected bank account will be charged $' + total;
+
+        swal({
+          title: "",
+          text: alertString,
+          icon: "warning",
+          buttons: ["Cancel", "Pay Now"],
+          dangerMode: true
+        }).then((value) => {
+          if (!value) {
+            event.preventDefault();
+          }else {
+            paymentButton.click();
+          }
+        });
+
+
+      });
+</script>

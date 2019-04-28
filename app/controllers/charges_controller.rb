@@ -23,7 +23,7 @@ class ChargesController < ApplicationController
 
     float_amount = @amount.to_f / 100.0
     payment = 
-    Payment.new(date: DateTime.now, amount: float_amount, email: params[:stripeEmail], tenant: @invoice.tenant, invoice: @invoice)
+    Payment.new(date: DateTime.now, amount: float_amount, email: current_user.email, tenant: @invoice.tenant, invoice: @invoice)
     payment.save
     
     redirect_back(fallback_location: root_path,notice: "Thank your for your payment!")
