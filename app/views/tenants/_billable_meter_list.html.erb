@@ -5,7 +5,7 @@
       <div class='table-row-item meter-item'> 
         <div class="table-cell reference">Reference</div>
         <div class="table-cell allocation">%</div>
-        <div class="table-cell type">P.D.</div>
+        <div class="table-cell type" data-toggle="tooltip" data-placement="top" title="Peak Demand">P.D.</div>
         <div class="table-cell link">Delete</div>
       </div>
     </div>
@@ -21,7 +21,7 @@
           end  %>
           <div class="table-row">
             <div class='table-row-item meter-item'>
-              <div class="table-cell reference">
+              <div class="table-cell reference" data-toggle="tooltip" data-placement="top" data-delay="250" title="<%= meter.meter.reference %>">
                 <%= meter_reference %>                  
               </div>
               <div class="table-cell allocation"><%= meter.percent_allocation %>%</div>
