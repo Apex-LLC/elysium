@@ -10,6 +10,7 @@ namespace :elysium do
     puts "Looping through each account..."
     Account.all.each do |account|
       puts "Looping through each tenant managed by " + account.name + "..."
+      number = 20190401
       account.tenants.each do |tenant|
         if tenant.invoice_due
           puts "An invoice is due for " + tenant.name + "."
@@ -23,11 +24,11 @@ namespace :elysium do
           start_date = Date.new(Date.today.year, Date.today.month, account.billing_cycle_start_day).prev_month
           end_date = start_date.next_month - 1.seconds
 
-          invoice = tenant.invoices.new(number: 100, start_date: start_date, end_date: end_date - 1.seconds, send_date: end_date + 6, due_date: end_date + account.days_until_invoice_due)
+          invoice = tenant.invoices.new(number: number, start_date: start_date, end_date: end_date - 1.seconds, send_date: end_date + 6.days, due_date: end_date + account.days_until_invoice_due.days)
           invoice.billable_meters << tenant.billable_meters
 
           invoice.save
-
+          number=number+1
           puts "done."
 
         end
