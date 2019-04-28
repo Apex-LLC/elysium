@@ -1,8 +1,9 @@
 
 <h2 class="text-center">Last month at a glance...</h2>
-<% if (@account.billing_cycles.any?) %>
-    <% date,invoices = @account.billing_cycles.first %>
-<p class="text-center text-muted text-uppercase"><%= date %></p>
+<% billing_cycles = @account.billing_cycles %>
+<% if (billing_cycles.any?) %>
+  <% date,invoices = billing_cycles.first %>
+  <p class="text-center text-muted text-uppercase"><%= date %></p>
 <% end %>
 </br>
 
@@ -38,19 +39,15 @@
   </div>
 </div>
 
-
 <div class="row">
   <div class="col-md-6 offset-md-3">
-    <% if (@account.billing_cycles.any?) %>
-    <% date,invoices = @account.billing_cycles.first %>
-      <div class="table">
-        <div class="table-row">  
-          <div class="table-row-grouping">
-            <%= render 'invoices_list', invoices: invoices %>
-          </div>
+    <div class="table">
+      <div class="table-row">  
+        <div class="table-row-grouping">
+          <%= render 'invoices_list', invoices: invoices %>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>
 
@@ -64,7 +61,7 @@
   <div class="row">
     <div id="billing-cycles" class="col-10 col-md-8 offset-md-2">
       </br>
-      <%= render 'billing_cycle_list', account: @account %>
+      <%= render 'billing_cycle_list', billing_cycles: billing_cycles %>
     </div>
   </div>
 

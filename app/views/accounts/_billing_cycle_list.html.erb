@@ -1,7 +1,7 @@
 
 <% i=0 %>
 <div class="table">
-  <% @account.billing_cycles.drop(1).each do |date,invoices| %>
+  <% billing_cycles.drop(1).each do |date,invoices| %>
     <div class="table-row">
       <h4 data-toggle="collapse" data-target=".accordion-<%= i %>" class="text-center panel-heading clickable collapsed"><%= date %></h4>
     </div>      

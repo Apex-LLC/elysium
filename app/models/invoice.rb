@@ -38,13 +38,7 @@ class Invoice < ApplicationRecord
   end
 
   def total
-    if (self.amount == nil)
-      set_totals
-    end
-
-    admin_costs = get_admin_costs
-
-    return self.amount + self.fees + admin_costs
+    return self.amount + self.fees
   end
 
   def set_paid
@@ -53,7 +47,7 @@ class Invoice < ApplicationRecord
 
   def overdue
     overdue = (DateTime.now > self.due_date && !self.paid?)
-    if overdue
+    if overdue != self.overdue?
       self.overdue!
     end
     return overdue
@@ -75,18 +69,6 @@ class Invoice < ApplicationRecord
       self.usage = total_usage
       self.amount=total_due
       self.fees = self.amount * ApplicationController.helpers.get_tax_fee_rate
-    end
-
-    def get_admin_costs
-      admin_costs = 0.0
-      self.tenant.account.admin_costs.each do |cost|
-        if (cost.percent)
-          admin_costs += self.amount * (cost.percent/100.0)
-        else
-          admin_costs += cost.flat_fee
-        end
-      end
-      return admin_costs
     end
 
     def set_default_status
