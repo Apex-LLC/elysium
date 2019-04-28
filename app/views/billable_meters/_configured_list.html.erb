@@ -36,7 +36,7 @@
 
 <script>
 
-  var rate_options = <%= raw current_account.rates.order(:id).map { |rate| {  value:rate.id, text:rate.rate.to_s + "/" + rate.symbol }}.to_json %>;
+  var rate_options = <%= raw current_account.rates.order(:id).map { |rate| {  value:rate.id, text:rate.display_name }}.to_json %>;
 
   $(document).ready(function() {
 

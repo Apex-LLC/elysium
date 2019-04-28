@@ -96,14 +96,13 @@ class BillableMetersController < ApplicationController
   # DELETE /billable_meters/1.json
   def destroy
     @billable_meter.destroy
-    respond_to do |format|
-      if (@billable_meter.tenant)
-        format.html { redirect_to @billable_meter.tenant, notice: 'The meter was successfully removed.' }
-        format.json { head :no_content }
-      else
-        flash[:notice] = 'The meter was successfully removed.'
-        format.html { render :configure }
-      end
+    if (@billable_meter.tenant)
+      # format.html { redirect_to @billable_meter.tenant, notice: 'The meter was successfully removed.' }
+      # format.json { head :no_content }
+      redirect_back(fallback_location: root_path,notice: "The meter was successfully removed.")
+    else
+      flash[:notice] = 'The meter was successfully removed.'
+      render :configure
     end
   end
 
