@@ -11,10 +11,10 @@ namespace :elysium do
     Account.all.each do |account|
       puts "Looping through each tenant managed by " + account.name + "..."
       number = 20190401
-      
+
       if (account.invoices.any?)
         number = account.invoices.last.number+1
-      else
+      end
 
       account.tenants.each do |tenant|
         if tenant.invoice_due
