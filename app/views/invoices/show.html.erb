@@ -79,9 +79,9 @@
 
         paymentButton = $('.payment');
 
-        var total = <%= @invoice.total.to_s %>;
+        var total = <%= "%.2f" % @invoice.total %>;
         
-        alertString = 'Are you sure?\r\nYour connected bank account will be charged $' + total;
+        alertString = 'Are you sure?\r\nYour connected bank account will be charged $' +  total;
 
         swal({
           title: "",

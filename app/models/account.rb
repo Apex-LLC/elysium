@@ -14,30 +14,30 @@ class Account < ApplicationRecord
     return amount_overdue
   end
 
-  def amount_billed
-    amount_billed=0.0
-    invoices.select{|i| i.end_date.month == (DateTime.now.month + billing_cycle_start_day.days).prev_month.month}.each do |invoice|
-      amount_billed += invoice.total
-    end
-    return amount_billed
-  end
-
   def amount_due
-    totalDue=0.0
-    for tenant in self.tenants
-      totalDue += tenant.amount_due
+    total_due=0.0
+
+    start_date = latest_billing_cycle_start_date
+
+    invoices.select{|i| i.start_date == start_date}.each do |invoice|
+      if (invoice.status!="paid")
+        total_due+=invoice.total
+      end
     end
-    return totalDue
+    return total_due
   end
 
   def amount_received
-    totalReceived=0.0
-    invoices.each do |invoice|
-      if (invoice.status=="paid" && invoice.send_date.month == DateTime.now.month)
-        totalReceived+=invoice.total
+    total_received=0.0
+
+    start_date = latest_billing_cycle_start_date
+
+    invoices.select{|i| i.start_date == start_date}.each do |invoice|
+      if (invoice.status=="paid")
+        total_received+=invoice.total
       end
     end
-    return totalReceived
+    return total_received
   end
 
   def invoices
@@ -53,8 +53,13 @@ class Account < ApplicationRecord
     return ordered_invoices.group_by{|i| i.readable_date }.map
   end
 
-  def billing_cycle_span_description
-    
-  end
-
+  private
+    def latest_billing_cycle_start_date
+      billingCycles = self.billing_cycles
+      if (billingCycles != nil)
+        return billingCycles.first[1].first.start_date
+      else
+        return DateTime.now.beginning_of_month
+      end
+    end
 end
