@@ -5,12 +5,14 @@
     <span>ELLY</span>
   </a>
   <% unless controller_name == "sessions" && action_name == "new" || controller_name == "accounts" && action_name == "eula" %>
+        
+    <% if current_user != nil && !current_user.tenant? %>
+      <span id='vertical-menu-separator'>|</span>
+      <a class="static-menu-item" href="<%= tenants_path %>">Tenants</a>
+      <a class="static-menu-item" href="<%= invoices_path %>">Invoices</a>
+      <a class="static-menu-item" href="<%= meter_setup_url %>">Meters</a>
+    <% end %>
     
-    <span id='vertical-menu-separator'>|</span>
-    <a class="static-menu-item" href="<%= tenants_path %>">Tenants</a>
-    <a class="static-menu-item" href="<%= invoices_path %>">Invoices</a>
-    <a class="static-menu-item" href="<%= meter_setup_url %>">Meters</a>
-
     <button class="navbar-toggler ml-auto hidden-sm-up float-xs-right" onclick="toggleMenu();" >
       <span class="navbar-toggler-icon"></span>
     </button>
