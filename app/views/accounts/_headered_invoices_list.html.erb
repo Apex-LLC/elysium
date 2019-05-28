@@ -1,0 +1,51 @@
+<% if invoices != nil %>
+
+<%
+    amount_overdue = 0.0
+    amount_received = 0.0
+    amount_due = 0.0
+    invoices.each do |invoice|
+      if (invoice.status == "paid")
+        amount_received += invoice.total
+      elsif (invoice.status == "unpaid")
+        amount_due += invoice.total
+      else
+        amount_overdue += invoice.total
+      end
+        
+    end
+  %>
+      <div class="table-row-item"  style="display: flex;">
+        <% column_width = 'col-md-4'
+          if amount_overdue > 0  %>
+          <div class="<%= column_width %> text-center">
+            <span class="text-muted text-uppercase">amount overdue</span>
+            <h3 class="large-currency text-danger">
+              <sup>$</sup><%= '%.2f' % amount_overdue %>
+            </h3>
+          </div>
+        <% else %>
+          <div class="col-md-2"></div>
+        <% end %>
+
+        <div class="<%= column_width %> text-center">
+          <span class="text-muted text-uppercase">amount received</span>
+          <h3 class="large-currency">
+            <sup>$</sup><%= '%.2f' % amount_received %>
+          </h3>
+        </div>
+        <div class="<%= column_width %> text-center">
+          <span class="text-muted text-uppercase">amount due</span>
+          <h3 class="large-currency">
+            <sup>$</sup><%= '%.2f' % amount_due %>
+          </h3>
+        </div>
+        <% if amount_overdue <= 0  %>
+          <div class="col-md-2"></div>
+        <% end %>
+      </div>
+      <hr />
+
+  <%= render 'invoices_list', invoices: invoices %>
+
+<% end %>

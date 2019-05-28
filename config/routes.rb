@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
   end
   get "eula", to: "accounts#eula"
+  get "everest", to: "static_pages#everest"
   get "meter-setup", to: "billable_meters#configure"
 
   # get "test", to: "billable_meters#test"

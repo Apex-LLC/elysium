@@ -6,7 +6,7 @@
       <h4 data-toggle="collapse" data-target=".accordion-<%= i %>" class="text-center panel-heading clickable collapsed"><%= date %></h4>
     </div>      
     <div class="accordion-<%= i %> collapse">
-      <%= render 'invoices_list', invoices: invoices %>
+      <%= render 'headered_invoices_list', invoices: invoices %>
     </div>
     <hr />
     <% i+=1 %>
