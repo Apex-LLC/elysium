@@ -38,7 +38,16 @@ class BillableMeter < ApplicationRecord
   end
 
   def graphable_data_hash(start_date, end_date)
-    records = get_records(start_date, end_date)    
+    records = get_records(start_date, end_date)
+
+    current_day = start_date.to_date
+    while current_day <= end_date.to_date do
+      if (!records.select { |record| record.datetime.to_date == current_day }.any?)
+        records << Record.new(datetime: current_day, value: 0.0)
+      end
+      current_day = current_day + 1.days
+    end
+
     record_map = records.group_by_day { |r| r.datetime }.map { |day, records| [day, find_usage_from_records(records).round(2)] }
     return Hash[record_map]
   end

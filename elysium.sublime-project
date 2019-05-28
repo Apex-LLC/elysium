@@ -3,6 +3,12 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/joebauer/.gem"
+		},
+		{
+			"path": "/Users/joebauer"
 		}
 	]
 }

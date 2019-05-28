@@ -20,6 +20,13 @@
     </br>
 
     <%= render 'invoice_line_chart', invoice: @invoice %>
+    </br>
+
+    <div data-toggle="collapse" data-target=".daily-summary" class="show-more-link text-center clickable collapsed">Show Daily Summary</div>   
+    <div class="daily-summary collapse">
+      <%= render 'invoice_daily_summary', invoice: @invoice %>
+    </div>
+    
 
     </br>
     <hr>
@@ -99,4 +106,8 @@
 
 
       });
+
+  $('.show-more-link').click(function(event){
+    $(this).text(($(this).text() == 'Show Daily Summary' ? 'Hide Daily Summary' : 'Show Daily Summary'));
+  });
 </script>

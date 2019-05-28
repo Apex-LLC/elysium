@@ -1,0 +1,28 @@
+<style>
+  td, th {
+    border:  .5px solid gray;
+  }
+</style>
+<div class="col-12">
+  <div class="row" style="overflow: auto">
+    <table id="daily-summary">
+      <tr>
+        <th>Meter</th>
+        <% 
+        current_date = @invoice.start_date
+        while current_date <= @invoice.end_date do %>
+          <th><%= current_date.strftime("%m/%d") %></th>
+          <% current_date = current_date + 1.days %>
+        <% end %>
+      </tr>
+      <% @invoice.graphable_data.each do |data| %>
+        <tr>
+          <td><%= data[:name] %></td>
+          <% data[:data].each do |value| %>
+            <td><%= value.last %>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
