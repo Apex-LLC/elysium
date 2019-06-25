@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :tenant_fees
   resources :admin_costs
   resources :accounts
   resources :rates

@@ -5,6 +5,7 @@ class Account < ApplicationRecord
   has_many :rates
   has_many :admin_costs
   has_many :billable_meters
+  has_many :tenant_fees, dependent: :destroy
 
   def amount_overdue
     amount_overdue=0.0

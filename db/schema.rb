@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190320220717) do
+ActiveRecord::Schema.define(version: 20190614210741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -139,6 +139,18 @@ ActiveRecord::Schema.define(version: 20190320220717) do
     t.index ["site_id"], name: "index_spaces_on_site_id"
   end
 
+  create_table "tenant_fees", force: :cascade do |t|
+    t.bigint "tenant_id"
+    t.decimal "amount", precision: 8, scale: 2
+    t.boolean "recurring"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "account_id"
+    t.string "description"
+    t.index ["account_id"], name: "index_tenant_fees_on_account_id"
+    t.index ["tenant_id"], name: "index_tenant_fees_on_tenant_id"
+  end
+
   create_table "tenant_users", id: false, force: :cascade do |t|
     t.bigint "tenant_id"
     t.bigint "user_id"
@@ -208,6 +220,8 @@ ActiveRecord::Schema.define(version: 20190320220717) do
   add_foreign_key "records", "meters"
   add_foreign_key "sites", "accounts"
   add_foreign_key "spaces", "sites"
+  add_foreign_key "tenant_fees", "accounts"
+  add_foreign_key "tenant_fees", "tenants"
   add_foreign_key "tenant_users", "tenants"
   add_foreign_key "tenant_users", "users"
   add_foreign_key "tenants", "accounts"

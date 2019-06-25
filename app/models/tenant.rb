@@ -2,6 +2,7 @@ class Tenant < ApplicationRecord
   has_many :invoices, dependent: :destroy
   has_many :billable_meters, dependent: :destroy
   has_many :payments
+  has_many :tenant_fees, dependent: :destroy
   has_many :tenant_users
   has_many :users, through: :tenant_users, dependent: :destroy
   belongs_to :account

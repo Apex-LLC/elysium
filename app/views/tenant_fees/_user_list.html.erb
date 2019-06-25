@@ -1,0 +1,121 @@
+
+  <script>
+    function isNumberKey(evt)
+     {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31 
+          && (charCode < 48 || charCode > 57))
+           return false;
+
+        return true;
+      }
+
+      var rateMeterDictionary = new Object();
+
+     function addRateMetersToDictionary(id, meters)
+     {
+        rateMeterDictionary[id] = meters;
+     }
+
+    $.fn.editable.defaults.mode = 'inline';
+
+    $(document).ready(function() {
+
+      $('.editable').editable();
+
+      $('select#tenant-select').select2({
+      theme: "bootstrap",
+      minimumResultsForSearch: Infinity,
+      placeholder: "Tenant",
+      allowClear: false
+    });
+    });
+    
+  </script>
+
+  <div id="rate-config-list">          
+    <h4 class="text-muted">Tenant Fees</h4>
+      <div class="table-header-row">
+        <div class='table-row-item tenant-fee-item'>
+          <div class="table-cell tenant">Tenant</div>
+          <div class="table-cell amount">Amount</div>
+          <div class="table-cell description">Description</div>
+          <div class="table-cell recurring">Recurring?</div>
+          <div class="table-cell button">Delete</div>          
+        </div>
+      </div>
+    <div id="rate-list">
+      <div class="table h-100">
+        <% 
+        if (tenant_fees != nil)
+          tenant_fees.each do |fee| %>
+            <div class="table-row">
+              <div class='table-row-item tenant-fee-item'>
+                <div class="table-cell tenant"><sup>&nbsp;</sup>
+                  <a id="<%= fee.id %>" href="#" class="editable" data-type="text" data-resource="tenant_fee" data-name="tenant" data-url="<%= tenant_fee_path(fee) %>">
+                    <%= fee.tenant.name %>
+                  </a>
+                </div>
+
+                <div class="table-cell amount"><sup>$</sup>
+                  <a id="<%= fee.id %>" href="#" class="editable" data-type="number" data-resource="tenant_fee" data-name="amount" data-url="<%= tenant_fee_path(fee) %>">
+                    <%= "%.2f" % fee.amount %>
+                  </a>
+                </div>
+                <div class="table-cell description"><sup>&nbsp;</sup>
+                  <a id="<%= fee.id %>" href="#" class="editable" data-type="text" data-resource="tenant_fee" data-name="description" data-url="<%= tenant_fee_path(fee) %>">
+                    <%= fee.description %>
+                  </a>
+                </div>
+                <div class="table-cell recurring"><sup>&nbsp;</sup>
+                  <a id="<%= fee.id %>" href="#" class="editable" data-type="text" data-resource="tenant_fee" data-name="recurring" data-url="<%= tenant_fee_path(fee) %>">
+                    <%= fee.recurring? %>
+                  </a>
+                </div>
+                <div class="table-cell button"><%= link_to '✕', fee, method: :delete, data: { confirm: "Are you sure you would like to remove this fee?" } %></div>
+              </div>
+            </div>
+
+          <% end %>
+        <% end %>
+        <div class="table-row">
+          <div class='table-row-item tenant-fee-item'>
+            <% fee = TenantFee.new %>
+            <%= form_with(model: fee, local: true) do |form| %>
+
+              <div class="inline-field table-cell tenant">
+                <% defaultOption = options_for_select([[]]) %>
+                <% options = options_from_collection_for_select(current_account.tenants, 'id', 'name') %>
+                <%= form.select :tenant_id, defaultOption << options, {}, id: "tenant-select", include_blank: true %>
+               <!--  <%= form.label :tenant, class: "sr-only" %>
+                <%= form.text_field :tenant, id: :rate_tenant, required: true, placeholder: "Tenant" %> -->
+              </div>
+
+              <div class="inline-field table-cell amount">
+                <%= form.label :amount, class: "sr-only"  %>
+                <%= form.text_field :amount, id: :tenant_fee_amount, onkeypress:"return isNumberKey(event)", required: true, placeholder: "Amount" %>
+              </div>
+
+              <div class="inline-field table-cell description">
+                <%= form.label :recurring, class: "sr-only"  %>
+                <%= form.text_field  :description, id: :tenant_fee_description, required: true, placeholder: "Description" %>
+              </div>
+
+              <div class="inline-field table-cell recurring">
+                <%= form.label :recurring, class: "sr-only"  %>
+                <%= form.check_box :recurring, id: :tenant_fee_recurring, placeholder: "Recurring?" %>
+              </div>
+
+              <%= form.hidden_field :account_id, :value => account.id %>
+
+              <div class="actions inline-field table-cell button">
+                <%= form.submit class: "btn-primary", value: "Add" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr style="margin-bottom: 0;"/>
+  </div>
+
