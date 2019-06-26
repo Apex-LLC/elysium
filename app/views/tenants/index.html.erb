@@ -9,7 +9,7 @@
           <tr>
             <th class="clickable">Name</th>
             <th class="clickable text-center">Amount Due</th>
-            <th class="clickable text-center">Delete</th>
+            <th class="sorttable_nosort text-center">Remove</th>
           </tr>
         </thead>
 
@@ -22,7 +22,7 @@
               <td><%= name %></td>
               <td class="text-center"><%= amount_due %></td>
               <!-- <td><%= link_to 'Edit', edit_tenant_path(tenant) %></td> -->
-              <td class="text-center"><%= link_to '✕', tenant, method: :delete, data: { confirm: 'Are you sure you would like to delete ' + name + '?' } %></td>
+              <td class="text-center"><%= link_to '✕', tenant, method: :delete, data: { confirm: 'Are you sure you would like to remove ' + name + '?' } %></td>
             </tr>
           <% end %>
           <tfoot>
