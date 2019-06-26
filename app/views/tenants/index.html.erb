@@ -4,12 +4,12 @@
     <div class="behind" style="z-index:-1">
       <h1>Tenants</h1>
 
-      <table class="table">
+      <table class="table sortable">
         <thead>
           <tr>
-            <th>Name</th>
-            <th class="text-center">Amount Due</th>
-            <th class="text-center">Delete</th>
+            <th class="clickable">Name</th>
+            <th class="clickable text-center">Amount Due</th>
+            <th class="clickable text-center">Delete</th>
           </tr>
         </thead>
 
@@ -25,9 +25,11 @@
               <td class="text-center"><%= link_to '✕', tenant, method: :delete, data: { confirm: 'Are you sure you would like to delete ' + name + '?' } %></td>
             </tr>
           <% end %>
-          <tr>        
-            <td colspan="4"><%= link_to '+ Add New', new_tenant_path, :remote => true %></td>
-          </tr>
+          <tfoot>
+            <tr>        
+              <td colspan="4"><%= link_to '+ Add New', new_tenant_path, :remote => true %></td>
+            </tr>
+          </tfoot>
         </tbody>
       </table>
     </div>
