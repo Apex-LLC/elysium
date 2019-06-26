@@ -1,29 +1,25 @@
 
-<h2 class="text-center">Last month at a glance...</h2>
-<% billing_cycles = @account.billing_cycles %>
-<% if (billing_cycles.any?) %>
-  <% date,invoices = billing_cycles.first %>
-  <p class="text-center text-muted text-uppercase"><%= date %></p>
-<% end %>
-</br>
-
+<h1 class="text-center">Account Totals</h1>
 <div class="row">
   <div class="offset-md-2 col-8">
+    <br>
     <div class="row">
       <% column_width = 'col-md-4'
-        if @account.amount_overdue > 0  %>
-        <div class="<%= column_width %> text-center">
-          <span class="text-muted text-uppercase">amount overdue</span>
-          <h3 class="large-currency text-danger">
-            <sup>$</sup><%= '%.2f' % @account.amount_overdue %>
-          </h3>
-        </div>
+      if @account.amount_overdue > 0  %>
+          <div class="<%= column_width %> text-center">
+            <%= link_to invoices_path(:status => :overdue) do %>
+              <span class="text-muted text-uppercase">amount overdue</span>
+            <% end %>
+              <h3 class="large-currency text-danger">
+                <sup>$</sup><%= '%.2f' % @account.amount_overdue %>
+              </h3>
+          </div>
       <% else %>
         <div class="offset-2"></div>
       <% end %>
 
       <div class="<%= column_width %> text-center">
-        <span class="text-muted text-uppercase">amount received</span>
+        <span class="text-muted text-uppercase">amount received (last period)</span>
         <h3 class="large-currency">
           <sup>$</sup><%= '%.2f' % @account.amount_received %>
         </h3>
@@ -35,22 +31,79 @@
         </h3>
       </div>
     </div>
-    <hr />
+    <br>
   </div>
 </div>
+<hr />
 
-<div class="row">
-  <div class="col-md-6 offset-md-3">
-    <div class="table">
-      <div class="table-row">  
-        <div class="table-row-grouping">
-          <%= render 'invoices_list', invoices: invoices %>
+<br>
+<br>
+
+
+<% billing_cycles = @account.billing_cycles %>
+<% if (billing_cycles.any?) %>
+  <% date,invoices = billing_cycles.first %>
+  <%
+    amount_overdue = 0.0
+    amount_received = 0.0
+    amount_due = 0.0
+    invoices.each do |invoice|
+      if (invoice.status == "paid")
+        amount_received += invoice.total
+      elsif (invoice.status == "unpaid")
+        amount_due += invoice.total
+      else
+        amount_overdue += invoice.total
+      end
+        
+    end
+  %>
+  <!-- <h5 class="text-center text-muted "><%= date %> at a glance...</h5> -->
+  <!-- <p class="text-center text-muted text-uppercase"><%= date %></p> -->
+  <div class="row">
+      <div class="offset-md-2 col-8">
+        <h2 class="text-center"><%= date %></h2>
+        <br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="offset-md-2 col-8">
+        
+        <div class="row">
+          <% column_width = 'col-md-4' %>
+            
+          <div class="offset-2"></div>
+
+          <div class="<%= column_width %> text-center">
+            <span class="text-muted text-uppercase">amount received</span>
+            <h3 class="large-currency">
+              <sup>$</sup><%= '%.2f' % amount_received %>
+            </h3>
+          </div>
+          <div class="<%= column_width %> text-center">
+            <span class="text-muted text-uppercase">amount due</span>
+            <h3 class="large-currency">
+              <sup>$</sup><%= '%.2f' % amount_due %>
+            </h3>
+          </div>
+        </div>
+        <hr />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="table">
+          <div class="table-row">  
+            <div class="table-row-grouping">
+              <%= render 'invoices_list', invoices: invoices %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
-
+  
+<% end %>
 </br>
 </br>
 

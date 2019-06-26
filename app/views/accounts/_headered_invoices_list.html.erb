@@ -16,17 +16,9 @@
     end
   %>
       <div class="table-row-item"  style="display: flex;">
-        <% column_width = 'col-md-4'
-          if amount_overdue > 0  %>
-          <div class="<%= column_width %> text-center">
-            <span class="text-muted text-uppercase">amount overdue</span>
-            <h3 class="large-currency text-danger">
-              <sup>$</sup><%= '%.2f' % amount_overdue %>
-            </h3>
-          </div>
-        <% else %>
-          <div class="col-md-2"></div>
-        <% end %>
+        <% column_width = 'col-md-4' %>
+        
+        <div class="col-md-2"></div>
 
         <div class="<%= column_width %> text-center">
           <span class="text-muted text-uppercase">amount received</span>
@@ -34,15 +26,15 @@
             <sup>$</sup><%= '%.2f' % amount_received %>
           </h3>
         </div>
+        
         <div class="<%= column_width %> text-center">
           <span class="text-muted text-uppercase">amount due</span>
           <h3 class="large-currency">
             <sup>$</sup><%= '%.2f' % amount_due %>
           </h3>
         </div>
-        <% if amount_overdue <= 0  %>
-          <div class="col-md-2"></div>
-        <% end %>
+          
+        <div class="col-md-2"></div>
       </div>
       <hr />
 

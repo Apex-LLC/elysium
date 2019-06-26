@@ -10,6 +10,15 @@ class InvoicesController < ApplicationController
     else
       @invoices = current_account.invoices
     end
+
+    @title = "Invoices"
+
+    if params[:status] != nil
+      status = params[:status]
+      filtered_invoices = @invoices.select { |invoice| invoice.status == status }
+      @title = status.to_s.capitalize + " " + @title
+      @invoices = filtered_invoices
+    end
   end
 
   # GET /invoices/1

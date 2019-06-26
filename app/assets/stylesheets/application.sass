@@ -55,6 +55,8 @@ a#title
   font-size: 1.1em
   font-family: $bold-font !important
   font-weight: bold
+  .text-danger
+    color: red
 
 img
   padding: 10px
@@ -225,13 +227,15 @@ nav
 .panel-heading
   padding: 10px
   margin-bottom: 0
-  &:hover
-    color: $accent-color
+  &.clickable
+    &:hover
+      color: $accent-color
 
 .panel-heading:not(.collapsed)
-  text-decoration: underline
-  text-decoration-line: .5px
   background-color: $light-gray
+  &.clickable
+    text-decoration: underline
+    text-decoration-line: .5px
 
 .half-width
   width: 50%
