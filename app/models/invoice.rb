@@ -9,7 +9,7 @@ class Invoice < ApplicationRecord
   validates_associated :billable_meters, :message=> lambda{|class_obj, obj| obj[:value].errors.full_messages.join(",") }
   after_initialize :set_default_status, :if => :new_record?
 
-  enum status: [:paid, :unpaid, :overdue]
+  enum status: [:paid, :unpaid, :overdue, :completed]
 
   def graphable_data
     return self.billable_meters.map { |meter|
@@ -46,7 +46,7 @@ class Invoice < ApplicationRecord
   end
 
   def overdue
-    overdue = (DateTime.now > self.due_date && !self.paid?)
+    overdue = (DateTime.now > self.due_date && !self.paid? && !self.completed?)
     if overdue != self.overdue?
       self.overdue!
     end
@@ -69,6 +69,10 @@ class Invoice < ApplicationRecord
       self.usage = total_usage
       self.amount=total_due
       self.fees = self.amount * ApplicationController.helpers.get_tax_fee_rate
+
+      if (self.amount == 0.0)
+        self.status = :completed
+      end
     end
 
     def set_default_status
