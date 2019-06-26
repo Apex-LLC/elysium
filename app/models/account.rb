@@ -18,12 +18,8 @@ class Account < ApplicationRecord
   def amount_due
     total_due=0.0
 
-    start_date = latest_billing_cycle_start_date
-
-    invoices.select{|i| i.start_date == start_date}.each do |invoice|
-      if (invoice.status!="paid")
+    invoices.select{|i| i.status != "paid"}.each do |invoice|
         total_due+=invoice.total
-      end
     end
     return total_due
   end

@@ -50,10 +50,8 @@
     invoices.each do |invoice|
       if (invoice.status == "paid")
         amount_received += invoice.total
-      elsif (invoice.status == "unpaid")
+      elsif (invoice.status != "paid")
         amount_due += invoice.total
-      else
-        amount_overdue += invoice.total
       end
         
     end
