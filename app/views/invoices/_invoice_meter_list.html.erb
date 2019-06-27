@@ -1,7 +1,8 @@
 <div class="table-header-row">
   <div class='table-row-item meter-item'>
-    <div class="table-cell reference">Meter</div>
+    <div class="table-cell name">Meter</div>
     <div class="table-cell allocation">Usage</div>
+    <div class="table-cell rate">Rate</div>
     <div class="table-cell amount">Amount Due</div>
   </div>
 </div>
@@ -17,6 +18,8 @@
         meter_reference = meter.meter.reference 
       end 
 
+      meter_reference = meter_reference + " (" + meter.rate.symbol + ")"
+
       meter_usage = number_with_precision(meter.get_usage(@invoice.start_date,@invoice.end_date), precision:2, delimiter:',').to_f
       if (meter.is_peak_demand_meter?)
         meter_amount_due = number_to_currency(meter.get_amount_due_peak_demand(@invoice.start_date,@invoice.end_date))
@@ -26,10 +29,11 @@
       %>
       <div class="table-row">
         <div class='table-row-item meter-item' data-href=''>
-          <div class="table-cell reference">
+          <div class="table-cell name">
             <%= meter_reference %>                  
           </div>
-          <div class="table-cell allocation"><%= meter_usage.to_s + " (" + meter.rate.symbol + ")"%></div>
+          <div class="table-cell allocation"><%= meter_usage.to_s %></div>
+          <div class="table-cell rate"><sup>$</sup><%= meter.rate.rate %></div>
           <div class="table-cell amount"><%= meter_amount_due %></div>
         </div>
       </div>
@@ -48,8 +52,9 @@
       %>
       <div class="table-row">
         <div class='table-row-item meter-item' data-href=''>
-          <div class="table-cell reference"><%= cost.label %></div>
-          <div class="table-cell allocation"><%= rate %></div>
+          <div class="table-cell name"><%= cost.label %></div>
+          <div class="table-cell allocation"></div>
+          <div class="table-cell rate"><%= rate %></div>          
           <div class="table-cell amount"><%= total %></div>
         </div>
       </div>
@@ -58,7 +63,7 @@
     <div class="table-row">
       <div class='table-row-item meter-item expanding-row' data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         <div class="table-cell reference">Taxes and Fees</div>
-        <div class="table-cell allocation"> - </div>
+        <div class="table-cell allocation"></div>
         <div class="table-cell amount"><%= tax_and_fees_due %></div>
       </div>
       <div class='table-row-item-description meter-item collapse' id="collapseExample" >
