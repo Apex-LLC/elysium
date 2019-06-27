@@ -32,8 +32,8 @@
           <div class="table-cell name">
             <%= meter_reference %>                  
           </div>
-          <div class="table-cell allocation"><%= meter_usage.to_s %></div>
-          <div class="table-cell rate"><sup>$</sup><%= meter.rate.rate %></div>
+          <div class="table-cell allocation"><%= "%.2f" % meter_usage %></div>
+          <div class="table-cell rate"><sup>$</sup><%= "%.2f" % meter.rate.rate %></div>
           <div class="table-cell amount"><%= meter_amount_due %></div>
         </div>
       </div>
