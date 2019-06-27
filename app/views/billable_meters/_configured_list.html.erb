@@ -1,9 +1,8 @@
-     
 <h4 class="text-muted">Configured Meters</h4>
 <div class="table-header-row">
-  <div class='table-row-item meter-item'>
+  <div class='table-row-item billable-meter-item'>
     <div class="table-cell reference">Reference</div>
-    <div class="table-cell allocation">Rate</div>
+    <div class="table-cell rate">Rate</div>
     <div class="table-cell link">Remove</div>
   </div>
 </div>
@@ -17,12 +16,12 @@
           meter_reference = meter.meter.reference 
         end  %>
         <div class="table-row">
-          <div class='table-row-item meter-item'>
+          <div class='table-row-item billable-meter-item'>
             <div class="table-cell reference">
               <%= meter_reference %>
             </div>
-            <div class="table-cell allocation">
-              <a href="#" class="editable-allocation" data-type="select" data-resource="billable_meter" data-value="<%= meter.rate.id %>" data-pk="<%= meter.id %>" data-name="rate_id" data-url="<%= billable_meter_path(meter) %>">
+            <div class="table-cell rate">
+              <a href="#" class="editable-rate" data-type="select" data-resource="billable_meter" data-value="<%= meter.rate.id %>" data-pk="<%= meter.id %>" data-name="rate_id" data-url="<%= billable_meter_path(meter) %>">
                 <%= ("%.2f" % meter.rate.rate).to_s + "/" + meter.rate.symbol %>
               </a>
             </div>
@@ -35,12 +34,9 @@
 </div>
 
 <script>
-
   var rate_options = <%= raw current_account.rates.order(:id).map { |rate| {  value:rate.id, text:rate.display_name }}.to_json %>;
-
   $(document).ready(function() {
-
-    $('.editable-allocation').editable({  
+    $('.editable-rate').editable({  
       source: rate_options
     });
   });
