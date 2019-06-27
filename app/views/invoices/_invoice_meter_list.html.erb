@@ -7,7 +7,6 @@
 </div>
 <div class="table h-100">
   <% 
-    invoice_usage = number_with_precision(@invoice.usage, precision: 2, delimiter:',')
     total_due = number_with_delimiter(number_to_currency(@invoice.total), delimiter:',')
     tax_and_fees_due = number_with_delimiter(number_to_currency(@invoice.fees), delimiter:',')
 
@@ -70,8 +69,8 @@
     </div>
     <div class="table-row">
       <div class='table-totals'>
-        <div class="table-cell reference">Totals</div>
-        <div class="table-cell allocation"><%= invoice_usage %></div>
+        <div class="table-cell reference"> </div>
+        <div class="table-cell allocation"> </div>
         <div class="table-cell total"><%= total_due %></div>
       </div>
     </div>

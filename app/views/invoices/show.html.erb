@@ -56,13 +56,6 @@
           
           <%= button_tag "Pay Now", class: "payment btn-outline-primary", 'data-disable-with' => "Processing.."  %>
 
-<!-- , data: { confirm: "Are you sure? Your connected bank account will be charged $" + @invoice.total.to_s } -->
-<!--           <script src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-outline-primary btn-large"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="Pay your Invoice"
-            data-amount="<%= total %>"
-            data-email="<%= current_user.email %>"
-            data-locale="auto"></script> -->
           <% end %>
       </div>
     <% elsif (@invoice.payment != nil)

@@ -28,15 +28,6 @@ class Invoice < ApplicationRecord
     end
   end  
 
-  def set_usage
-    usage=0.0
-    self.billable_meters.each do |meter|
-      usage+=meter.get_usage(self.start_date,self.end_date)
-    end
-    self.update_attribute(:usage, usage)
-
-  end
-
   def total
     return self.amount + self.fees
   end
@@ -56,17 +47,14 @@ class Invoice < ApplicationRecord
   private 
     def set_totals
       total_due=0.0
-      total_usage = 0.0
       self.billable_meters.each do |meter|
         meter_usage = meter.get_usage(self.start_date,self.end_date)
-        total_usage += meter_usage
         if (meter.is_peak_demand_meter?)
           total_due += meter.get_amount_due_peak_demand(self.start_date,self.end_date)
         else
           total_due += meter.get_amount_due_from_usage(meter_usage)
         end
       end
-      self.usage = total_usage
       self.amount=total_due
       self.fees = self.amount * ApplicationController.helpers.get_tax_fee_rate
 
