@@ -1,38 +1,39 @@
-<h4 class="text-muted">Configured Meters</h4>
-<div class="table-header-row">
-  <div class='table-row-item billable-meter-item'>
-    <div class="table-cell reference">Reference</div>
-    <div class="table-cell rate">Rate</div>
-    <div class="table-cell link">Remove</div>
+<div id="reloadable-configured-meter-list">
+  <h4 class="text-muted">Configured Meters</h4>
+  <div class="table-header-row">
+    <div class='table-row-item billable-meter-item'>
+      <div class="table-cell reference">Reference</div>
+      <div class="table-cell rate">Rate</div>
+      <div class="table-cell link">Remove</div>
+    </div>
   </div>
-</div>
-<div id="configured-meter-list" class="h-100">
-  <div class="table">
-    <% if (current_account.billable_meters.all.count > 0)
-      current_account.billable_meters.all.each do |meter| 
-        if (meter.description?) 
-          meter_reference = meter.description 
-        else 
-          meter_reference = meter.meter.reference 
-        end  %>
-        <div class="table-row">
-          <div class='table-row-item billable-meter-item'>
-            <div class="table-cell reference">
-              <%= meter_reference %>
+  <div id="configured-meter-list" class="h-100">
+    <div class="table">
+      <% if (current_account.billable_meters.all.count > 0)
+        current_account.billable_meters.all.each do |meter| 
+          if (meter.description?) 
+            meter_reference = meter.description 
+          else 
+            meter_reference = meter.meter.reference 
+          end  %>
+          <div class="table-row">
+            <div class='table-row-item billable-meter-item'>
+              <div class="table-cell reference">
+                <%= meter_reference %>
+              </div>
+              <div class="table-cell rate">
+                <a href="#" class="editable-rate" data-type="select" data-resource="billable_meter" data-value="<%= meter.rate.id %>" data-pk="<%= meter.id %>" data-name="rate_id" data-url="<%= billable_meter_path(meter) %>">
+                  <%= ("%.2f" % meter.rate.rate).to_s + "/" + meter.rate.symbol %>
+                </a>
+              </div>
+              <div class="table-cell link"><%= link_to '✕', meter, method: :delete, data: { confirm: "Are you sure you would like to remove this meter?" } %></div>
             </div>
-            <div class="table-cell rate">
-              <a href="#" class="editable-rate" data-type="select" data-resource="billable_meter" data-value="<%= meter.rate.id %>" data-pk="<%= meter.id %>" data-name="rate_id" data-url="<%= billable_meter_path(meter) %>">
-                <%= ("%.2f" % meter.rate.rate).to_s + "/" + meter.rate.symbol %>
-              </a>
-            </div>
-            <div class="table-cell link"><%= link_to '✕', meter, method: :delete, data: { confirm: "Are you sure you would like to remove this meter?" } %></div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
-
 <script>
   var rate_options = <%= raw current_account.rates.order(:id).map { |rate| {  value:rate.id, text:rate.display_name }}.to_json %>;
   $(document).ready(function() {

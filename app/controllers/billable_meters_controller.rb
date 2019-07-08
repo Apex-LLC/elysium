@@ -110,6 +110,10 @@ class BillableMetersController < ApplicationController
     @billable_meter = @billable_meter ? @billable_meter : BillableMeter.new
   end
 
+  def reload_configured_list
+    render :partial => "billable_meters/configured_list"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_billable_meter

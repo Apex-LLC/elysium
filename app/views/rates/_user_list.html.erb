@@ -21,7 +21,13 @@
 
     $(document).ready(function() {
 
-      $('.editable').editable();
+      $('.editable').editable(
+        {
+          success: function(response, newValue) {
+            $( "#reloadable-configured-meter-list" ).load( "/billable_meters/reload_configured_list" );
+          }
+        }
+      );
 
 
       // $('.editable').mousedown(function(event){
