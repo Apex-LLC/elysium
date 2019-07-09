@@ -1,3 +1,13 @@
+
+<script>
+  $.fn.editable.defaults.mode = 'inline';
+
+  $(document).ready(function() {
+    $('.editable').editable();
+  }
+);
+</script>
+
 <div class="col-md-1"></div>
 <div class="<%= associatedMeterWidth %> growing-flex-column" >          
   <h3>Associated Meters</h3>
@@ -27,8 +37,18 @@
               <div class="table-cell reference" data-toggle="tooltip" data-placement="top" data-delay="250" title="<%= meter.meter.reference %>">
                 <%= meter_reference %>                  
               </div>
-              <div class="table-cell allocation"><%= meter.percent_allocation %>%</div>
-              <div class="table-cell link"><%= link_to '✕', meter, method: :delete, data: { confirm: "Are you sure you would like to remove this meter from " + @tenant.name + "?" } %></div>
+
+              <div class="table-cell allocation">
+                <a id="<%= meter.id %>" href="#" class="editable" data-type="number" data-step="1.0" data-resource="billable_meter" data-name="percent_allocation" 
+                  data-url='<%= billable_meter_path(meter) %>'>
+                  <%= meter.percent_allocation %>
+                </a>
+                %
+              </div>
+
+              <div class="table-cell link"><%= link_to '✕', meter, method: :delete, data: { confirm: "Are you sure you would like to remove this meter from " + @tenant.name + "?" } %>
+              </div>
+
             </div>
           </div>
         <% end %>
