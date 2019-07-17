@@ -50,9 +50,9 @@ class Invoice < ApplicationRecord
       self.billable_meters.each do |meter|
         meter_usage = meter.get_usage(self.start_date,self.end_date)
         if (meter.is_peak_demand_meter?)
-          total_due += meter.get_amount_due_peak_demand(self.start_date,self.end_date)
+          total_due += meter.get_amount_due_peak_demand(self.start_date,self.end_date).round(2)
         else
-          total_due += meter.get_amount_due_from_usage(meter_usage)
+          total_due += meter.get_amount_due_from_usage(meter_usage).round(2)
         end
       end
       self.amount=total_due
