@@ -17,6 +17,6 @@ class TenantMailer < ApplicationMailer
     @tenant = tenant
     @user = current_user
 
-    mail to: @tenant.email, subject: "Welcome to Elysium"
+    mail to: @tenant.email, subject: "Welcome to ELLY"
   end
 end
