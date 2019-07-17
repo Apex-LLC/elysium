@@ -4,16 +4,16 @@
   }
 </style>
 <div class="col-12">
-  <div class="row" style="overflow: auto">
+  <div class="row">
     <table id="daily-summary">
       <tr>
         <th>Meter</th>
-        <% 
-        current_date = @invoice.start_date
-        while current_date <= @invoice.end_date do %>
-          <th><%= current_date.strftime("%m/%d") %></th>
-          <% current_date = current_date + 1.days %>
-        <% end %>
+          <% 
+          current_date = @invoice.start_date
+          while current_date <= @invoice.end_date do %>
+            <th><%= current_date.strftime("%m/%d") %></th>
+            <% current_date = current_date + 1.days %>
+          <% end %>
       </tr>
       <% @invoice.graphable_data.each do |data| %>
         <tr>
