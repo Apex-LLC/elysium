@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :set_account, only: [:show, :edit, :update, :destroy, :update_billing_day, :update_days_until_invoice_due]
+  before_action :set_account, only: [:show, :edit, :update, :destroy, :update_billing_day, :update_days_until_invoice_due, :stripe_callback]
   before_action :authenticate_user!, only: [:show, :edit, :update, :destroy]
 
   # GET /accounts
@@ -104,15 +104,17 @@ class AccountsController < ApplicationController
       authorize_url: '/oauth/authorize',
       token_url: '/oauth/token'
     }
+
     code = params[:code]
     client = OAuth2::Client.new(ENV['STRIPE_CONNECT_CLIENT_ID'], ENV['STRIPE_SECRET_KEY'], options)
     @resp = client.auth_code.get_token(code, :params => {:scope => 'read_write'})
     @access_token = @resp.token
+
     @account.update!(stripe_account_id: @resp.params["stripe_user_id"]) if @resp
 
     flash[:notice] = "Your account has been successfully created and is ready to process payments!"
 
-    redirect_to edit_account_path
+    redirect_to edit_account_path(@account)
    end
 
   private

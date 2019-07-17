@@ -24,7 +24,7 @@ class ChargesController < ApplicationController
       amount: @amount,
       currency: "usd",
       # source: "tok_visa",
-      application_fee_amount: @amount * get_tax_fee_rate,
+      application_fee_amount: (@amount.to_f * get_tax_fee_rate).round(0),
       transfer_data: {
         destination: "#{@invoice.tenant.account.stripe_account_id}",
       },

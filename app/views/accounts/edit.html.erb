@@ -41,11 +41,12 @@
 
         <% if current_account.stripe_account_id.nil? %>
           <span class="glyphicon glyphicon-remove float-left" style="padding-left: 15px; padding-top: 11px"></span>
-          <a class="btn btn-outline-primary float-right" role="button" aria-pressed="true" href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write">
-            Set Up Payments
+          <a class="btn btn-outline-primary float-right" role="button" aria-pressed="true" href="https://connect.stripe.com/express/oauth/authorize?response_type=code&client_id=<%= ENV['STRIPE_CONNECT_CLIENT_ID'] %>&scope=read_write">
+            Set Up Payouts
           </a>
         <% else %>
-          <span class="glyphicon glyphicon-ok float-left" style="padding-left: 15px; padding-top: 11px"></span>
+          <span class="glyphicon glyphicon-ok float-left" style="padding-left: 15px; padding-top: 8px"></span>
+          <span class="float-left" style="padding-left: 15px; padding-top: 8px">Connected</span>
         <% end %>
       </div>
     <% else %>
