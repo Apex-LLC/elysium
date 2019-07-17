@@ -49,7 +49,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'chartkick'
 gem 'stripe'
-
+gem 'oauth2'
 gem 'groupdate'
 
 # Use Capistrano for deployment

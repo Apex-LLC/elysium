@@ -1,5 +1,5 @@
 class MessageMailer < ApplicationMailer
-  default from: "joe@apexllc.com"
+  default from: "hello@ellybilling.app"
 
   def contact(message)
     @body = message.body

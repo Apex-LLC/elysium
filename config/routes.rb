@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'event/stripe_callback'
+
+  get 'event/payment_profile'
+
   resources :tenant_fees
   resources :admin_costs
   resources :accounts
@@ -24,7 +28,8 @@ Rails.application.routes.draw do
   get "meter-setup", to: "billable_meters#configure"
   get "billable_meters/reload_configured_list", to: "billable_meters#reload_configured_list"
   # get "test", to: "billable_meters#test"
-  
+  get "stripe/connect", to:"accounts#stripe_callback", as: :stripe_connect
+
   resources :contacts
   resources :billable_meters
   resources :meters

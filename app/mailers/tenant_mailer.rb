@@ -1,5 +1,5 @@
 class TenantMailer < ApplicationMailer
-  default from: "joe@apexllc.com"
+  default from: "hello@ellybilling.app"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

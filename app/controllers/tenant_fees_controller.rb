@@ -4,12 +4,7 @@ class TenantFeesController < ApplicationController
   # GET /tenant_fees
   # GET /tenant_fees.json
   def index
-    @tenant_fees = TenantFee.all
-  end
-
-  # GET /tenant_fees/1
-  # GET /tenant_fees/1.json
-  def show
+    @tenant_fees = current_account.tenant_fees
   end
 
   # GET /tenant_fees/new
@@ -39,7 +34,7 @@ class TenantFeesController < ApplicationController
     respond_to do |format|
       if @tenant_fee.update(tenant_fee_params)
         format.html { redirect_to @tenant_fee, notice: 'Tenant fee was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tenant_fee }
+        format.json { head :no_content }
       else
         format.html { render :edit }
         format.json { render json: @tenant_fee.errors, status: :unprocessable_entity }

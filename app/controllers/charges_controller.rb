@@ -12,12 +12,23 @@ class ChargesController < ApplicationController
     customer_id = @invoice.tenant.stripe_token
     customer = Stripe::Customer.retrieve(customer_id)
 
-    charge = Stripe::Charge.create(
-      :customer    => customer.id,
-      :amount      => @amount,
-      :description => 'Rails Stripe customer',
-      :currency    => 'usd'
-    )
+    # charge = Stripe::Charge.create(
+    #   :customer    => customer.id,
+    #   :amount      => @amount,
+    #   :description => 'Rails Stripe customer',
+    #   :currency    => 'usd'
+    # )
+
+    charge = Stripe::Charge.create({
+      customer: customer.id,
+      amount: @amount,
+      currency: "usd",
+      # source: "tok_visa",
+      application_fee_amount: @amount * get_tax_fee_rate,
+      transfer_data: {
+        destination: "#{@invoice.tenant.account.stripe_account_id}",
+      },
+    })
 
     @invoice.set_paid
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190627192232) do
+ActiveRecord::Schema.define(version: 20190717140327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20190627192232) do
     t.datetime "updated_at", null: false
     t.integer "billing_cycle_start_day"
     t.integer "days_until_invoice_due"
+    t.string "stripe_account_id"
   end
 
   create_table "admin_costs", force: :cascade do |t|
