@@ -11,16 +11,9 @@ class Invoice < ApplicationRecord
   validates_associated :billable_meters, :message=> lambda{|class_obj, obj| obj[:value].errors.full_messages.join(",") }
   after_initialize :set_default_status, :if => :new_record?
 
-  enum status: [:paid, :unpaid, :overdue, :completed]
+  serialize :graphable_data, Array
 
-  def graphable_data
-    return self.billable_meters.map { |meter|
-      {  
-        name:meter.description,
-        data:meter.graphable_data_hash(self.start_date, self.end_date)
-      }
-    }
-  end
+  enum status: [:paid, :unpaid, :overdue, :completed]
 
   def readable_date
     if self.start_date.day == 1 && self.end_date.to_date == self.start_date.end_of_month.to_date
@@ -60,8 +53,12 @@ class Invoice < ApplicationRecord
         total_due += meter_amount_due
       end
 
+      generate_graphable_data
+
       self.amount=total_due
       self.fees = self.amount * ApplicationController.helpers.get_tax_fee_rate
+
+
 
       if (self.amount == 0.0)
         self.status = :completed
@@ -88,6 +85,17 @@ class Invoice < ApplicationRecord
       meter_reference = meter_reference + " (" + meter.rate.symbol + ")"
 
       return meter_reference
+    end
+
+    def generate_graphable_data
+      data = self.billable_meters.map { |meter|
+        {  
+          name:meter.description,
+          data:meter.graphable_data_hash(self.start_date, self.end_date)
+        }
+      }
+
+      self.graphable_data = data
     end
 
     def set_default_status
