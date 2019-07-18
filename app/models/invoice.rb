@@ -45,7 +45,7 @@ class Invoice < ApplicationRecord
 
       self.billable_meters.each do |meter|
 
-        meter_usage = meter.get_usage(self.start_date,self.end_date)        
+        meter_usage = meter.get_usage(self.start_date,self.end_date).round(2)   
         meter_amount_due = get_billable_meter_amount_due(meter, meter_usage)
         meter_reference = get_billable_meter_reference(meter)
 
