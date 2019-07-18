@@ -86,19 +86,19 @@ namespace :elysium do
     end
   end
 
-  desc "Marks all invoices paid that are older than the newest group"
-  task :mark_old_invoices_paid => :environment do
-    Account.all.each do |account|
-      return if !account.invoices.any?
-      puts "Marking invoices paid for " account.name + "..."
-      latest_invoice_number = account.invoices.first.number
-      account.invoices.each do |invoice|
-        if (invoice.status == "overdue" && invoice.number < latest_invoice_number.floor(-1))
-          invoice.set_paid
-        end
-      end
-      puts "done."
-    end
-  end
+  # desc "Marks all invoices paid that are older than the newest group"
+  # task :mark_old_invoices_paid => :environment do
+  #   Account.all.each do |account|
+  #     return if !account.invoices.any?
+  #     puts "Marking invoices paid for " account.name + "..."
+  #     latest_invoice_number = account.invoices.first.number
+  #     account.invoices.each do |invoice|
+  #       if (invoice.status == "overdue" && invoice.number < latest_invoice_number.floor(-1))
+  #         invoice.set_paid
+  #       end
+  #     end
+  #     puts "done."
+  #   end
+  # end
 
 end
