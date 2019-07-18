@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190717140327) do
+ActiveRecord::Schema.define(version: 20190718180618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 20190717140327) do
   create_table "billable_meters_invoices", id: false, force: :cascade do |t|
     t.integer "invoice_id"
     t.integer "billable_meter_id"
+  end
+
+  create_table "invoice_meters", force: :cascade do |t|
+    t.string "reference"
+    t.float "usage"
+    t.float "rate"
+    t.decimal "amount_due", precision: 8, scale: 2
+    t.bigint "invoice_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["invoice_id"], name: "index_invoice_meters_on_invoice_id"
   end
 
   create_table "invoices", id: :serial, force: :cascade do |t|
@@ -212,6 +223,7 @@ ActiveRecord::Schema.define(version: 20190717140327) do
   add_foreign_key "billable_meters", "rates"
   add_foreign_key "billable_meters", "spaces"
   add_foreign_key "billable_meters", "tenants"
+  add_foreign_key "invoice_meters", "invoices"
   add_foreign_key "invoices", "tenants"
   add_foreign_key "meters", "sites"
   add_foreign_key "payments", "invoices"

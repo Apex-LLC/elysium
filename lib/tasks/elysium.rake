@@ -46,6 +46,8 @@ namespace :elysium do
     puts "Looping through each account..."
     Account.all.each do |account|
       puts "Looping through each tenant managed by " + account.name + "..."
+      invoice_number = 1
+
       account.tenants.each do |tenant|
         first_invoice_start_date=Date.new
         if (tenant.invoices.last != nil) 
@@ -65,7 +67,12 @@ namespace :elysium do
           puts "Generating invoice from " + start_date.to_s + " to " + end_date.to_s + " for " + account.name + ": " + tenant.name + "..."
           puts "--"
 
-          invoice = tenant.invoices.new(number: 100, start_date: start_date, end_date: end_date - 1.seconds, send_date: end_date + 6, due_date: end_date + account.days_until_invoice_due)
+          year = end_date.year % 100
+          month = '%02d' % end_date.month
+          num = '%03d' % invoice_number
+          number = year.to_s + month.to_s + num.to_s
+
+          invoice = tenant.invoices.new(number: number, start_date: start_date, end_date: end_date - 1.seconds, send_date: end_date + 6, due_date: end_date + account.days_until_invoice_due)
           invoice.billable_meters << tenant.billable_meters
 
           invoice.save
@@ -78,6 +85,7 @@ namespace :elysium do
 
           start_date = start_date.prev_month;
         end
+        invoice_number = invoice_number+1
       end
     end
   end

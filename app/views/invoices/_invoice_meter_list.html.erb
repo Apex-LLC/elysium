@@ -11,30 +11,15 @@
     total_due = number_with_delimiter(number_to_currency(@invoice.total), delimiter:',')
     tax_and_fees_due = number_with_delimiter(number_to_currency(@invoice.fees), delimiter:',')
 
-    @invoice.billable_meters.each do |meter|
-      if (meter.description?) 
-        meter_reference = meter.description 
-      else 
-        meter_reference = meter.meter.reference 
-      end 
-
-      meter_reference = meter_reference + " (" + meter.rate.symbol + ")"
-
-      meter_usage = number_with_precision(meter.get_usage(@invoice.start_date,@invoice.end_date), precision:2, delimiter:',').to_f
-      if (meter.is_peak_demand_meter?)
-        meter_amount_due = number_to_currency(meter.get_amount_due_peak_demand(@invoice.start_date,@invoice.end_date))
-      else
-        meter_amount_due = number_to_currency(meter.get_amount_due_from_usage(meter_usage))
-      end
-      %>
+    @invoice.invoice_meters.each do |meter|  %>
       <div class="table-row">
         <div class='table-row-item meter-item' data-href=''>
           <div class="table-cell name">
-            <%= meter_reference %>                  
+            <%= meter.reference %>                  
           </div>
-          <div class="table-cell allocation"><%= "%.2f" % meter_usage %></div>
-          <div class="table-cell rate"><sup>$</sup><%= "%.2f" % meter.rate.rate %></div>
-          <div class="table-cell amount"><%= meter_amount_due %></div>
+          <div class="table-cell allocation"><%= "%.2f" % meter.usage %></div>
+          <div class="table-cell rate"><sup>$</sup><%= "%.2f" % meter.rate %></div>
+          <div class="table-cell amount"><%= meter.amount_due %></div>
         </div>
       </div>
     <% end %>

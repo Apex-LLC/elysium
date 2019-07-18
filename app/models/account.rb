@@ -53,7 +53,7 @@ class Account < ApplicationRecord
   private
     def latest_billing_cycle_start_date
       billingCycles = self.billing_cycles
-      if (billingCycles != nil)
+      if (billingCycles.any?)
         return billingCycles.first[1].first.start_date
       else
         return DateTime.now.beginning_of_month
