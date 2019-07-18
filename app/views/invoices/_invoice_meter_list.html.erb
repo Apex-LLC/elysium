@@ -19,7 +19,7 @@
           </div>
           <div class="table-cell allocation"><%= "%.2f" % meter.usage %></div>
           <div class="table-cell rate"><sup>$</sup><%= "%.2f" % meter.rate %></div>
-          <div class="table-cell amount"><%= meter.amount_due %></div>
+          <div class="table-cell amount"><%= number_with_delimiter(number_to_currency(meter.amount_due), delimiter:',') %></div>
         </div>
       </div>
     <% end %>
