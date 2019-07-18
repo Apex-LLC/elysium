@@ -72,7 +72,7 @@ namespace :elysium do
           num = '%03d' % invoice_number
           number = year.to_s + month.to_s + num.to_s
 
-          invoice = tenant.invoices.new(number: number, start_date: start_date, end_date: end_date - 1.seconds, send_date: end_date + 6, due_date: end_date + account.days_until_invoice_due)
+          invoice = tenant.invoices.new(number: number, start_date: start_date, end_date: end_date - 1.seconds, send_date: end_date + 6, due_date: end_date + account.days_until_invoice_due.days)
           invoice.billable_meters << tenant.billable_meters
 
           invoice.save
