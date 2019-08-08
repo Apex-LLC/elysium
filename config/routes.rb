@@ -23,8 +23,12 @@ Rails.application.routes.draw do
       get 'get_meters'
     end
   end
+
   get "eula", to: "accounts#eula"
+
   get "everest", to: "static_pages#everest"
+  get "owners", to: "static_pages#everest"
+
   get "meter-setup", to: "billable_meters#configure"
   get "billable_meters/reload_configured_list", to: "billable_meters#reload_configured_list"
   # get "test", to: "billable_meters#test"
