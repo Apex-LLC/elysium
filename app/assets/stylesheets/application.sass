@@ -19,6 +19,7 @@
 @import "bootstrap-editable"
 @import "fonts.scss"
 @import "editable.scss"
+@import "static_pages.sass"
 
 $accent-color: rgb(63,151,245)
 $translucent-accent-color: rgba(63,151,245,.97)
@@ -48,15 +49,21 @@ html,body,.container
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6
   font-weight: 100
 
-a#title
-  text-decoration: none
+a
   color: $accent-color
-  letter-spacing: 5px
-  font-size: 1.1em
-  font-family: $bold-font !important
-  font-weight: bold
+  cursor: pointer
   .text-danger
     color: red
+  &:hover
+    text-decoration: underline !important
+    color: #0c76e7
+  &#title
+    text-decoration: none  
+    letter-spacing: 5px
+    font-size: 1.1em
+    font-family: $bold-font !important
+    font-weight: bold
+    
 
 img
   padding: 10px
