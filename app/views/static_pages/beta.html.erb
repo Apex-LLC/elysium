@@ -1,0 +1,78 @@
+<div class="row">
+  <div class="offset-md-2 col-8">
+
+    <div class="text-center">
+      <%= image_tag "header-logo.png", class: "w-75", id: "logo" %>
+    </div>
+
+    <h3 class="text-center font-weight-bold text-muted" style="margin-top: -20px;">BETA PROGRAM</h3>
+
+    <br>
+
+    <div class="text-center">
+      <%= image_tag "laptop.png", class: "w-50", id: "laptop" %>
+    </div>
+
+    <br/>
+    <br/>
+
+    <h3 class="text-muted text-center font-bold" style="font-weight: bold">ELLY is the most streamlined and user-friendly tenant billing solution available for your building automation system</h3>
+    
+    <br/>
+
+    <p>ELLY was created to make tenant billing as simple as possible for building managers and tenants alike. Managing your tenants, billing, payments, meters, and invoices is as easy as logging into your account.</p>
+
+    <p><strong>As an ELLY beta partner, we'd like to thank you for your participation with a $50 amazon gift card.</strong> It will be sent to the email used to sign up for ELLY.</p>
+    
+    <br/>
+
+    <h4 class="text-center font-weight-bold">
+    We can't wait for you to get started!
+    </h4>
+
+    <br/>
+  </div>
+</div>
+<div class="row information-panel">
+  <div class="offset-md-2 col-8">
+
+    <h4 class="text-muted font-weight-bold">What the Beta Process Will Look Like</h4>
+    <ol>
+      <li>We will create an ELLY account for you using the email address you provide</li>
+      <li>The ELLY data collection module will be installed at your site</li>
+      <ul>
+        <li>The module is a small windows service that allows ELLY to read the utility data from your BAS</li>
+        <li class="font-italic">Currently available for <strong>Johnson Controls Metasys</strong> as well as <strong>Niagara</strong> systems</li>
+      </ul>
+      <li>Once trend data is available (within a few hours), we will work with you to assign meters to tenants</li>
+      <li>Your tenants will receive email invitations to finish creating their ELLY accounts</li>
+      <li>You will configure your bank account information and due dates so you can receive utility payments</li>
+      <li>At the end of the billing cycle, your tenants' invoices will be automatically generated, and a payment reminder sent to their email</li>
+      <li>Your tenants will pay their invoices through ELLY, and the funds will be automatically deposited into your linked bank account within 1 business day</li>
+    </ol>
+  
+    <h5 class="">and that's it!</h5>
+    <br>
+    <h5>After this easy, one-time set up, ELLY will continue to run in the background for seamless, automatic tenant billing.</h5>
+  </div>
+</div>
+
+<div class="row">
+  <div class="offset-md-3 col-6">
+    <br/><br/>
+    <h3 class="text-center font-weight-bold">
+      <%= link_to "Contact us", sign_up_path %> to get started!
+    </h3>
+    <br/>
+    <br/>
+    <div class="text-center">
+      <%= image_tag "logo.png", class: "w-25" %>
+    </div>
+    <br/>
+    <br/>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#logo').hide().fadeIn(1500);
+</script>
