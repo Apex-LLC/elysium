@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require cropper
 //= require popper
 //= require bootstrap
 //= require select2
