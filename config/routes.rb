@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get "pricing", to: "static_pages#pricing"
   get "details", to: "static_pages#details"
   get "beta", to: "static_pages#beta"
+  get "tenants", to: "static_pages#tenants"
 
   get "meter-setup", to: "billable_meters#configure"
   get "billable_meters/reload_configured_list", to: "billable_meters#reload_configured_list"
