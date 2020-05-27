@@ -40,15 +40,15 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
 
   puts 'creating records'
   for m in site.meters
-    multiplier=rand(80..900)
+    multiplier=rand(400..900)
     # multiplier=0 #Uncomment this to make all the invoices have a total of 0
     value = multiplier
     date = todays_date-400
     for i in 1..400
-      m.records<<Record.new(datetime:date + i, value:value)
-      value = value + rand(2.5..(multiplier/10.0))
-      m.records<<Record.new(datetime:(date + i)+12.hours, value:value)
-      value = value + rand(2.5..(multiplier/10.0))
+      m.records<<Record.new(datetime:date + i, value:value*4)
+      value = value + rand(2.5..20.0)
+      m.records<<Record.new(datetime:(date + i)+12.hours, value:value*4)
+      value = value + rand(2.5..20.0)
     end
   end
   puts 'done'
