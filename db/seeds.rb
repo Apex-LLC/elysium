@@ -16,7 +16,7 @@ puts 'done'
 
 puts 'creating users'
 u1=a.users.create(email:"Joe@ApexLLC.co", password:"password", name: "Joe Bauer", phone: "2629307445", role: :admin)
-u2=a.users.create(email:"matt@withkander.com", password:"password", role: :owner)
+u2=a.users.create(email:"matthew@withkander.com", password:"password", role: :owner)
 u3=a.users.create(email:"Dave@ApexLLC.com", password:"password", role: :owner)
 u4=a.users.create(email:"Brendon@ApexLLC.com", password:"password", role: :owner)
 tenant_user=a.users.create(email:"tenant@apexllc.com",password:"password", role: :tenant)
@@ -30,7 +30,7 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
   a.site = site
   puts 'done'
 
-  a.rates << Rate.create(symbol:"kWh",rate:0.0084)
+  a.rates << Rate.create(symbol:"kWh",rate:0.09)
 
   puts 'creating meters'
   for i in 1..12
@@ -91,11 +91,6 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
       end
       number = number + endNumber
 
-      # if (a.invoices.count == 0)
-      #   number = 20100
-      # else
-      #   number = a.invoices.max_by(&:number).number + 1
-      # end
 
       i=Invoice.new(number:number,start_date:startDate,end_date:endDate,send_date: sendDate, due_date: endDate + a.days_until_invoice_due)
       i.billable_meters << t.billable_meters
