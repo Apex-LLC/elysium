@@ -19,7 +19,7 @@ u1=a.users.create(email:"Joe@ApexLLC.co", password:"password", name: "Joe Bauer"
 u2=a.users.create(email:"matt@withkander.com", password:"password", role: :owner)
 u3=a.users.create(email:"Dave@ApexLLC.com", password:"password", role: :owner)
 u4=a.users.create(email:"Brendon@ApexLLC.com", password:"password", role: :owner)
-tenant_user=a.users.create(email:"tenant@withkander.com",password:"password", role: :tenant)
+tenant_user=a.users.create(email:"tenant@apexllc.com",password:"password", role: :tenant)
 puts 'done'
 
 admin_fee1 = a.admin_costs.create(label:"Admin fee 1", percent:1.2,flat_fee:nil, description: "Management fee 1")
