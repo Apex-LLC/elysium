@@ -42,8 +42,9 @@ class BillableMeter < ApplicationRecord
 
     current_day = start_date.to_date
     while current_day <= end_date.to_date do
-      if (!records.select { |record| record.datetime.to_date == current_day }.any?)
-        records << Record.new(datetime: current_day, value: 0.0)
+      if (!records.select { |record| record.datetime.to_date == current_day.to_date }.any?)
+        last_value = records.last.value
+        records << Record.new(datetime: current_day, value: last_value)
       end
       current_day = current_day + 1.days
     end

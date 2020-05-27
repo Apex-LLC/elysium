@@ -20,7 +20,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
+gem 'execjs'
 
 gem 'active_model_serializers'
 
@@ -46,7 +47,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'devise'
+gem 'devise', '~> 4.4'
 gem 'chartkick'
 gem 'stripe'
 gem 'oauth2'

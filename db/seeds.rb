@@ -16,10 +16,10 @@ puts 'done'
 
 puts 'creating users'
 u1=a.users.create(email:"Joe@ApexLLC.co", password:"password", name: "Joe Bauer", phone: "2629307445", role: :admin)
-u2=a.users.create(email:"Matt@ApexLLC.com", password:"password", role: :owner)
+u2=a.users.create(email:"matt@withkander.com", password:"password", role: :owner)
 u3=a.users.create(email:"Dave@ApexLLC.com", password:"password", role: :owner)
 u4=a.users.create(email:"Brendon@ApexLLC.com", password:"password", role: :owner)
-tenant_user=a.users.create(email:"tenant@apexllc.com",password:"password", role: :tenant)
+tenant_user=a.users.create(email:"tenant@withkander.com",password:"password", role: :tenant)
 puts 'done'
 
 admin_fee1 = a.admin_costs.create(label:"Admin fee 1", percent:1.2,flat_fee:nil, description: "Management fee 1")
@@ -40,10 +40,15 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
 
   puts 'creating records'
   for m in site.meters
-    multiplier=rand(80..130)
+    multiplier=rand(80..900)
     # multiplier=0 #Uncomment this to make all the invoices have a total of 0
+    value = multiplier
+    date = todays_date-400
     for i in 1..400
-      m.records<<Record.new(datetime:todays_date - i,value:multiplier*(rand(0.8..1.2)))
+      m.records<<Record.new(datetime:date + i, value:value)
+      value = value + rand(2.5..(multiplier/10.0))
+      m.records<<Record.new(datetime:(date + i)+12.hours, value:value)
+      value = value + rand(2.5..(multiplier/10.0))
     end
   end
   puts 'done'
@@ -51,7 +56,7 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
   puts 'creating tenants'
   t1=Tenant.create(name:"Simple Bank Montreal",phone:"262-930-7445",email:"Montreal@SimpleBank.com")
   t2=Tenant.create(name:"Strauss Family Creamery",phone:"262-930-7445",email:"yvette@strauscreamery.com")
-  t3=Tenant.create(name:"University of Wisconsin-Parkside",phone:"262-930-7445",email:"admin@uwp.edu")
+  t3=Tenant.create(name:"University of Wisconsin-Parkside",phone:"262-930-7445",email:"tenant@withkander.com")
   tenant_user.tenant = t1
   tenant_user.save
   a.tenants << [t1,t2,t3]
@@ -70,18 +75,27 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
     
     startDate=DateTime.new(DateTime.now.year,DateTime.now.month,1) 
 
-    for i in 1..12
-      puts 'building invoice ' + i.to_s + ' of 12'
+    for x in 1..12
+      puts 'building invoice ' + x.to_s + ' of 12'
       startDate=startDate.prev_month
       endDate=startDate.next_month.prev_day
       sendDate=endDate+6
-      number = 0
 
-      if (a.invoices.count == 0)
-        number = 12100
-      else
-        number = a.invoices.max_by(&:number).number + 1
+      number = (startDate.year % 100) * 100000
+      number = number + (startDate.month*1000)
+      endNumber = 1
+      if (t == t2)
+        endNumber = 2
+      elsif (t==t3)
+        endNumber = 3
       end
+      number = number + endNumber
+
+      # if (a.invoices.count == 0)
+      #   number = 20100
+      # else
+      #   number = a.invoices.max_by(&:number).number + 1
+      # end
 
       i=Invoice.new(number:number,start_date:startDate,end_date:endDate,send_date: sendDate, due_date: endDate + a.days_until_invoice_due)
       i.billable_meters << t.billable_meters
@@ -89,7 +103,7 @@ admin_fee2 = a.admin_costs.create(label:"Admin fee 2", percent:nil,flat_fee:10.0
 
       t.invoices << i
 
-      if (i != 1 || t==t2)
+      if (x != 1 || t==t2)
         i.set_paid
         payment = 
         Payment.new(date: i.send_date, amount: i.total, email: i.tenant.email, tenant: i.tenant, invoice: i)
