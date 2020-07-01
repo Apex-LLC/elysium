@@ -1,5 +1,6 @@
 class TenantFeesController < ApplicationController
   before_action :set_tenant_fee, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /tenant_fees
   # GET /tenant_fees.json

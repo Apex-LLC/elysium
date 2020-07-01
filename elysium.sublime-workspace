@@ -417,108 +417,63 @@
 			}
 		},
 		{
+			"file": "app/models/billable_meter.rb",
+			"settings":
+			{
+				"buffer_size": 4280,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models/invoice.rb",
+			"settings":
+			{
+				"buffer_size": 3209,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db/seeds.rb",
+			"settings":
+			{
+				"buffer_size": 3957,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "app/assets/stylesheets/application.sass",
 			"settings":
 			{
-				"buffer_size": 11478,
+				"buffer_size": 11487,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/static_pages/beta.html.erb",
+			"file": "app/assets/stylesheets/meters.scss",
 			"settings":
 			{
-				"buffer_size": 3002,
+				"buffer_size": 177,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Gemfile",
+			"settings":
+			{
+				"buffer_size": 2212,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views/static_pages/details.html.erb",
+			"file": "/Users/joebauer/.zshrc",
 			"settings":
 			{
-				"buffer_size": 2273,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/static_pages/tenants.html.erb",
-			"settings":
-			{
-				"buffer_size": 2429,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config/routes.rb",
-			"settings":
-			{
-				"buffer_size": 2025,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/static_pages/pricing.html.erb",
-			"settings":
-			{
-				"buffer_size": 1978,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/tenants/_form.html.erb",
-			"settings":
-			{
-				"buffer_size": 2725,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/tenants/_new_tenant.html.erb",
-			"settings":
-			{
-				"buffer_size": 316,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/billable_meters/configure.html.erb",
-			"settings":
-			{
-				"buffer_size": 4389,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/assets/javascripts/cropper.js",
-			"settings":
-			{
-				"buffer_size": 111445,
-				"encoding": "UTF-8",
-				"line_ending": "Unix",
-				"name": "/*!"
-			}
-		},
-		{
-			"file": "app/controllers/tenants_controller.rb",
-			"settings":
-			{
-				"buffer_size": 2841,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/models/tenant.rb",
-			"settings":
-			{
-				"buffer_size": 1237,
+				"buffer_size": 84,
 				"line_ending": "Unix"
 			}
 		},
@@ -527,6 +482,15 @@
 			"settings":
 			{
 				"buffer_size": 2796,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config/routes.rb",
+			"settings":
+			{
+				"buffer_size": 2029,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -593,33 +557,35 @@
 	"expanded_folders":
 	[
 		"/Users/joebauer/Developer/ApexProjects/Elysium",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/assets",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/assets/javascripts",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/controllers",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/models",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/config"
 	],
 	"file_history":
 	[
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/models/tenant.rb",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/controllers/tenants_controller.rb",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/assets/stylesheets/application.sass",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/static_pages/beta.html.erb",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/static_pages/details.html.erb",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/static_pages/tenants.html.erb",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/config/routes.rb",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/static_pages/pricing.html.erb",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/tenants/_form.html.erb",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/tenants/_new_tenant.html.erb",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/billable_meters/configure.html.erb",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/assets/javascripts/cropper.js",
+		"/Users/joebauer/Developer/ApexProjects/Elysium/Gemfile",
 		"/Users/joebauer/Developer/Preset Installers/gamut.io/ADAGIO/Resources/Dialog Text/Introduction_Dialog.txt",
 		"/Users/joebauer/Developer/Preset Installers/gamut.io/Resources/copyLUTs.sh",
 		"/Users/joebauer/Developer/Preset Installers/PS Presets/Resources/copyPresets.sh",
 		"/Users/joebauer/Developer/Preset Installers/gamut.io/Resources/copyPresets.sh",
 		"/Users/joebauer/Desktop/story.html",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/assets/javascripts/application.js",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/config/routes.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/assets/stylesheets/static_pages.sass",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/static_pages/details.html.erb",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/static_pages/pricing.html.erb",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/static_pages/beta.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/messages/new.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/messages/complete.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/navigation/_nav.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/db/schema.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/models/invoice.rb",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/assets/stylesheets/application.sass",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/invoices/show.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/invoices/_invoice_meter_list.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/lib/tasks/elysium.rake",
@@ -637,7 +603,6 @@
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/controllers/charges_controller.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/invoices/_invoice_daily_summary.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/.env",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/Gemfile",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/mailers/tenant_mailer.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/controllers/accounts_controller.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/tenant_mailer/new_tenant_notification.html.erb",
@@ -667,7 +632,6 @@
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/billable_meters/_configured_list.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/devise/sessions/new.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/db/migrate/20190627192232_remove_usage_from_invoice.rb",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/billable_meters/configure.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/invoices/index.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/tenants/index.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/assets/javascripts/sorttable.js",
@@ -682,7 +646,6 @@
 		"/Users/joebauer/Developer/ApexProjects/Elysium/db/migrate/20190614205800_remove_decimal_from_tenant_fees.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/rates/show.html.erb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/models/payment.rb",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/models/tenant.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/models/space.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/db/migrate/20190614200514_add_user_reference_to_tenant_fees.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/views/static_pages/everest.html.erb",
@@ -719,18 +682,13 @@
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/models/rate.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/models/tenant_user.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/controllers/payments_controller.rb",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/controllers/tenants_controller.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/Sample Data/TPark Meter Records.csv",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/helpers/application_helper.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/db/migrate/20190320220717_add_index_to_records.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/app/models/meter.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/db/migrate/20190320213811_add_usage_to_invoice.rb",
 		"/Users/joebauer/Developer/ApexProjects/Elysium/Sample Data/TPark 1 Day Meter Records.csv",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/controllers/api/v1/meters_controller.rb",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/‎logs.heroku.txt",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/app/controllers/sites_controller.rb",
-		"/Volumes/tr-daemon/settings.json",
-		"/Users/joebauer/Developer/ApexProjects/Elysium/Sample Data/Testing Data Normalization for Meters.rb"
+		"/Users/joebauer/Developer/ApexProjects/Elysium/app/controllers/api/v1/meters_controller.rb"
 	],
 	"find":
 	{
@@ -741,6 +699,7 @@
 		"height": 106.0,
 		"where_history":
 		[
+			"/Users/joebauer/Developer/ApexProjects/Elysium",
 			"<current file>",
 			""
 		]
@@ -750,6 +709,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"byebug",
+			"config.i18n.fallbacks",
 			"div",
 			"ul",
 			"h2",
@@ -875,9 +836,7 @@
 			"select2",
 			"ms",
 			"\"Create",
-			"Create ",
-			"Create Tenant",
-			"hover"
+			"Create "
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -916,7 +875,7 @@
 	"groups":
 	[
 		{
-			"selected": 10,
+			"selected": 9,
 			"sheets":
 			[
 				{
@@ -931,8 +890,8 @@
 						"selection":
 						[
 							[
-								14,
-								14
+								515,
+								515
 							]
 						],
 						"settings":
@@ -944,89 +903,29 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 13,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/assets/stylesheets/application.sass",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 11478,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4076,
-								4076
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Sass/Syntaxes/Sass.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/views/static_pages/beta.html.erb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3002,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1562,
-								1562
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "app/views/static_pages/details.html.erb",
+					"buffer": 1,
+					"file": "app/models/billable_meter.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2273,
+						"buffer_size": 4280,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								2273
+								4086,
+								4086
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -1038,25 +937,25 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "app/views/static_pages/tenants.html.erb",
+					"buffer": 2,
+					"file": "app/models/invoice.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2429,
+						"buffer_size": 3209,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								859,
-								859
+								2424,
+								2425
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -1064,24 +963,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "config/routes.rb",
+					"buffer": 3,
+					"file": "db/seeds.rb",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2025,
+						"buffer_size": 3957,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								714,
-								714
+								1954,
+								1954
 							]
 						],
 						"settings":
@@ -1098,113 +997,83 @@
 					"type": "text"
 				},
 				{
+					"buffer": 4,
+					"file": "app/assets/stylesheets/application.sass",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11487,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2116,
+								2116
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/assets/stylesheets/meters.scss",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 177,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/SCSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
 					"buffer": 6,
-					"file": "app/views/static_pages/pricing.html.erb",
+					"file": "Gemfile",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1978,
+						"buffer_size": 2212,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1069,
-								1069
+								41,
+								41
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "app/views/tenants/_form.html.erb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2725,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2725,
-								2725
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "app/views/tenants/_new_tenant.html.erb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 316,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								309,
-								309
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "app/views/billable_meters/configure.html.erb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4389,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2620,
-								2620
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rails/HTML (Rails).sublime-syntax",
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -1216,98 +1085,35 @@
 					"type": "text"
 				},
 				{
-					"buffer": 10,
-					"file": "app/assets/javascripts/cropper.js",
+					"buffer": 7,
+					"file": "/Users/joebauer/.zshrc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 111445,
+						"buffer_size": 84,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								111445,
-								111445
+								84,
+								22
 							]
 						],
 						"settings":
 						{
-							"auto_name": "/*!",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/ShellScript/Bash.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 11,
-					"file": "app/controllers/tenants_controller.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2841,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "app/models/tenant.rb",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1237,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				},
-				{
-					"buffer": 13,
+					"buffer": 8,
 					"file": "/Users/joebauer/Developer/Kind Dentistry/Website notes",
 					"semi_transient": false,
 					"settings":
@@ -1319,8 +1125,8 @@
 						"selection":
 						[
 							[
-								258,
-								258
+								166,
+								166
 							]
 						],
 						"settings":
@@ -1331,7 +1137,37 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "config/routes.rb",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2029,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								709,
+								709
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

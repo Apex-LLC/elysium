@@ -25,6 +25,7 @@
 
       $('select#tenant-select').select2({
         theme: "bootstrap",
+        width: "style",
         minimumResultsForSearch: Infinity,
         placeholder: "Tenant",
         allowClear: false
@@ -78,9 +79,9 @@
             <% end %>
           <% end %>
           <div class="table-row">
-            <div class='table-row-item tenant-fee-item'>
+            <div class='table-row-item tenant-fee-item h-100'>
               <% fee = TenantFee.new %>
-              <%= form_with(model: fee, local: true) do |form| %>
+              <%= form_with(model: fee, local: true, class: "h-100") do |form| %>
 
                 <div class="inline-field table-cell tenant">
                   <% defaultOption = options_for_select([[]]) %>

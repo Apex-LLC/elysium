@@ -135,6 +135,9 @@ sup
     display: table-cell
     vertical-align: middle
 
+#notice
+  text-align: center
+
 nav
   height: $navbar-height
   position: fixed
@@ -209,6 +212,9 @@ nav
       padding: 4px 8px
       border-radius: 2px
       width: 280px
+    input[type="file"]
+      padding-left: 0
+      padding-top: 0
     textarea
       border-color: lightgray
 
@@ -360,6 +366,7 @@ tr
       width: 15%
       text-align: center
   &.tenant-fee-item
+    height: 100%
     .tenant
       width: 25%
     .amount
@@ -369,8 +376,6 @@ tr
     .recurring
       width: 10%
       text-align: center
-      input
-        margin-left: 45%
     .button
       width: 10%
       text-align: center
@@ -410,10 +415,14 @@ tr
   float: left
   display: inline
   margin-right: 4px
+  height: 100% !important
   input
     width: 100% !important
+    height: 100% !important
     &:not(.btn-primary)
       padding-left: 0 !important
+  input[type="checkbox"]
+      width: auto !important
 
 #spaces-list
   border-right: 1px solid $light-accent-color
