@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   resources :banks
   resources :microdeposits
   
-  root to: "accounts#show"
+  authenticated :user do
+    root to: "accounts#show", as: :authenticated_root
+  end
+
+  root to: "static_pages#details"
+
 
   resources :sites
   devise_for :users, controllers: {registrations:'users/registrations'}
@@ -34,7 +39,7 @@ Rails.application.routes.draw do
 
   get "meter-setup", to: "billable_meters#configure"
   get "billable_meters/reload_configured_list", to: "billable_meters#reload_configured_list"
-  # get "test", to: "billable_meters#test"
+
   get "stripe/connect", to:"accounts#stripe_callback", as: :stripe_connect
 
   resources :contacts
